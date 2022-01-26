@@ -12,12 +12,14 @@ import frc.robot.commands.DriveMech;
 import frc.robot.commands.FlopUp;
 import frc.robot.commands.QuickTurn;
 import frc.robot.commands.ReachUp;
+import frc.robot.commands.ShooterRun;
 import frc.robot.commands.WinchRun;
 import frc.robot.commands.WinchUp;
 import frc.robot.subsystems.Collector;
 import frc.robot.subsystems.Flopper;
 import frc.robot.subsystems.MechTrain;
 import frc.robot.subsystems.Reacher;
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Winch;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -34,6 +36,7 @@ public class RobotContainer {
   private final MechTrain m_Drive = new MechTrain();
   private final Winch m_Winch = new Winch();
   private final Collector m_Collector = new Collector();
+  private final Shooter m_Shooter = new Shooter();
   private final Joystick driveStick = new Joystick(0);
   private final Joystick shootStick = new Joystick(1);
 
@@ -63,7 +66,8 @@ public class RobotContainer {
     new JoystickButton(driveStick, 12).whenHeld(new WinchRun(m_Winch, -.25));
     new JoystickButton(shootStick, 3).whenHeld(new CollectorRun(m_Collector, .75));
     new JoystickButton(shootStick, 5).whenHeld(new CollectorRun(m_Collector, -1));
-
+    new JoystickButton(shootStick, 7).whenPressed(new ShooterRun(m_Shooter, 1));
+    new JoystickButton(shootStick, 8).whenPressed(new ShooterRun(m_Shooter, 0));
   }
 
   /**

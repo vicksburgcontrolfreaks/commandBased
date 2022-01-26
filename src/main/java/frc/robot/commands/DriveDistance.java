@@ -29,10 +29,10 @@ public class DriveDistance extends CommandBase {
   @Override
   public void initialize() {
     double ticDist = m_dist*DriveConstants.ticksPerInch;
-    double frontLeftF = m_drive.frontLeftEncoderV() + ticDist;
-    double frontRightF = m_drive.frontRightEncoderV() - ticDist;
-    double backLeftF = m_drive.backLeftEncoderV() + ticDist;
-    double backRightF = m_drive.backRightEncoderV() - ticDist;
+    frontLeftF = m_drive.frontLeftEncoderV() + ticDist;
+    frontRightF = m_drive.frontRightEncoderV() - ticDist;
+    backLeftF = m_drive.backLeftEncoderV() + ticDist;
+    backRightF = m_drive.backRightEncoderV() - ticDist;
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -29,10 +29,10 @@ public class TurnDegrees extends CommandBase {
   @Override
   public void initialize() {
     double ticDist = m_dist*DriveConstants.ticksPerDegree;
-    double frontLeftF = m_drive.frontLeftEncoderV() + ticDist;
-    double frontRightF = m_drive.frontLeftEncoderV() + ticDist;
-    double backLeftF = m_drive.frontLeftEncoderV() + ticDist;
-    double backRightF = m_drive.frontLeftEncoderV() + ticDist;
+    frontLeftF = m_drive.frontLeftEncoderV() + ticDist;
+    frontRightF = m_drive.frontLeftEncoderV() + ticDist;
+    backLeftF = m_drive.frontLeftEncoderV() + ticDist;
+    backRightF = m_drive.frontLeftEncoderV() + ticDist;
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -10,7 +10,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Collector extends SubsystemBase {
-  private final CANSparkMax collector = new CANSparkMax(5, MotorType.kBrushed);
+  private final CANSparkMax collector = new CANSparkMax(5, MotorType.kBrushless);
 
   /** Creates a new Winch. */
   public void collectorMove(double speed){
