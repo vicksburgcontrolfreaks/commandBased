@@ -7,15 +7,11 @@ package frc.robot.commands;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Flopper;
-import frc.robot.subsystems.Reacher;
 import frc.robot.subsystems.Winch;
 
 public class WinchRun extends CommandBase {
   public final Winch m_winch;
   private final Double m_speed;
-  //public final Flopper m_flopper;
-  //public final Reacher m_reacher;
 
   /** Creates a new WinchUp. */
   public WinchRun(Winch subsystem, double s) {
@@ -27,9 +23,7 @@ public class WinchRun extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

@@ -7,10 +7,16 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.DriveMech;
 import frc.robot.commands.FlopUp;
+import frc.robot.commands.QuickTurn;
 import frc.robot.commands.ReachUp;
+import frc.robot.commands.WinchRun;
+import frc.robot.commands.WinchUp;
 import frc.robot.subsystems.Flopper;
+import frc.robot.subsystems.MechTrain;
 import frc.robot.subsystems.Reacher;
+import frc.robot.subsystems.Winch;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -24,6 +30,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Flopper m_Flopper = new Flopper();
   private final Reacher m_Reacher = new Reacher();
+  private final MechTrain m_Drive = new MechTrain();
+  private final Winch m_Winch = new Winch();
   private final Joystick driveStick = new Joystick(0);
   private final Joystick shootStick = new Joystick(1);
 
@@ -34,6 +42,9 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+    m_Drive.setDefaultCommand(new DriveMech(m_Drive, driveStick::getX, driveStick::getY));
+
   }
 
   /**
@@ -45,7 +56,9 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new JoystickButton(driveStick, 3).whenPressed(new FlopUp(m_Flopper));
     new JoystickButton(driveStick, 5).whenPressed(new ReachUp(m_Reacher));
-    
+    new JoystickButton(driveStick, 2).whenPressed(new QuickTurn(m_Drive, driveStick::getX));
+    new JoystickButton(shootStick, 4).whenHeld(new WinchUp(m_Winch, 1, m_Flopper, m_Reacher));
+    new JoystickButton(driveStick, 12).whenHeld(new WinchRun(m_Winch, -.25));
   }
 
   /**
