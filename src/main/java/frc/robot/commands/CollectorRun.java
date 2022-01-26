@@ -6,17 +6,17 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Winch;
+import frc.robot.subsystems.Collector;
 
-public class WinchRun extends CommandBase {
-  public final Winch m_winch;
+public class CollectorRun extends CommandBase {
+  public final Collector m_collector;
   private final Double m_speed;
 
-  /** Creates a new WinchUp. */
-  public WinchRun(Winch subsystem, double s) {
-    m_winch = subsystem;
+  /** Creates a new CollectorUp. */
+  public CollectorRun(Collector subsystem, double s) {
+    m_collector = subsystem;
     m_speed = s;
-    addRequirements(m_winch);
+    addRequirements(m_collector);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -27,13 +27,13 @@ public class WinchRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_winch.winchMove(m_speed);
+    m_collector.collectorMove(m_speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_winch.winchMove(0);
+    m_collector.collectorMove(0);
   }
 
   // Returns true when the command should end.

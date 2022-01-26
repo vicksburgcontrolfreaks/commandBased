@@ -12,4 +12,19 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+    public static final class DriveConstants{
+        public final static double drive_kP = 2.81;
+        public final static double drive_kI = 0;
+        public final static double drive_kD = 0;
+        public final static double drive_kIz = 0;
+        public final static double drive_kFF = 0;
+        public final static double drive_kMaxOutput = .3;
+        public final static double drive_kMinOutput = -.3;
+        public final static double ticksPerDegree = .23;
+        public final static double ticksPerInch = .57;
+        public final static double ticksPerSide = .76;
+        public final static double drive_encoderError = 1;
+    }
+}
+
