@@ -99,6 +99,15 @@ public class MechTrain extends SubsystemBase {
     backRightP.setReference(distance, ControlType.kPosition, 0);
   }
 
+  @Override
+  public void periodic() {
+    frontLeftEncoderV();
+    frontRightEncoderV();
+    backLeftEncoderV();
+    backRightEncoderV();
+    avgV();
+  }
+
   public double frontLeftEncoderV(){
     return frontLeftE.getPosition();
   }

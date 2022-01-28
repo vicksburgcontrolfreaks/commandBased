@@ -18,7 +18,7 @@ public class WinchUp extends ParallelCommandGroup {
   public final Flopper m_flopper;
   private final Double m_speed;
   /** Creates a new WinchUp. */
-  public WinchUp(Winch subsystem, double s, Flopper sFlopper, Reacher sReacher) {
+  public WinchUp(Winch subsystem, Flopper sFlopper, Reacher sReacher, double s) {
     m_winch = subsystem;
     m_speed = s;
     m_reacher = sReacher;
