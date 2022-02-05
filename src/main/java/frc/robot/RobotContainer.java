@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import frc.robot.Constants.DriveButtons;
+import frc.robot.Constants.ShootButtons;
 import frc.robot.Constants.TestConstants;
 import frc.robot.commands.AutoTurret;
 import frc.robot.commands.Autonomous1;
@@ -81,19 +83,19 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(driveStick, 3).whenPressed(new FlopUp(m_Flopper));
-    new JoystickButton(driveStick, 5).whenPressed(new ReachUp(m_Reacher));
-    new JoystickButton(driveStick, 2).whileHeld(new QuickTurn(m_Drive, driveStick::getX));
-    new JoystickButton(shootStick, 4).whileHeld(new WinchUp(m_Winch, m_Flopper, m_Reacher, TestConstants.winchF));
-    new JoystickButton(driveStick, 12).whileHeld(new WinchRun(m_Winch, TestConstants.winchB));
-    new JoystickButton(shootStick, 3).whileHeld(new CollectorRun(m_Collector, TestConstants.collectF));
-    new JoystickButton(shootStick, 5).whileHeld(new CollectorRun(m_Collector, TestConstants.collectB));
-    new JoystickButton(shootStick, 7).whenPressed(new ShooterRun(m_Shooter, TestConstants.shootF));
-    new JoystickButton(shootStick, 8).whenPressed(new ShooterRun(m_Shooter, 0));
-    new JoystickButton(shootStick, 9).whenPressed(new ManualTurret(m_Turret, shootStick::getX));
-    new JoystickButton(shootStick, 10).whenPressed(new AutoTurret(m_Turret, m_Limelight));
-    new JoystickButton(shootStick, 1).whileHeld(new IndexCheck(m_Indexer, m_Collector, m_Mills));
-    new JoystickButton(driveStick, 1).whileHeld(new FireCheck());
+    new JoystickButton(driveStick, DriveButtons.flop).whenPressed(new FlopUp(m_Flopper));
+    new JoystickButton(driveStick, DriveButtons.reach).whenPressed(new ReachUp(m_Reacher));
+    new JoystickButton(driveStick, DriveButtons.turn).whileHeld(new QuickTurn(m_Drive, driveStick::getX));
+    new JoystickButton(driveStick, DriveButtons.reverseWinch).whileHeld(new WinchRun(m_Winch, TestConstants.winchB));
+    new JoystickButton(driveStick, DriveButtons.fire).whileHeld(new FireCheck());
+    new JoystickButton(shootStick, ShootButtons.collect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectF));
+    new JoystickButton(shootStick, ShootButtons.backCollect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectB));
+    new JoystickButton(shootStick, ShootButtons.prime).whenPressed(new ShooterRun(m_Shooter, TestConstants.shootF));
+    new JoystickButton(shootStick, ShootButtons.shooterOff).whenPressed(new ShooterRun(m_Shooter, 0));
+    new JoystickButton(shootStick, ShootButtons.manual).whenPressed(new ManualTurret(m_Turret, shootStick::getX));
+    new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new AutoTurret(m_Turret, m_Limelight));
+    new JoystickButton(shootStick, ShootButtons.index).whileHeld(new IndexCheck(m_Indexer, m_Collector, m_Mills));
+    new JoystickButton(shootStick, ShootButtons.winch).whileHeld(new WinchUp(m_Winch, m_Flopper, m_Reacher, TestConstants.winchF));
   }
 
   public Command getAutonomousCommand() {

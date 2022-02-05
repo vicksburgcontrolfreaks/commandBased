@@ -12,13 +12,14 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.CANConstants;
 import frc.robot.Constants.DriveConstants;
 
 public class MechTrain extends SubsystemBase {
-  private final CANSparkMax frontLeft = new CANSparkMax(1, MotorType.kBrushless);
-  private final CANSparkMax frontRight = new CANSparkMax(2, MotorType.kBrushless);
-  private final CANSparkMax backLeft = new CANSparkMax(3, MotorType.kBrushless);
-  private final CANSparkMax backRight = new CANSparkMax(4, MotorType.kBrushless);
+  private final CANSparkMax frontLeft = new CANSparkMax(CANConstants.frontLeft, MotorType.kBrushless);
+  private final CANSparkMax frontRight = new CANSparkMax(CANConstants.frontRight, MotorType.kBrushless);
+  private final CANSparkMax backLeft = new CANSparkMax(CANConstants.backLeft, MotorType.kBrushless);
+  private final CANSparkMax backRight = new CANSparkMax(CANConstants.backRight, MotorType.kBrushless);
   private final SparkMaxPIDController frontLeftP = frontLeft.getPIDController();
   private final SparkMaxPIDController frontRightP = frontRight.getPIDController();
   private final SparkMaxPIDController backLeftP = backLeft.getPIDController();

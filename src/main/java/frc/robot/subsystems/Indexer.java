@@ -8,9 +8,10 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.CANConstants;
 
 public class Indexer extends SubsystemBase {
-  private CANSparkMax indexer = new CANSparkMax(9, MotorType.kBrushless);
+  private CANSparkMax indexer = new CANSparkMax(CANConstants.indexer, MotorType.kBrushless);
 
   public void runIndexer(double speed){
     indexer.set(speed);

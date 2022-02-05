@@ -52,4 +52,37 @@ public final class Constants {
         public final static double winchF = 1;
         public final static double winchB = -.25;
     }
+
+    public static final class DriveButtons{
+        public final static int fire = 1;
+        public final static int turn = 2;
+        public final static int flop = 3;
+        public final static int reach = 5;
+        public final static int resetEncoders = 11;
+        public final static int reverseWinch = 12;
+    }
+
+    public static final class ShootButtons{
+        public final static int index = 1;
+        public final static int collect = 3;
+        public final static int winch = 4;
+        public final static int backCollect = 5;
+        public final static int prime = 7;
+        public final static int shooterOff = 8;
+        public final static int manual = 9;
+        public final static int auto = 10;
+    }
+
+    public static final class CANConstants{
+        public final static int frontRight = 1;
+        public final static int frontLeft = 2;
+        public final static int backRight = 3;
+        public final static int backLeft = 4;
+        public final static int collector = 5;
+        public final static int shooterL = 6;
+        public final static int shooterR = 7;
+        public final static int turret = 8;
+        public final static int indexer = 9;
+        public final static int winch = 10;
+    }
 }
