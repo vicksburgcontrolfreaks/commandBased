@@ -7,8 +7,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.Constants.TestConstants;
 import frc.robot.commands.AutoTurret;
+import frc.robot.commands.Autonomous1;
 import frc.robot.commands.CollectorRun;
 import frc.robot.commands.DriveMech;
 import frc.robot.commands.FireCheck;
@@ -30,6 +33,7 @@ import frc.robot.subsystems.Reacher;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Winch;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -52,7 +56,8 @@ public class RobotContainer {
   private final MrMills m_Mills = new MrMills();
   private final Joystick driveStick = new Joystick(0);
   private final Joystick shootStick = new Joystick(1);
-
+  private final Command Autonomous1 = new Autonomous1(m_Drive, m_Collector, m_Shooter, m_Indexer);
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -60,6 +65,12 @@ public class RobotContainer {
 
     m_Drive.setDefaultCommand(new DriveMech(m_Drive, driveStick::getX, driveStick::getY));
     m_Drive.setDefaultCommand(new AutoTurret(m_Turret, m_Limelight));
+
+        // Add commands to the autonomous command chooser
+        m_chooser.setDefaultOption("Auton1", Autonomous1);
+    
+        // Put the chooser on the dashboard
+        Shuffleboard.getTab("Autonomous").add(m_chooser);
 
   }
 
@@ -85,6 +96,9 @@ public class RobotContainer {
     new JoystickButton(driveStick, 1).whileHeld(new FireCheck());
   }
 
+  public Command getAutonomousCommand() {
+    return m_chooser.getSelected();
+  }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *

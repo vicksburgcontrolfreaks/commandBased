@@ -53,4 +53,3 @@ public final class Constants {
         public final static double winchB = -.25;
     }
 }
-

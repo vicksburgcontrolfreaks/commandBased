@@ -53,9 +53,9 @@ public class IndexCheck extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(m_mrMills.isIndexed())
-      return true;
-    else
+    if(m_mrMills.isCollected())
       return false;
+    else
+      return true;
   }
 }
