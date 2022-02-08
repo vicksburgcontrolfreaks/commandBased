@@ -10,32 +10,21 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Reacher extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
-  private final DoubleSolenoid reacherL = new DoubleSolenoid(PneumaticsModuleType.REVPH, 4, 5);
-  private final DoubleSolenoid reacherR = new DoubleSolenoid(PneumaticsModuleType.REVPH, 6, 7);
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
-
-  @Override
-  public void simulationPeriodic() {
-    // This method will be called once per scheduler run during simulation
-  }
+  /** Creates a new Reacher. Both cylinders are run from the same double solenoid*/
+  private final DoubleSolenoid reacher = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
 
   public void reachUp(){
-    reacherL.set(Value.kReverse);
-    reacherR.set(Value.kReverse);
+    //moves the reacher to the up position
+    reacher.set(Value.kReverse);
   }
 
   public void reachDown(){
-    reacherL.set(Value.kForward);
-    reacherR.set(Value.kForward);
+    //moves the reacher to the down position
+    reacher.set(Value.kForward);
   }
 
   public void reachOff(){
-    reacherL.set(Value.kOff);
-    reacherR.set(Value.kOff);
+    //turns reacher off. This code is unlikely to be used regularly but is necessary for our emergency stop.
+    reacher.set(Value.kOff);
   }
 }

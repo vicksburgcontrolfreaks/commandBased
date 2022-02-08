@@ -11,9 +11,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
 
 public class Indexer extends SubsystemBase {
+  //creates a new Indexer. This is the motor that drives the indexing and loading wheels to move cargo from the collector to the shooter.
   private CANSparkMax indexer = new CANSparkMax(CANConstants.indexer, MotorType.kBrushless);
 
   public void runIndexer(double speed){
+    //sets the speed of the indexer to an input value
     indexer.set(speed);
   }
 }

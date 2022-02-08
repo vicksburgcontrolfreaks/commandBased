@@ -10,32 +10,21 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Flopper extends SubsystemBase {
-  /** Creates a new Flopper. */
-  private final DoubleSolenoid flopperL = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
-  private final DoubleSolenoid flopperR = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
-
-  @Override
-  public void simulationPeriodic() {
-    // This method will be called once per scheduler run during simulation
-  }
+  /** Creates a new Flopper. Both cylinders are run from the same double solenoid*/
+  private final DoubleSolenoid flopper = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
 
   public void flopUp(){
-    flopperL.set(Value.kForward);
-    flopperR.set(Value.kForward);
+    //moves both Floppers to the up position
+    flopper.set(Value.kForward);
   }
 
   public void flopDown(){
-    flopperL.set(Value.kReverse);
-    flopperR.set(Value.kReverse);
+    //moves both Floppers to the down position
+    flopper.set(Value.kReverse);
   }
 
   public void flopOff(){
-    flopperL.set(Value.kOff);
-    flopperR.set(Value.kOff);
+    //turns both Floppers off. This code is unlikely to be used regularly but is necessary for our emergency stop.
+    flopper.set(Value.kOff);
   }
 }

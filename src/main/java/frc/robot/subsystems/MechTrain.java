@@ -30,17 +30,19 @@ public class MechTrain extends SubsystemBase {
   private final RelativeEncoder backRightE = backRight.getEncoder();
 
   private final MecanumDrive mechDrive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
-  /** Creates a new MechTrain. */
+  /** Creates a new MechTrain. This defines the mechanum based drive train of our robot*/
   public void mecanumDrive(double x, double y){
+    //drives the robot in mechanum style without rotation
     mechDrive.driveCartesian(y, x, 0);
   }
 
   public void quickTurn(double rot){
+    //only rotates the robot, allowing for faster turning
     mechDrive.driveCartesian(0, 0, rot);
   }
 
   public void setFrontLeftPids(int slot, double kMaxOutput, double kMinOutput){
-    //establishes the PID values for each of the drive motors
+    //establishes the PID values for the front left drive motor
     frontLeftP.setP(DriveConstants.drive_kP, slot);
     frontLeftP.setI(DriveConstants.drive_kI, slot);
     frontLeftP.setD(DriveConstants.drive_kD, slot);
@@ -50,7 +52,8 @@ public class MechTrain extends SubsystemBase {
     frontLeftP.setOutputRange(kMinOutput, kMaxOutput, slot);
   }
 
-  public void setFrontRightPids(int slot, double kMaxOutput, double kMinOutput){  
+  public void setFrontRightPids(int slot, double kMaxOutput, double kMinOutput){ 
+    //establishes the PID values for the front right drive motor 
     frontRightP.setP(DriveConstants.drive_kP, slot);
     frontRightP.setI(DriveConstants.drive_kI, slot);
     frontRightP.setD(DriveConstants.drive_kD, slot);
@@ -61,6 +64,7 @@ public class MechTrain extends SubsystemBase {
   }
 
   public void setBackLeftPids(int slot, double kMaxOutput, double kMinOutput){
+    //establishes the PID values for the back left drive motor 
     backLeftP.setP(DriveConstants.drive_kP, slot);
     backLeftP.setI(DriveConstants.drive_kI, slot);
     backLeftP.setD(DriveConstants.drive_kD, slot);
@@ -71,6 +75,7 @@ public class MechTrain extends SubsystemBase {
   }
 
   public void setBackRightPids(int slot, double kMaxOutput, double kMinOutput){
+    //establishes the PID values for the back right drive motor 
     backRightP.setP(DriveConstants.drive_kP, slot);
     backRightP.setI(DriveConstants.drive_kI, slot);
     backRightP.setD(DriveConstants.drive_kD, slot);
@@ -81,27 +86,32 @@ public class MechTrain extends SubsystemBase {
   }
 
   public void driveFrontLeft(double distance, double speed, int slot){
+    //sets the front left motor to drive a specific distance within certain speed parmeters
     setFrontLeftPids(0, speed, -speed);
     frontLeftP.setReference(distance, ControlType.kPosition, 0);
   }
   
   public void driveFrontRight(double distance, double speed, int slot){
+    //sets the front right motor to drive a specific distance within certain speed parmeters
     setFrontRightPids(0, speed, -speed);
     frontRightP.setReference(distance, ControlType.kPosition, 0);
   }
   
   public void driveBackLeft(double distance, double speed, int slot){
+    //sets the back left motor to drive a specific distance within certain speed parmeters
     setBackLeftPids(0, speed, -speed);
     backLeftP.setReference(distance, ControlType.kPosition, 0);
   }
   
   public void driveBackRight(double distance, double speed, int slot){
+    //sets the back right motor to drive a specific distance within certain speed parmeters
     setBackRightPids(0, speed, -speed);
     backRightP.setReference(distance, ControlType.kPosition, 0);
   }
 
   @Override
   public void periodic() {
+    //repeatedly checks the speed of each motor as well as the average speed of all drive motors
     frontLeftEncoderV();
     frontRightEncoderV();
     backLeftEncoderV();
@@ -110,22 +120,27 @@ public class MechTrain extends SubsystemBase {
   }
 
   public double frontLeftEncoderV(){
+    //returns the current speed of the front left motor
     return frontLeftE.getPosition();
   }
 
   public double frontRightEncoderV(){
+    //returns the current speed of the front left motor
     return frontRightE.getPosition();
   }
 
   public double backLeftEncoderV(){
+    //returns the current speed of the back left motor
     return backLeftE.getPosition();
   }
 
   public double backRightEncoderV(){
+    //returns the current speed of the back right motor
     return backRightE.getPosition();
   }
 
   public double avgV(){
+    //returns the current average speed of all drive motors
     double avg = (Math.abs(frontLeftE.getVelocity()) + Math.abs(frontRightE.getVelocity()) + Math.abs(backLeftE.getVelocity()) + Math.abs(backRightE.getVelocity()))/4;
     return avg;
   }

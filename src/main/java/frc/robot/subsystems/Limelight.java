@@ -17,11 +17,9 @@ public class Limelight extends SubsystemBase {
   NetworkTableEntry ta = table.getEntry("ta");
   NetworkTableEntry tv = table.getEntry("tv");
   /** Creates a new Limelight. */
-  public Limelight() {
-  }
-
   @Override
   public void periodic() {
+    //periodically checks the degrees off of the target in the x and y directions, the percent of the image that the target takes up, and whether or not a target is visible.
     tx();
     ty();
     ta();
@@ -29,18 +27,22 @@ public class Limelight extends SubsystemBase {
   }
 
   public double tx(){
+    //returns the number of degrees off of the target in the x direction
     return tx.getDouble(0.0);
   }
 
   public double ty(){
+    //returns the number of degrees off of the target in the y direction
     return ty.getDouble(0.0);
   }
 
   public double ta(){
+    //returns the percent of the limelights view that the area of the target takes up
     return ta.getDouble(0.0);
   }
 
   public boolean tv(){
+    //returns a boolean based on whether a target is visible or not
     if(tv.getDouble(0.0) == 1)
       return true;
     else 

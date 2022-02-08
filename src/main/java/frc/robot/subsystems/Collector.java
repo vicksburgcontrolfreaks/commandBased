@@ -13,8 +13,9 @@ import frc.robot.Constants.CANConstants;
 public class Collector extends SubsystemBase {
   private final CANSparkMax collector = new CANSparkMax(CANConstants.collector, MotorType.kBrushless);
 
-  /** Creates a new Collector. */
+  /** Creates a new Collector. This is the motor that runs the multiple rows of collection wheels at the front of the robot. */
   public void collectorMove(double speed){
+    //sets the speed of the collector to an input value
     collector.set(speed);
   }
 

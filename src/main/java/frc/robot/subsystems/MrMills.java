@@ -14,14 +14,14 @@ import frc.robot.Constants.TestConstants;
 
 public class MrMills extends SubsystemBase {
   Rev2mDistanceSensor mrMills = new Rev2mDistanceSensor(com.revrobotics.Rev2mDistanceSensor.Port.kMXP);
-  /** Creates a new MrMills. */
+  /** Creates a new MrMills. This is the distance sensor used to determine the status of collected cargo, named after a local engineering teacher*/
   public MrMills() {
     mrMills.setRangeProfile(RangeProfile.kHighSpeed);
   }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    // Periodically checks the current distance between the sensor and an obsticle as well as using this information to determine where a ball is in the robot. Also sends these values to the smart Dashboard
     dist();
     isCollected();
     isIndexed();
@@ -31,10 +31,12 @@ public class MrMills extends SubsystemBase {
   }
 
   public double dist(){
+    //returns the current distance between the sensor and an obstacle in inches
     return mrMills.getRange(Unit.kInches);
   }
 
   public boolean isIndexed(){
+    //returns whether an objects are close enough to be firmly indexed
     if(dist() <= TestConstants.indexDist)
       return true;
     else 
@@ -42,6 +44,7 @@ public class MrMills extends SubsystemBase {
   }
 
   public boolean isCollected(){
+    //returns whether an object is close enough to be collected but not so close that it is indexed
     if(dist() <= TestConstants.collectDistHigh && dist() > TestConstants.collectDistLow)
       return true;
     else 
