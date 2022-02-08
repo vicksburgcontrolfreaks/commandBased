@@ -16,7 +16,7 @@ public class TurnDegrees extends CommandBase {
   double frontRightF;
   double backLeftF;
   double backRightF;
-  /** Creates a new DriveDistance. */
+  /** Creates a new TurnDegrees. */
   public TurnDegrees(MechTrain subsystem, double x, double s) {
     m_drive = subsystem;
     m_dist = x;

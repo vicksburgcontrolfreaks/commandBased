@@ -13,13 +13,8 @@ public class QuickTurn extends CommandBase {
   private final MechTrain m_drive;
   private final DoubleSupplier m_rot;
 
-  /**
-   * Creates a new DefaultDrive.
-   *
-   * @param subsystem The drive subsystem this command wil run on.
-   * @param forward The control input for driving forwards/backwards
-   * @param rotation The control input for turning
-   */
+  //Creates a new QuickTurn.
+  
   public QuickTurn(MechTrain subsystem, DoubleSupplier rot) {
     m_drive = subsystem;
     m_rot = rot;

@@ -12,7 +12,7 @@ public class WinchRun extends CommandBase {
   public final Winch m_winch;
   private final Double m_speed;
 
-  /** Creates a new WinchUp. */
+  /** Creates a new WinchRun. */
   public WinchRun(Winch subsystem, double s) {
     m_winch = subsystem;
     m_speed = s;

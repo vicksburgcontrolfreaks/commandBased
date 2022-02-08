@@ -14,7 +14,7 @@ public class LoadCheck extends CommandBase {
   private final Indexer m_indexer;
   private final Shooter m_shooter;
   private final MrMills m_mrMills;
-  /** Creates a new IndexCheck. */
+  /** Creates a new LoadCheck. */
   public LoadCheck(Indexer sIndexer, Shooter sShooter, MrMills sMrMills) {
     m_mrMills = sMrMills;
     m_indexer = sIndexer;

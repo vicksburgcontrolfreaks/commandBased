@@ -13,13 +13,8 @@ public class ManualTurret extends CommandBase {
   private final Turret m_turret;
   private final DoubleSupplier m_speed;
 
-  /**
-   * Creates a new DefaultDrive.
-   *
-   * @param subsystem The drive subsystem this command wil run on.
-   * @param forward The control input for driving forwards/backwards
-   * @param rotation The control input for turning
-   */
+  // Creates a new ManualTurret.
+
   public ManualTurret(Turret subsystem, DoubleSupplier speed) {
     m_turret = subsystem;
     m_speed = speed;
@@ -34,5 +29,5 @@ public class ManualTurret extends CommandBase {
   public boolean isFinished() {
     return false;
   }
-  
+
 }

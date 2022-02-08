@@ -6,17 +6,17 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Collector;
+import frc.robot.subsystems.Indexer;
 
-public class CollectorRun extends CommandBase {
-  public final Collector m_collector;
+public class IndexerRun extends CommandBase {
+  public final Indexer m_indexer;
   private final Double m_speed;
 
   /** Creates a new CollectorRun. */
-  public CollectorRun(Collector subsystem, double s) {
-    m_collector = subsystem;
+  public IndexerRun(Indexer subsystem, double s) {
+    m_indexer = subsystem;
     m_speed = s;
-    addRequirements(m_collector);
+    addRequirements(m_indexer);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -27,13 +27,13 @@ public class CollectorRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_collector.collectorMove(m_speed);
+    m_indexer.runIndexer(m_speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_collector.collectorMove(0);
+    m_indexer.runIndexer(0);
   }
 
   // Returns true when the command should end.

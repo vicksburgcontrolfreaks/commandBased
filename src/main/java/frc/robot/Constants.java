@@ -58,6 +58,7 @@ public final class Constants {
         public final static int turn = 2;
         public final static int flop = 3;
         public final static int reach = 5;
+        public final static int stop = 7;
         public final static int resetEncoders = 11;
         public final static int reverseWinch = 12;
     }

@@ -13,7 +13,7 @@ import frc.robot.subsystems.Turret;
 public class AutoTurret extends CommandBase {
   private final Turret m_turret;
   private final Limelight m_limelight;
-  /** Creates a new DriveDistance. */
+  /** Creates a new AutoTurret. */
   public AutoTurret(Turret subsystem, Limelight sLimelight) {
     m_turret = subsystem;
     m_limelight = sLimelight;

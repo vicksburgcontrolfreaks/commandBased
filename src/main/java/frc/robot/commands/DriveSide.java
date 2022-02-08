@@ -16,7 +16,7 @@ public class DriveSide extends CommandBase {
   double frontRightF;
   double backLeftF;
   double backRightF;
-  /** Creates a new DriveDistance. */
+  /** Creates a new DriveSide. */
   public DriveSide(MechTrain subsystem, double x, double s) {
     m_drive = subsystem;
     m_dist = x;

@@ -25,7 +25,6 @@ public class Shooter extends SubsystemBase {
   }
 
 
-  /** Creates a new Winch. */
   public void shooterMove(double speed){
     shooterR.setInverted(true);
     shooter.set(speed);

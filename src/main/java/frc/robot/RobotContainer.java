@@ -23,6 +23,7 @@ import frc.robot.commands.ManualTurret;
 import frc.robot.commands.QuickTurn;
 import frc.robot.commands.ReachUp;
 import frc.robot.commands.ShooterRun;
+import frc.robot.commands.Stop;
 import frc.robot.commands.WinchRun;
 import frc.robot.commands.WinchUp;
 import frc.robot.subsystems.Collector;
@@ -66,7 +67,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_Drive.setDefaultCommand(new DriveMech(m_Drive, driveStick::getX, driveStick::getY));
-    m_Drive.setDefaultCommand(new AutoTurret(m_Turret, m_Limelight));
+    //m_Limelight.setDefaultCommand(new AutoTurret(m_Turret, m_Limelight));
 
         // Add commands to the autonomous command chooser
         m_chooser.setDefaultOption("Auton1", Autonomous1);
@@ -83,11 +84,12 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(driveStick, DriveButtons.flop).whenPressed(new FlopUp(m_Flopper));
-    new JoystickButton(driveStick, DriveButtons.reach).whenPressed(new ReachUp(m_Reacher));
     new JoystickButton(driveStick, DriveButtons.turn).whileHeld(new QuickTurn(m_Drive, driveStick::getX));
+    /*new JoystickButton(driveStick, DriveButtons.flop).whenPressed(new FlopUp(m_Flopper));
+    new JoystickButton(driveStick, DriveButtons.reach).whenPressed(new ReachUp(m_Reacher));
     new JoystickButton(driveStick, DriveButtons.reverseWinch).whileHeld(new WinchRun(m_Winch, TestConstants.winchB));
     new JoystickButton(driveStick, DriveButtons.fire).whileHeld(new FireCheck());
+    new JoystickButton(driveStick, DriveButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Winch, m_Indexer, m_Flopper, m_Reacher, m_Turret));
     new JoystickButton(shootStick, ShootButtons.collect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectF));
     new JoystickButton(shootStick, ShootButtons.backCollect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectB));
     new JoystickButton(shootStick, ShootButtons.prime).whenPressed(new ShooterRun(m_Shooter, TestConstants.shootF));
@@ -95,7 +97,7 @@ public class RobotContainer {
     new JoystickButton(shootStick, ShootButtons.manual).whenPressed(new ManualTurret(m_Turret, shootStick::getX));
     new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new AutoTurret(m_Turret, m_Limelight));
     new JoystickButton(shootStick, ShootButtons.index).whileHeld(new IndexCheck(m_Indexer, m_Collector, m_Mills));
-    new JoystickButton(shootStick, ShootButtons.winch).whileHeld(new WinchUp(m_Winch, m_Flopper, m_Reacher, TestConstants.winchF));
+    new JoystickButton(shootStick, ShootButtons.winch).whileHeld(new WinchUp(m_Winch, m_Flopper, m_Reacher, TestConstants.winchF));*/
   }
 
   public Command getAutonomousCommand() {

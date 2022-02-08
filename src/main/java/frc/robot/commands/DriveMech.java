@@ -14,13 +14,8 @@ public class DriveMech extends CommandBase {
   private final DoubleSupplier m_x;
   private final DoubleSupplier m_y;
 
-  /**
-   * Creates a new DefaultDrive.
-   *
-   * @param subsystem The drive subsystem this command wil run on.
-   * @param forward The control input for driving forwards/backwards
-   * @param rotation The control input for turning
-   */
+  //Creates a new DriveMech.
+
   public DriveMech(MechTrain subsystem, DoubleSupplier x, DoubleSupplier y) {
     m_drive = subsystem;
     m_x = x;

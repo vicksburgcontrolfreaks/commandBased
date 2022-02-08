@@ -13,7 +13,7 @@ import frc.robot.Constants.CANConstants;
 public class Collector extends SubsystemBase {
   private final CANSparkMax collector = new CANSparkMax(CANConstants.collector, MotorType.kBrushless);
 
-  /** Creates a new Winch. */
+  /** Creates a new Collector. */
   public void collectorMove(double speed){
     collector.set(speed);
   }

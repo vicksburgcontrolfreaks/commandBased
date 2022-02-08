@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Flopper extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
+  /** Creates a new Flopper. */
   private final DoubleSolenoid flopperL = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
   private final DoubleSolenoid flopperR = new DoubleSolenoid(PneumaticsModuleType.REVPH, 2, 3);
 

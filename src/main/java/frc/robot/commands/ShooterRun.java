@@ -13,7 +13,7 @@ public class ShooterRun extends CommandBase {
   public final Shooter m_shooter;
   private final Double m_speed;
 
-  /** Creates a new WinchUp. */
+  /** Creates a new ShooterRun. */
   public ShooterRun(Shooter subsystem, double s) {
     m_shooter = subsystem;
     m_speed = s;

@@ -6,17 +6,17 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Collector;
+import frc.robot.subsystems.Turret;
 
-public class CollectorRun extends CommandBase {
-  public final Collector m_collector;
+public class TurretRun extends CommandBase {
+  public final Turret m_turret;
   private final Double m_speed;
 
   /** Creates a new CollectorRun. */
-  public CollectorRun(Collector subsystem, double s) {
-    m_collector = subsystem;
+  public TurretRun(Turret subsystem, double s) {
+    m_turret = subsystem;
     m_speed = s;
-    addRequirements(m_collector);
+    addRequirements(m_turret);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -27,13 +27,13 @@ public class CollectorRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_collector.collectorMove(m_speed);
+    m_turret.runTurret(m_speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_collector.collectorMove(0);
+    m_turret.runTurret(0);
   }
 
   // Returns true when the command should end.
