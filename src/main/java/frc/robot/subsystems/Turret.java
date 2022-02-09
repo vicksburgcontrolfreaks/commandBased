@@ -15,13 +15,14 @@ import frc.robot.Constants.CANConstants;
 import frc.robot.Constants.TurretConstants;
 
 public class Turret extends SubsystemBase {
+  //Creates a new Turret. This is the motor that runs the rotating turret that lets us maintain targeting towards the hub.
   private final CANSparkMax turret = new CANSparkMax(CANConstants.turret, MotorType.kBrushless);
   private final SparkMaxPIDController turretP = turret.getPIDController();
   private final RelativeEncoder turretE = turret.getEncoder();
 
 
   public void setTurretPids(int slot, double kMaxOutput, double kMinOutput){
-    //establishes the PID values for each of the turret motors
+    //establishes the PID values for the turret motors
     turretP.setP(TurretConstants.turret_kP, slot);
     turretP.setI(TurretConstants.turret_kI, slot);
     turretP.setD(TurretConstants.turret_kD, slot);
@@ -32,25 +33,30 @@ public class Turret extends SubsystemBase {
   }
 
   public void setTurret(double distance, double speed, int slot){
+    //sets the turret to run to a specific distance based on an input value
     setTurretPids(0, speed, -speed);
     turretP.setReference(distance, ControlType.kPosition, 0);
   }
 
   public void runTurret(double speed){
+    //runs the turret at a set speed
     turret.set(speed);
   }
 
   @Override
   public void periodic() {
+    //periodically checks the current position and speed of the encoder
     turretEncoderP();
     turretEncoderV();
   }
 
   public double turretEncoderP(){
+    //returns the current position of the turret
     return turretE.getPosition();
   }
 
   public double turretEncoderV(){
+    //returns the current speed of the turret
     return turretE.getVelocity();
   }
 

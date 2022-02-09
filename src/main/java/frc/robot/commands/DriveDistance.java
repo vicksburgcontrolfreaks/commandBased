@@ -9,6 +9,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.MechTrain;
 
 public class DriveDistance extends CommandBase {
+  /** Creates a new DriveDistance. This code drives the robot either directly forward or backward a set distance*/
   private final MechTrain m_drive;
   private final Double m_dist;
   private final Double m_speed;
@@ -16,7 +17,6 @@ public class DriveDistance extends CommandBase {
   double frontRightF;
   double backLeftF;
   double backRightF;
-  /** Creates a new DriveDistance. */
   public DriveDistance(MechTrain subsystem, double x, double s) {
     m_drive = subsystem;
     m_dist = x;
@@ -28,6 +28,7 @@ public class DriveDistance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    //calculates the distance each motor needs to travel in tics in order to drive the wanted distance
     double ticDist = m_dist*DriveConstants.ticksPerInch;
     frontLeftF = m_drive.frontLeftEncoderV() + ticDist;
     frontRightF = m_drive.frontRightEncoderV() - ticDist;
@@ -38,6 +39,7 @@ public class DriveDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //sets the motors until the endpoint is reached
     m_drive.driveFrontLeft(frontLeftF, m_speed, 0);
     m_drive.driveFrontRight(frontRightF, m_speed, 0);
     m_drive.driveBackLeft(backLeftF, m_speed, 0);
@@ -51,6 +53,7 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //checks to see if the robot has driven to the endpoint
     double frontLeftEValue = m_drive.frontLeftEncoderV();
     double frontRightEValue = m_drive.frontLeftEncoderV();
     double backLeftEValue = m_drive.frontLeftEncoderV();

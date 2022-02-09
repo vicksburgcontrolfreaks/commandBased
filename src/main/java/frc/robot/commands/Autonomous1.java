@@ -13,25 +13,23 @@ import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.MechTrain;
 import frc.robot.subsystems.Shooter;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Autonomous1 extends SequentialCommandGroup {
-  /** Creates a new Autonomous1. */
+  /** Creates a new Autonomous1. This is the autonomous made for a starting position nearest to the side wall. */
   public Autonomous1(MechTrain m_drive, Collector m_collector, Shooter m_shooter, Indexer m_indexer) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
+    //adds each stage of our autonomous to a sequential group
     addCommands(
+      //drives the robot 24 inches forward while running the collector. Both shut off when the distance has been driven.
       new ParallelDeadlineGroup(
         new DriveDistance(m_drive, 24, .25), 
         new CollectorRun(m_collector, TestConstants.collectF)),
+      //turns robot 90 degrees
       new TurnDegrees(m_drive, 90, DriveConstants.drive_kMaxOutput),
+      //drive the robot 24 inches to the side
       new DriveSide(m_drive, 24, .25),
+      //turns on the shooter and fires 2 cargo into the Upper Hub
       new ParallelDeadlineGroup(
         new FireCheck(),
-        new ShooterRun(m_shooter, 1)
-      )
-
+        new ShooterRun(m_shooter, 1))
     );
   }
 }
