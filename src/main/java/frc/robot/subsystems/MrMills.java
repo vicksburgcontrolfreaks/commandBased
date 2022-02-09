@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.TestConstants;
 
 public class MrMills extends SubsystemBase {
-  Rev2mDistanceSensor mrMills = new Rev2mDistanceSensor(com.revrobotics.Rev2mDistanceSensor.Port.kMXP);
   /** Creates a new MrMills. This is the distance sensor used to determine the status of collected cargo, named after a local engineering teacher*/
+  Rev2mDistanceSensor mrMills = new Rev2mDistanceSensor(com.revrobotics.Rev2mDistanceSensor.Port.kMXP);
   public MrMills() {
     mrMills.setRangeProfile(RangeProfile.kHighSpeed);
   }
