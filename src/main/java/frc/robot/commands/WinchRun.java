@@ -14,6 +14,7 @@ public class WinchRun extends CommandBase {
 
   /** Creates a new WinchRun. */
   public WinchRun(Winch subsystem, double s) {
+    /** Creates a new WinchRun. This code runs the Winch at a specific speed*/
     m_winch = subsystem;
     m_speed = s;
     addRequirements(m_winch);
@@ -33,12 +34,14 @@ public class WinchRun extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //stop the winch when it is interrupted
     m_winch.winchMove(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //this code runs continuously until it is interrupted by other winch code
     return false;
   }
 }
