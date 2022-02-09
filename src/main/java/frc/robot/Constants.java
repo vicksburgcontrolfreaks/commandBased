@@ -14,6 +14,7 @@ package frc.robot;
  */
 public final class Constants {
     public static final class DriveConstants{
+        //establishes the constants used for driving precise distances
         public final static double drive_kP = 2.81;
         public final static double drive_kI = 0;
         public final static double drive_kD = 0;
@@ -28,6 +29,7 @@ public final class Constants {
     }
 
     public static final class TurretConstants{
+        //establishes the constants used for rotating the turret precise distances
         public final static double turret_kP = 2.81;
         public final static double turret_kI = 0;
         public final static double turret_kD = 0;
@@ -39,6 +41,7 @@ public final class Constants {
     }
 
     public static final class TestConstants{
+        //a collection of the various values that will be changed through testing
         public final static double collectF = .75;
         public final static double collectB = -1;
         public final static double shootF = 1;
@@ -54,6 +57,7 @@ public final class Constants {
     }
 
     public static final class DriveButtons{
+        //all of the buttons assigned to the drive stick
         public final static int fire = 1;
         public final static int turn = 2;
         public final static int flop = 3;
@@ -64,6 +68,7 @@ public final class Constants {
     }
 
     public static final class ShootButtons{
+        //all of the buttons assigned to the shoot stick
         public final static int index = 1;
         public final static int collect = 3;
         public final static int winch = 4;
@@ -75,6 +80,7 @@ public final class Constants {
     }
 
     public static final class CANConstants{
+        //establishes the CAN IDs for each of the motors attached to a CAN Spark Max
         public final static int frontRight = 1;
         public final static int frontLeft = 2;
         public final static int backRight = 3;

@@ -17,10 +17,8 @@ import frc.robot.subsystems.Winch;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Stop extends ParallelCommandGroup {
-  /** Creates a new Stop. */
+  /** Creates a new Stop. This stops all of the subsystems from moving.*/
   public Stop(Shooter m_shooter, Collector m_collector, Winch m_winch, Indexer m_indexer, Flopper m_flopper, Reacher m_reacher, Turret m_turret) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new ShooterRun(m_shooter, 0),
       new CollectorRun(m_collector, 0),

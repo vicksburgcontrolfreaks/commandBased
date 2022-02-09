@@ -11,10 +11,11 @@ import frc.robot.subsystems.MrMills;
 import frc.robot.subsystems.Shooter;
 
 public class LoadCheck extends CommandBase {
+  // Creates a new LoadCheck. This checks if a cargo is indexed and puts it into the shooter if it is.
   private final Indexer m_indexer;
   private final Shooter m_shooter;
   private final MrMills m_mrMills;
-  /** Creates a new LoadCheck. */
+
   public LoadCheck(Indexer sIndexer, Shooter sShooter, MrMills sMrMills) {
     m_mrMills = sMrMills;
     m_indexer = sIndexer;
@@ -32,6 +33,7 @@ public class LoadCheck extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //checks if any cargo is loaded and if the shooter is primed, loading the ball and firing if it is
     if(m_mrMills.isIndexed() && m_shooter.shooterPrimed()){
       m_indexer.runIndexer(TestConstants.loadF);
     }
@@ -40,12 +42,14 @@ public class LoadCheck extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //sets the indexer to 0 once it has been loaded
     m_indexer.runIndexer(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //ends the command if no cargo is indexed
     if(!m_mrMills.isIndexed())
       return true;
     else

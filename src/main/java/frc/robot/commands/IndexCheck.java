@@ -11,10 +11,10 @@ import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.MrMills;
 
 public class IndexCheck extends CommandBase {
+    /// Creates a new IndexCheck. This checks to see if a ball is in the collector and moves it into the index position if it is.
   private final Indexer m_indexer;
   private final Collector m_collector;
   private final MrMills m_mrMills;
-  /** Creates a new IndexCheck. */
   public IndexCheck(Indexer sIndexer, Collector sCollector, MrMills sMrMills) {
     m_mrMills = sMrMills;
     m_indexer = sIndexer;
@@ -32,20 +32,17 @@ public class IndexCheck extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //if a ball is collected, runs the indexer and collector until the ball is in the index position
     if(m_mrMills.isCollected()){
       m_indexer.runIndexer(TestConstants.indexF);
       m_collector.collectorMove(TestConstants.collectF);
     }
-    else{
-      m_indexer.runIndexer(0);
-      m_collector.collectorMove(0);
-    }
-  
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //sets the motors to 0 when the cargo is indexed
     m_indexer.runIndexer(0);
     m_collector.collectorMove(0);
   }

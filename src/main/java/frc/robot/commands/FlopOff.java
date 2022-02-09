@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Flopper;
 
 public class FlopOff extends InstantCommand {
+  //Creates a new FlopOff. This turns the flopper off.
   public FlopOff(Flopper subsystem) {
     super(subsystem::flopOff, subsystem);
   }

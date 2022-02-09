@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Indexer;
 
 public class IndexerRun extends CommandBase {
+  // Creates a new IndexerRun. This runs the indexer at a specific speed
   public final Indexer m_indexer;
   private final Double m_speed;
 
-  /** Creates a new CollectorRun. */
   public IndexerRun(Indexer subsystem, double s) {
     m_indexer = subsystem;
     m_speed = s;
@@ -39,6 +39,7 @@ public class IndexerRun extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //this code runs continuously until it is interrupted by other turret code
     return false;
   }
 }

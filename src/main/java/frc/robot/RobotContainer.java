@@ -61,19 +61,20 @@ public class RobotContainer {
   private final Joystick shootStick = new Joystick(1);
   private final Command Autonomous1 = new Autonomous1(m_Drive, m_Collector, m_Shooter, m_Indexer);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
 
+    //sets the drive to the default of driving normally
     m_Drive.setDefaultCommand(new DriveMech(m_Drive, driveStick::getX, driveStick::getY));
-    //m_Limelight.setDefaultCommand(new AutoTurret(m_Turret, m_Limelight));
+    //sets the turret to track the hub automatically
+    //m_Turret.setDefaultCommand(new AutoTurret(m_Turret, m_Limelight));
 
-        // Add commands to the autonomous command chooser
-        m_chooser.setDefaultOption("Auton1", Autonomous1);
-    
-        // Put the chooser on the dashboard
-        Shuffleboard.getTab("Autonomous").add(m_chooser);
+    // Add commands to the autonomous command chooser
+    m_chooser.setDefaultOption("Auton1", Autonomous1);
+
+    // Put the chooser on the dashboard
+    Shuffleboard.getTab("Autonomous").add(m_chooser);
 
   }
 
@@ -84,6 +85,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    //sets all of the commands to the appropriate buttons
     new JoystickButton(driveStick, DriveButtons.turn).whileHeld(new QuickTurn(m_Drive, driveStick::getX));
     /*new JoystickButton(driveStick, DriveButtons.flop).whenPressed(new FlopUp(m_Flopper));
     new JoystickButton(driveStick, DriveButtons.reach).whenPressed(new ReachUp(m_Reacher));
@@ -101,6 +103,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
+    //sets the autonomous to the one selected in the shuffleboard
     return m_chooser.getSelected();
   }
   /**

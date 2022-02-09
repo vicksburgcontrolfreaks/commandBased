@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Reacher;
 
 public class ReachOff extends InstantCommand {
+  //Creates a new ReachOff. This turns the reacher off.
   public ReachOff(Reacher subsystem) {
     super(subsystem::reachOff, subsystem);
   }

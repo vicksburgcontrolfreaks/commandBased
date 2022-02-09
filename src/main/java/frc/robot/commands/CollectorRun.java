@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Collector;
 
 public class CollectorRun extends CommandBase {
-  /** Creates a new CollectorRun. This code rusn the collector at a specific speed*/
+  /** Creates a new CollectorRun. This code runs the collector at a specific speed*/
   public final Collector m_collector;
   private final Double m_speed;
 

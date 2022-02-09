@@ -10,19 +10,20 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.MechTrain;
 
 public class QuickTurn extends CommandBase {
+  //Creates a new QuickTurn. This rotates the robot at a speed based on the x value from the primary drive stick.
   private final MechTrain m_drive;
   private final DoubleSupplier m_rot;
-
-  //Creates a new QuickTurn.
   
   public QuickTurn(MechTrain subsystem, DoubleSupplier rot) {
     m_drive = subsystem;
     m_rot = rot;
     addRequirements(m_drive);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   @Override
   public void execute() {
+    //sets the forward and sideways speeds of the robot based on controller inputs
     m_drive.quickTurn(m_rot.getAsDouble());
   }
 }

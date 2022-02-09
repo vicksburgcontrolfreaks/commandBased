@@ -10,10 +10,10 @@ import frc.robot.subsystems.Shooter;
 
 
 public class ShooterRun extends CommandBase {
+  //Creates a new ShooterRun. This runs the shooter at a specific speed.
   public final Shooter m_shooter;
   private final Double m_speed;
 
-  /** Creates a new ShooterRun. */
   public ShooterRun(Shooter subsystem, double s) {
     m_shooter = subsystem;
     m_speed = s;
@@ -28,18 +28,21 @@ public class ShooterRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //
     m_shooter.shooterMove(m_speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //stops the shooter when this command is interrupted
     m_shooter.shooterMove(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //this code runs continuously until it is interrupted by other shooter code
     return false;
   }
 }

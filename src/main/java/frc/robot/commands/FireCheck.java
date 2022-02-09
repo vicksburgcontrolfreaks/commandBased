@@ -14,14 +14,13 @@ import frc.robot.subsystems.Shooter;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class FireCheck extends SequentialCommandGroup {
-  /** Creates a new FireCheck. This fires two cargo */
+  /** Creates a new FireCheck. This fires two cargo while the shooter is at full speed.*/
   public FireCheck() {
     Indexer m_indexer = new Indexer();
     Shooter m_shooter = new Shooter();
     MrMills m_mills = new MrMills();
     Collector m_collector = new Collector();
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
+    //adds each stage of the firing process, running sequentially. This loads a cargo if one is indexed, then indexes and fires a second cargo
     addCommands(new LoadCheck(m_indexer, m_shooter, m_mills),
     new IndexCheck(m_indexer, m_collector, m_mills), 
     new LoadCheck(m_indexer, m_shooter, m_mills));

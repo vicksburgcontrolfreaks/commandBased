@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Reacher;
 
 public class ReachDown extends InstantCommand {
+  //Creates a new ReachDown. This moves the reacher to the down position.
   public ReachDown(Reacher subsystem) {
     super(subsystem::reachDown, subsystem);
   }

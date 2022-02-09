@@ -16,7 +16,7 @@ public class TurnDegrees extends CommandBase {
   double frontRightF;
   double backLeftF;
   double backRightF;
-  /** Creates a new TurnDegrees. */
+  /** Creates a new TurnDegrees. This code turns the robot either directly left or right a set number of degrees*/
   public TurnDegrees(MechTrain subsystem, double x, double s) {
     m_drive = subsystem;
     m_dist = x;
@@ -28,6 +28,7 @@ public class TurnDegrees extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    //calculates the distance each motor needs to travel in tics in order to rotate the wanted distance
     double ticDist = m_dist*DriveConstants.ticksPerDegree;
     frontLeftF = m_drive.frontLeftEncoderV() + ticDist;
     frontRightF = m_drive.frontLeftEncoderV() + ticDist;
@@ -38,6 +39,7 @@ public class TurnDegrees extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //sets the motors until the endpoint is reached
     m_drive.driveFrontLeft(frontLeftF, m_speed, 0);
     m_drive.driveFrontRight(frontRightF, m_speed, 0);
     m_drive.driveBackLeft(backLeftF, m_speed, 0);
@@ -51,6 +53,7 @@ public class TurnDegrees extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //checks to see if the robot has driven to the endpoint
     double frontLeftEValue = m_drive.frontLeftEncoderV();
     double frontRightEValue = m_drive.frontLeftEncoderV();
     double backLeftEValue = m_drive.frontLeftEncoderV();

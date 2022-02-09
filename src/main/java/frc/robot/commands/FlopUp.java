@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Flopper;
 
 public class FlopUp extends InstantCommand {
+  //Creates a new FlopOff. This moves the flopper to the up position. 
   public FlopUp(Flopper subsystem) {
     super(subsystem::flopUp, subsystem);
   }
