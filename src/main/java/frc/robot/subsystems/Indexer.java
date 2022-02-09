@@ -16,6 +16,6 @@ public class Indexer extends SubsystemBase {
 
   public void runIndexer(double speed){
     //sets the speed of the indexer to an input value
-    indexer.set(speed);
+    indexer.set(-speed);
   }
 }
