@@ -8,10 +8,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.CANConstants;
 
 public class Flopper extends SubsystemBase {
   /** Creates a new Flopper. Both cylinders are run from the same double solenoid*/
-  private final DoubleSolenoid flopper = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0, 1);
+  private final DoubleSolenoid flopper = new DoubleSolenoid(PneumaticsModuleType.REVPH, CANConstants.flopSolenoid1, CANConstants.flopSolenoid2);
 
   public void flopUp(){
     //moves both Floppers to the up position

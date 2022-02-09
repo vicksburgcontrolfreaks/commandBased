@@ -26,6 +26,7 @@ public final class Constants {
         public final static double ticksPerInch = .57;
         public final static double ticksPerSide = .76;
         public final static double drive_encoderError = 1;
+        public final static double finalMotorV = .5;
     }
 
     public static final class TurretConstants{
@@ -91,5 +92,9 @@ public final class Constants {
         public final static int turret = 8;
         public final static int indexer = 9;
         public final static int winch = 10;
+        public final static int flopSolenoid1 = 0;
+        public final static int flopSolenoid2 = 1;
+        public final static int reachSolenoid1 = 2;
+        public final static int reachSolenoid2 = 3;
     }
 }

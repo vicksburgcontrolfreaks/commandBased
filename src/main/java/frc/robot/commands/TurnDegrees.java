@@ -68,7 +68,7 @@ public class TurnDegrees extends CommandBase {
     drivePostionReached = false;
     if (Math.abs(backRightF - backRightEValue) > drive_encoderError)
     drivePostionReached = false;
-    if(m_drive.avgV() > .5)
+    if(m_drive.avgV() > DriveConstants.finalMotorV)
     drivePostionReached = false;
     return drivePostionReached;
   }
