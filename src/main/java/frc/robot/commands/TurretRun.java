@@ -14,6 +14,8 @@ public class TurretRun extends CommandBase {
 
   /** Creates a new CollectorRun. */
   public TurretRun(Turret subsystem, double s) {
+      /** Creates a new TurretRun. This code runs the Turret at a specific speed*/
+
     m_turret = subsystem;
     m_speed = s;
     addRequirements(m_turret);
@@ -33,12 +35,14 @@ public class TurretRun extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //stop the turret when it is interrupted
     m_turret.runTurret(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //this code runs continuously until it is interrupted by other turret code
     return false;
   }
 }
