@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -57,8 +58,29 @@ public final class Constants {
         public final static double winchB = -.25;
     }
 
+
+    public class ControllerMap {
+   
+        //Controllers
+        public static final int DRIVER_PORT = 0;
+        public static final int OPERATOR_PORT = 1;
+            
+        //XboxOne Joysticks
+        public static final int LEFT_STICK_X = 0;
+        public static final int LEFT_STICK_Y = 1;
+        public static final int LEFT_TRIGGER = 2;
+        public static final int RIGHT_TRIGGER = 3;
+        public static final int RIGHT_STICK_X = 4;
+        public static final int RIGHT_STICK_Y = 5;
+        
+        //XboxOne Buttons
+        public static final int A = 1;
+        public static final int B = 2;
+        public static final int X = 3;
+    }
     public static final class DriveButtons{
         //all of the buttons assigned to the drive stick
+
         public final static int fire = 1;
         public final static int turn = 2;
         public final static int flop = 3;
@@ -68,6 +90,8 @@ public final class Constants {
         public final static int reverseWinch = 12;
     }
 
+
+    
     public static final class ShootButtons{
         //all of the buttons assigned to the shoot stick
         public final static int index = 1;
@@ -92,9 +116,7 @@ public final class Constants {
         public final static int turret = 8;
         public final static int indexer = 9;
         public final static int winch = 10;
-        public final static int flopSolenoid1 = 0;
-        public final static int flopSolenoid2 = 1;
-        public final static int reachSolenoid1 = 2;
-        public final static int reachSolenoid2 = 3;
+        public final static int flopSolenoid = 0;
+        public final static int reachSolenoid = 1;
     }
 }
