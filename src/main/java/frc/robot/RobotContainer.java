@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriveButtons;
 import frc.robot.Constants.ShootButtons;
 import frc.robot.Constants.TestConstants;
@@ -36,8 +38,6 @@ import frc.robot.subsystems.Reacher;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Winch;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -87,7 +87,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     //sets all of the commands to the appropriate buttons
     new JoystickButton(driveStick, DriveButtons.turn).whileHeld(new QuickTurn(m_Drive, driveStick::getX));
-    /*new JoystickButton(driveStick, DriveButtons.flop).whenPressed(new FlopUp(m_Flopper));
+    new JoystickButton(driveStick, DriveButtons.flop).whenPressed(new FlopUp(m_Flopper));
     new JoystickButton(driveStick, DriveButtons.reach).whenPressed(new ReachUp(m_Reacher));
     new JoystickButton(driveStick, DriveButtons.reverseWinch).whileHeld(new WinchRun(m_Winch, TestConstants.winchB));
     new JoystickButton(driveStick, DriveButtons.fire).whileHeld(new FireCheck());
@@ -99,7 +99,7 @@ public class RobotContainer {
     new JoystickButton(shootStick, ShootButtons.manual).whenPressed(new ManualTurret(m_Turret, shootStick::getX));
     new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new AutoTurret(m_Turret, m_Limelight));
     new JoystickButton(shootStick, ShootButtons.index).whileHeld(new IndexCheck(m_Indexer, m_Collector, m_Mills));
-    new JoystickButton(shootStick, ShootButtons.winch).whileHeld(new WinchUp(m_Winch, m_Flopper, m_Reacher, TestConstants.winchF));*/
+    new JoystickButton(shootStick, ShootButtons.winch).whileHeld(new WinchUp(m_Winch, m_Flopper, m_Reacher, TestConstants.winchF));
   }
 
   public Command getAutonomousCommand() {

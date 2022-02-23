@@ -25,7 +25,6 @@ public class Stop extends ParallelCommandGroup {
       new WinchRun(m_winch, 0),
       new IndexerRun(m_indexer, 0),
       new FlopOff(m_flopper),
-      new ReachOff(m_reacher),
       new TurretRun(m_turret, 0)
     );
   }
