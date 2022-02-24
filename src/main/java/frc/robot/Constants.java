@@ -80,6 +80,15 @@ public final class Constants {
         public final static int auto = 10;
     }
 
+    public static final class ControllerButtons{
+        public final static int fire = 6; //RB
+        public final static int flop = 3; //x
+        public final static int reach = 1; //a
+        public final static int stop = 8; //start
+        public final static int resetEncoders = 5; //LB
+        public final static int reverseWinch = 7; //back
+    }
+
     public static final class CANConstants{
         //establishes the CAN IDs for each of the motors attached to a CAN Spark Max
         public final static int frontRight = 1;

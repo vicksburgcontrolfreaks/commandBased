@@ -11,12 +11,14 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Constants.ControllerButtons;
 import frc.robot.Constants.DriveButtons;
 import frc.robot.Constants.ShootButtons;
 import frc.robot.Constants.TestConstants;
 import frc.robot.commands.AutoTurret;
 import frc.robot.commands.Autonomous1;
 import frc.robot.commands.CollectorRun;
+import frc.robot.commands.DriveController;
 import frc.robot.commands.DriveMech;
 import frc.robot.commands.FireCheck;
 import frc.robot.commands.FlopUp;
@@ -57,8 +59,9 @@ public class RobotContainer {
   private final Indexer m_Indexer = new Indexer();
   private final Limelight m_Limelight = new Limelight();
   private final MrMills m_Mills = new MrMills();
-  private final Joystick driveStick = new Joystick(0);
+  //private final Joystick driveStick = new Joystick(0);
   private final Joystick shootStick = new Joystick(1);
+  private final XboxController driveController = new XboxController(0);
   private final Command Autonomous1 = new Autonomous1(m_Drive, m_Collector, m_Shooter, m_Indexer);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   public RobotContainer() {
@@ -66,7 +69,8 @@ public class RobotContainer {
     configureButtonBindings();
 
     //sets the drive to the default of driving normally
-    m_Drive.setDefaultCommand(new DriveMech(m_Drive, driveStick::getX, driveStick::getY));
+    //m_Drive.setDefaultCommand(new DriveMech(m_Drive, driveStick::getX, driveStick::getY));
+    m_Drive.setDefaultCommand(new DriveController(m_Drive, driveController::getRightX, driveController::getRightY, driveController::getLeftX));
     //sets the turret to track the hub automatically
     //m_Turret.setDefaultCommand(new AutoTurret(m_Turret, m_Limelight));
 
@@ -86,12 +90,17 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //sets all of the commands to the appropriate buttons
-    new JoystickButton(driveStick, DriveButtons.turn).whileHeld(new QuickTurn(m_Drive, driveStick::getX));
+    new JoystickButton(driveController, ControllerButtons.flop).whenPressed(new FlopUp(m_Flopper));
+    new JoystickButton(driveController, ControllerButtons.reach).whenPressed(new ReachUp(m_Reacher));
+    new JoystickButton(driveController, ControllerButtons.reverseWinch).whileHeld(new WinchRun(m_Winch, TestConstants.winchB));
+    new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new FireCheck());
+    new JoystickButton(driveController, ControllerButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Winch, m_Indexer, m_Flopper, m_Reacher, m_Turret));
+    /*new JoystickButton(driveStick, DriveButtons.turn).whileHeld(new QuickTurn(m_Drive, driveStick::getX));
     new JoystickButton(driveStick, DriveButtons.flop).whenPressed(new FlopUp(m_Flopper));
     new JoystickButton(driveStick, DriveButtons.reach).whenPressed(new ReachUp(m_Reacher));
     new JoystickButton(driveStick, DriveButtons.reverseWinch).whileHeld(new WinchRun(m_Winch, TestConstants.winchB));
     new JoystickButton(driveStick, DriveButtons.fire).whileHeld(new FireCheck());
-    new JoystickButton(driveStick, DriveButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Winch, m_Indexer, m_Flopper, m_Reacher, m_Turret));
+    new JoystickButton(driveStick, DriveButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Winch, m_Indexer, m_Flopper, m_Reacher, m_Turret));*/
     new JoystickButton(shootStick, ShootButtons.collect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectF));
     new JoystickButton(shootStick, ShootButtons.backCollect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectB));
     new JoystickButton(shootStick, ShootButtons.prime).whenPressed(new ShooterRun(m_Shooter, TestConstants.shootF));

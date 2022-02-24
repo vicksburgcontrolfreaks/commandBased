@@ -36,6 +36,11 @@ public class MechTrain extends SubsystemBase {
     mechDrive.driveCartesian(y, x, 0);
   }
 
+  public void mecanumTurn(double x, double y, double rot){
+    //drives the robot in mechanum style without rotation
+    mechDrive.driveCartesian(y, x, rot);
+  }
+
   public void quickTurn(double rot){
     //only rotates the robot, allowing for faster turning
     mechDrive.driveCartesian(0, 0, rot);
