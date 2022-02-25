@@ -43,13 +43,13 @@ public final class Constants {
 
     public static final class TestConstants{
         //a collection of the various values that will be changed through testing
-        public final static double collectF = .75;
-        public final static double collectB = -1;
-        public final static double shootF = 1;
-        public final static double indexDist = 4;
-        public final static double collectDistLow = 4;
+        public final static double collectF = -.25;
+        public final static double collectB = .25;
+        public final static double shootF = -1;
+        public final static double indexDist = 9;
+        public final static double collectDistLow = 9;
         public final static double collectDistHigh = 12;
-        public final static double shooterMin = 3000;
+        public final static double shooterMin = 5500;
         public final static double indexF = .5;
         public final static double loadF = 1;
         public final static double maxAngle = 180 * TurretConstants.ticksPerDegree;
@@ -99,7 +99,7 @@ public final class Constants {
         public final static int shooterL = 6;
         public final static int shooterR = 7;
         public final static int turret = 8;
-        public final static int indexer = 9;
+        public final static int indexer = 13;
         public final static int winch = 10;
         public final static int flopSolenoid1 = 0;
         public final static int flopSolenoid2 = 1;

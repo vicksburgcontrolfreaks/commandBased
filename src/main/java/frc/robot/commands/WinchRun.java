@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+/*package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -13,9 +13,9 @@ public class WinchRun extends CommandBase {
   private final Double m_speed;
 
   /** Creates a new WinchRun. */
-  public WinchRun(Winch subsystem, double s) {
+ /* public WinchRun(Winch subsystem, double s) {
     /** Creates a new WinchRun. This code runs the Winch at a specific speed*/
-    m_winch = subsystem;
+   /* m_winch = subsystem;
     m_speed = s;
     addRequirements(m_winch);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -44,4 +44,4 @@ public class WinchRun extends CommandBase {
     //this code runs continuously until it is interrupted by other winch code
     return false;
   }
-}
+}*/

@@ -30,6 +30,7 @@ public class MechTrain extends SubsystemBase {
   private final RelativeEncoder backRightE = backRight.getEncoder();
 
   private final MecanumDrive mechDrive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
+
   /** Creates a new MechTrain. This defines the mechanum based drive train of our robot*/
   public void mecanumDrive(double x, double y){
     //drives the robot in mechanum style without rotation
@@ -38,7 +39,9 @@ public class MechTrain extends SubsystemBase {
 
   public void mecanumTurn(double x, double y, double rot){
     //drives the robot in mechanum style without rotation
-    mechDrive.driveCartesian(y, x, rot);
+    frontLeft.setInverted(true);
+    backLeft.setInverted(true);
+    mechDrive.driveCartesian(y, -x, -rot);
   }
 
   public void quickTurn(double rot){

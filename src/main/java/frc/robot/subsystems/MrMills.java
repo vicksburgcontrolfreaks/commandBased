@@ -7,28 +7,42 @@ package frc.robot.subsystems;
 import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
 import com.revrobotics.Rev2mDistanceSensor.Unit;
+import com.revrobotics.Rev2mDistanceSensor.Port;
 
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.TestConstants;
 
+
+
 public class MrMills extends SubsystemBase {
+  double testCounter;
   /** Creates a new MrMills. This is the distance sensor used to determine the status of collected cargo, named after a local engineering teacher*/
-  Rev2mDistanceSensor mrMills = new Rev2mDistanceSensor(com.revrobotics.Rev2mDistanceSensor.Port.kMXP);
+
+  Rev2mDistanceSensor mrMills;
   public MrMills() {
-    mrMills.setRangeProfile(RangeProfile.kHighSpeed);
+    mrMills = new Rev2mDistanceSensor(Port.kOnboard/*, Unit.kInches, RangeProfile.kHighSpeed*/);
   }
 
   @Override
   public void periodic() {
     // Periodically checks the current distance between the sensor and an obsticle as well as using this information to determine where a ball is in the robot. Also sends these values to the smart Dashboard
-    dist();
-    isCollected();
-    isIndexed();
-    SmartDashboard.putBoolean("Indexed?", isIndexed());
-    SmartDashboard.putBoolean("Collected?", isCollected());
+    
+    // dist();
+    // isCollected();
+    // isIndexed();
+    // SmartDashboard.putBoolean("Indexed?", isIndexed());
+    // SmartDashboard.putBoolean("Collected?", isCollected());
+    // SmartDashboard.putNumber("Dist", dist());
+    // SmartDashboard.putNumber("test", testCounter);
 
-  }
+      SmartDashboard.putNumber("Range Onboard", mrMills.getRange());
+      SmartDashboard.putNumber("Timestamp Onboard", mrMills.getTimestamp());
+      SmartDashboard.putString("Working", "Yes");
+      Unit units = mrMills.getDistanceUnits();
+      SmartDashboard.putString("units", units.toString());
+    }
 
   public double dist(){
     //returns the current distance between the sensor and an obstacle in inches

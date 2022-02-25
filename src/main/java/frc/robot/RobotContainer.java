@@ -20,16 +20,17 @@ import frc.robot.commands.Autonomous1;
 import frc.robot.commands.CollectorRun;
 import frc.robot.commands.DriveController;
 import frc.robot.commands.DriveMech;
-import frc.robot.commands.FireCheck;
+//import frc.robot.commands.FireCheck;
 import frc.robot.commands.FlopUp;
+import frc.robot.commands.IndexerRun;
 import frc.robot.commands.IndexCheck;
 import frc.robot.commands.ManualTurret;
 import frc.robot.commands.QuickTurn;
 import frc.robot.commands.ReachUp;
 import frc.robot.commands.ShooterRun;
 import frc.robot.commands.Stop;
-import frc.robot.commands.WinchRun;
-import frc.robot.commands.WinchUp;
+//import frc.robot.commands.WinchRun;
+//import frc.robot.commands.WinchUp;
 import frc.robot.subsystems.Collector;
 import frc.robot.subsystems.Flopper;
 import frc.robot.subsystems.Indexer;
@@ -39,7 +40,7 @@ import frc.robot.subsystems.MrMills;
 import frc.robot.subsystems.Reacher;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
-import frc.robot.subsystems.Winch;
+//import frc.robot.subsystems.Winch;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -52,7 +53,7 @@ public class RobotContainer {
   private final Flopper m_Flopper = new Flopper();
   private final Reacher m_Reacher = new Reacher();
   private final MechTrain m_Drive = new MechTrain();
-  private final Winch m_Winch = new Winch();
+  //private final Winch m_Winch = new Winch();
   private final Collector m_Collector = new Collector();
   private final Shooter m_Shooter = new Shooter();
   private final Turret m_Turret = new Turret();
@@ -62,7 +63,7 @@ public class RobotContainer {
   //private final Joystick driveStick = new Joystick(0);
   private final Joystick shootStick = new Joystick(1);
   private final XboxController driveController = new XboxController(0);
-  private final Command Autonomous1 = new Autonomous1(m_Drive, m_Collector, m_Shooter, m_Indexer);
+  private final Command Autonomous1 = new Autonomous1(m_Drive, m_Collector, m_Shooter/*, m_Indexer*/);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   public RobotContainer() {
     // Configure the button bindings
@@ -90,25 +91,26 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //sets all of the commands to the appropriate buttons
-    new JoystickButton(driveController, ControllerButtons.flop).whenPressed(new FlopUp(m_Flopper));
-    new JoystickButton(driveController, ControllerButtons.reach).whenPressed(new ReachUp(m_Reacher));
-    new JoystickButton(driveController, ControllerButtons.reverseWinch).whileHeld(new WinchRun(m_Winch, TestConstants.winchB));
-    new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new FireCheck());
-    new JoystickButton(driveController, ControllerButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Winch, m_Indexer, m_Flopper, m_Reacher, m_Turret));
-    /*new JoystickButton(driveStick, DriveButtons.turn).whileHeld(new QuickTurn(m_Drive, driveStick::getX));
-    new JoystickButton(driveStick, DriveButtons.flop).whenPressed(new FlopUp(m_Flopper));
-    new JoystickButton(driveStick, DriveButtons.reach).whenPressed(new ReachUp(m_Reacher));
-    new JoystickButton(driveStick, DriveButtons.reverseWinch).whileHeld(new WinchRun(m_Winch, TestConstants.winchB));
-    new JoystickButton(driveStick, DriveButtons.fire).whileHeld(new FireCheck());
-    new JoystickButton(driveStick, DriveButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Winch, m_Indexer, m_Flopper, m_Reacher, m_Turret));*/
+    // new JoystickButton(driveController, ControllerButtons.flop).whenPressed(new FlopUp(m_Flopper));
+    // new JoystickButton(driveController, ControllerButtons.reach).whenPressed(new ReachUp(m_Reacher));
+    // new JoystickButton(driveController, ControllerButtons.reverseWinch).whileHeld(new WinchRun(m_Winch, TestConstants.winchB));
+    // new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new FireCheck());
+    // new JoystickButton(driveStick, DriveButtons.turn).whileHeld(new QuickTurn(m_Drive, driveStick::getX));
+    // new JoystickButton(driveStick, DriveButtons.flop).whenPressed(new FlopUp(m_Flopper));
+    // new JoystickButton(driveStick, DriveButtons.reach).whenPressed(new ReachUp(m_Reacher));
+    // new JoystickButton(driveStick, DriveButtons.reverseWinch).whileHeld(new WinchRun(m_Winch, TestConstants.winchB));
+    // new JoystickButton(driveStick, DriveButtons.fire).whileHeld(new FireCheck());
     new JoystickButton(shootStick, ShootButtons.collect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectF));
     new JoystickButton(shootStick, ShootButtons.backCollect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectB));
     new JoystickButton(shootStick, ShootButtons.prime).whenPressed(new ShooterRun(m_Shooter, TestConstants.shootF));
     new JoystickButton(shootStick, ShootButtons.shooterOff).whenPressed(new ShooterRun(m_Shooter, 0));
     new JoystickButton(shootStick, ShootButtons.manual).whenPressed(new ManualTurret(m_Turret, shootStick::getX));
     new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new AutoTurret(m_Turret, m_Limelight));
-    new JoystickButton(shootStick, ShootButtons.index).whileHeld(new IndexCheck(m_Indexer, m_Collector, m_Mills));
-    new JoystickButton(shootStick, ShootButtons.winch).whileHeld(new WinchUp(m_Winch, m_Flopper, m_Reacher, TestConstants.winchF));
+    //new JoystickButton(shootStick, ShootButtons.index).whenHeld(new IndexerRun(m_Indexer, .5));
+    //new JoystickButton(shootStick, ShootButtons.index).whileHeld(new IndexCheck(m_Indexer, m_Collector, m_Mills));
+    // new JoystickButton(shootStick, ShootButtons.winch).whileHeld(new WinchUp(m_Winch, m_Flopper, m_Reacher, TestConstants.winchF));
+    new JoystickButton(driveController, ControllerButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Indexer, m_Flopper, m_Reacher, m_Turret));
+
   }
 
   public Command getAutonomousCommand() {
