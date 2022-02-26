@@ -22,26 +22,22 @@ public class MrMills extends SubsystemBase {
 
   Rev2mDistanceSensor mrMills;
   public MrMills() {
-    mrMills = new Rev2mDistanceSensor(Port.kOnboard/*, Unit.kInches, RangeProfile.kHighSpeed*/);
+    mrMills = new Rev2mDistanceSensor(Port.kOnboard, Unit.kInches, RangeProfile.kHighSpeed);
+    mrMills.setAutomaticMode(true);
   }
 
   @Override
   public void periodic() {
     // Periodically checks the current distance between the sensor and an obsticle as well as using this information to determine where a ball is in the robot. Also sends these values to the smart Dashboard
     
-    // dist();
-    // isCollected();
-    // isIndexed();
-    // SmartDashboard.putBoolean("Indexed?", isIndexed());
-    // SmartDashboard.putBoolean("Collected?", isCollected());
-    // SmartDashboard.putNumber("Dist", dist());
-    // SmartDashboard.putNumber("test", testCounter);
+    dist();
+    isCollected();
+    isIndexed();
+    SmartDashboard.putBoolean("Indexed?", isIndexed());
+    SmartDashboard.putBoolean("Collected?", isCollected());
+    SmartDashboard.putNumber("Dist", dist());
+    SmartDashboard.putNumber("test", testCounter);
 
-      SmartDashboard.putNumber("Range Onboard", mrMills.getRange());
-      SmartDashboard.putNumber("Timestamp Onboard", mrMills.getTimestamp());
-      SmartDashboard.putString("Working", "Yes");
-      Unit units = mrMills.getDistanceUnits();
-      SmartDashboard.putString("units", units.toString());
     }
 
   public double dist(){

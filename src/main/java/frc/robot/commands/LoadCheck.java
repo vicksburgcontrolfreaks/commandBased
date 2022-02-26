@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.TestConstants;
 import frc.robot.subsystems.Indexer;
@@ -37,6 +38,7 @@ public class LoadCheck extends CommandBase {
     if(m_mrMills.isIndexed() && m_shooter.shooterPrimed()){
       m_indexer.runIndexer(TestConstants.loadF);
     }
+    SmartDashboard.putString("Stage", "Load");
   }
 
   // Called once the command ends or is interrupted.

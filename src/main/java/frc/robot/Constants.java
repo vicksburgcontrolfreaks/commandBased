@@ -15,6 +15,7 @@ package frc.robot;
 public final class Constants {
     public static final class DriveConstants{
         //establishes the constants used for driving precise distances
+        public final static double speedMultiplier = .75;
         public final static double drive_kP = 2.81;
         public final static double drive_kI = 0;
         public final static double drive_kD = 0;
@@ -49,9 +50,9 @@ public final class Constants {
         public final static double indexDist = 9;
         public final static double collectDistLow = 9;
         public final static double collectDistHigh = 12;
-        public final static double shooterMin = 5500;
-        public final static double indexF = .5;
-        public final static double loadF = 1;
+        public final static double shooterMin = 5000;
+        public final static double indexF = .25;
+        public final static double loadF = .5;
         public final static double maxAngle = 180 * TurretConstants.ticksPerDegree;
         public final static double winchF = 1;
         public final static double winchB = -.25;
