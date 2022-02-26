@@ -25,6 +25,7 @@ public class ManualTurret extends CommandBase {
   public void execute() {
     //runs the turret at a speed based on the x value of the controller
     m_turret.runTurret(-.5*m_speed.getAsDouble());
+    //m_turret.runTurret(.35);
   }
 
   public boolean isFinished() {

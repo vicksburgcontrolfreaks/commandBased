@@ -29,6 +29,6 @@ public class DriveController extends CommandBase {
   @Override
   public void execute() {
     //sets the forward and sideways speeds of the robot based on controller inputs
-    m_drive.mecanumTurn(DriveConstants.speedMultiplier*m_x.getAsDouble(), DriveConstants.speedMultiplier*m_y.getAsDouble(), DriveConstants.speedMultiplier*m_turn.getAsDouble());
+    m_drive.mecanumTurn(DriveConstants.driveSpeedMultiplier*m_x.getAsDouble(), DriveConstants.driveSpeedMultiplier*m_y.getAsDouble(), DriveConstants.turnSpeedMultiplier*m_turn.getAsDouble());
   }
 }
