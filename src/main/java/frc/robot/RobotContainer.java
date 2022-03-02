@@ -29,6 +29,7 @@ import frc.robot.commands.QuickTurn;
 import frc.robot.commands.ReachUp;
 import frc.robot.commands.ShooterRun;
 import frc.robot.commands.Stop;
+import frc.robot.commands.TurretReset;
 //import frc.robot.commands.WinchRun;
 //import frc.robot.commands.WinchUp;
 import frc.robot.subsystems.Collector;
@@ -108,6 +109,7 @@ public class RobotContainer {
     new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new AutoTurret(m_Turret, m_Limelight));
     new JoystickButton(shootStick, 2).whileHeld(new IndexerRun(m_Indexer, -.15));
     new JoystickButton(shootStick, ShootButtons.index).whenPressed(new IndexCheck(m_Indexer, m_Collector, m_Mills));
+    new JoystickButton(shootStick, 11).whenPressed(new TurretReset(m_Turret));
     // new JoystickButton(shootStick, ShootButtons.winch).whileHeld(new WinchUp(m_Winch, m_Flopper, m_Reacher, TestConstants.winchF));
     new JoystickButton(driveController, ControllerButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Indexer, m_Flopper, m_Reacher, m_Turret));
 

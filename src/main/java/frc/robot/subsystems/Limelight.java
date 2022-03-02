@@ -7,16 +7,28 @@ package frc.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Limelight extends SubsystemBase {
     /** Creates a new Limelight. */
-  NetworkTableInstance inst = NetworkTableInstance.getDefault();
-  NetworkTable table = inst.getTable("limelight");
-  NetworkTableEntry tx = table.getEntry("tx");
-  NetworkTableEntry ty = table.getEntry("ty");
-  NetworkTableEntry ta = table.getEntry("ta");
-  NetworkTableEntry tv = table.getEntry("tv");
+  NetworkTableInstance inst;
+  NetworkTable table;
+  NetworkTableEntry tx;
+  NetworkTableEntry ty;
+  NetworkTableEntry ta;
+  NetworkTableEntry tv;
+
+  public Limelight (){
+    inst = NetworkTableInstance.getDefault();
+    table = inst.getTable("limelight");
+    tx = table.getEntry("tx");
+    ty = table.getEntry("ty");
+    ta = table.getEntry("ta");
+    tv = table.getEntry("tv");
+
+  }
+
   @Override
   public void periodic() {
     //periodically checks the degrees off of the target in the x and y directions, the percent of the image that the target takes up, and whether or not a target is visible.
@@ -24,6 +36,8 @@ public class Limelight extends SubsystemBase {
     ty();
     ta();
     tv();
+    SmartDashboard.putBoolean("fromV", tv());
+    SmartDashboard.putNumber("fromX", tx());
   }
 
   public double tx(){

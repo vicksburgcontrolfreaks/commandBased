@@ -42,7 +42,7 @@ public final class Constants {
         public final static double ticksPerDegree = .0156;
         public final static double turret_encoderError = 1;
         public final static double minAngle = -240 ;
-        public final static double maxAngle = 135;
+        public final static double maxAngle = 100;
 
     }
 

@@ -63,4 +63,8 @@ public class Turret extends SubsystemBase {
     return turretE.getVelocity();
   }
 
+  public void turretReset(){
+    turretE.setPosition(0);
+  }
+
 }
