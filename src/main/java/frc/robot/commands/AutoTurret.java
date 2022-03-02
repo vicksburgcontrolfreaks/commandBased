@@ -66,10 +66,12 @@ public class AutoTurret extends CommandBase {
       SmartDashboard.putNumber("TargetAngle", targetDistanceAbs);
       SmartDashboard.putNumber("TurretPower", turretPower);
       SmartDashboard.putNumber("TargetSign", targetSign);
+      SmartDashboard.putString("Limited?", "No");
       turretPower = distancePower + positionPower;
     }
     //if the target is not visible and the turret has moved past the maximum angle, runs the turret all the way back to the other side
     else if (currentAngle > TurretConstants.maxAngle || currentAngle < TurretConstants.minAngle){
+      
       m_turret.setTurret(-currentAngle, TurretConstants.turret_kMaxOutput, 0);
        turretPower = -turretPower;}
     else
