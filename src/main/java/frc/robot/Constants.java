@@ -17,13 +17,13 @@ public final class Constants {
         //establishes the constants used for driving precise distances
         public final static double turnSpeedMultiplier = .5;
         public final static double driveSpeedMultiplier = .75;
-        public final static double drive_kP = 2.81;
+        public final static double drive_kP = 89.737;
         public final static double drive_kI = 0;
-        public final static double drive_kD = 0;
+        public final static double drive_kD = 6.76;
         public final static double drive_kIz = 0;
         public final static double drive_kFF = 0;
-        public final static double drive_kMaxOutput = .3;
-        public final static double drive_kMinOutput = -.3;
+        public final static double drive_kMaxOutput = .15;
+        public final static double drive_kMinOutput = -.15;
         public final static double ticksPerDegree = .23;
         public final static double ticksPerInch = .57;
         public final static double ticksPerSide = .76;
@@ -40,7 +40,7 @@ public final class Constants {
         public final static double turret_kFF = 0;
         public final static double turret_kMaxOutput = 1;
         public final static double ticksPerDegree = .0156;
-        public final static double turret_encoderError = 1;
+        public final static double turret_encoderError = 10;
         public final static double minAngle = -226; //-225
         public final static double maxAngle = 134; //100
 

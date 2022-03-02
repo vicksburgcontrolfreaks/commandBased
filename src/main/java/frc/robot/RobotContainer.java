@@ -28,6 +28,7 @@ import frc.robot.commands.ManualTurret;
 import frc.robot.commands.QuickTurn;
 import frc.robot.commands.ReachUp;
 import frc.robot.commands.ShooterRun;
+import frc.robot.commands.SimpleAuton;
 import frc.robot.commands.Stop;
 import frc.robot.commands.TurretReset;
 //import frc.robot.commands.WinchRun;
@@ -65,6 +66,7 @@ public class RobotContainer {
   private final Joystick shootStick = new Joystick(1);
   private final XboxController driveController = new XboxController(0);
   private final Command Autonomous1 = new Autonomous1(m_Drive, m_Collector, m_Shooter/*, m_Indexer*/);
+  private final Command SimpleAuton = new SimpleAuton(m_Drive);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   public RobotContainer() {
     // Configure the button bindings
@@ -77,7 +79,8 @@ public class RobotContainer {
     //m_Turret.setDefaultCommand(new AutoTurret(m_Turret, m_Limelight));
 
     // Add commands to the autonomous command chooser
-    m_chooser.setDefaultOption("Auton1", Autonomous1);
+    // m_chooser.setDefaultOption("Auton1", Autonomous1);
+    m_chooser.setDefaultOption("SimpleAuton", SimpleAuton);
 
     // Put the chooser on the dashboard
     Shuffleboard.getTab("Autonomous").add(m_chooser);
