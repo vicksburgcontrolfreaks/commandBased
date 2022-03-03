@@ -38,6 +38,10 @@ public class AutoTurret extends CommandBase {
     double ticDistance = -m_limelight.tx();
     double currentAngle = m_turret.turretEncoderP()/TurretConstants.ticksPerDegree;
     double trueAngle = currentAngle + ticDistance;
+    double distancePower = 0;
+    double positionPower = 0;
+    boolean rotateComplete = true;
+    boolean search = false;
     SmartDashboard.putNumber("limeX", m_limelight.tx());
     SmartDashboard.putBoolean("limeV", m_limelight.tv());
     //double trueAngle = -180;
@@ -47,17 +51,20 @@ public class AutoTurret extends CommandBase {
 
 
     //if the limelight is visible, it rotates towards the target, taking the long way around if the angle is too great for the amount of slack in the wires
-    if(m_limelight.tv()){
-      if(trueAngle > TurretConstants.maxAngle || trueAngle < TurretConstants.minAngle)
-        targetAngle = currentAngle*-1 + ticDistance;
-      else 
+    if (search == true){
+      //turretPower = m_turret.turretEncoderV();
+      turretPower = -positionPower / positionPower * .25 + distancePower;
+      
+  }
+    
+    else if(m_limelight.tv() && rotateComplete == true){
         targetAngle = trueAngle;
       double targetDistance = targetAngle - currentAngle;
       double targetDistanceAbs = Math.abs(targetAngle - currentAngle);
       double targetSign = targetDistance/targetDistanceAbs;
       //double distancePower = targetSign*(1250.7*Math.log(targetDistanceAbs+4.35*1) - 261000000);
-      double distancePower = targetSign*(.000000175*(targetDistanceAbs*targetDistanceAbs*targetDistanceAbs)-.0000711*(targetDistanceAbs*targetDistanceAbs)+.00992*targetDistanceAbs);
-      double positionPower = .000000035*(currentAngle*currentAngle*currentAngle) + .00000651*(currentAngle*currentAngle) + .000622*currentAngle;
+      distancePower = targetSign*(.000000175*(targetDistanceAbs*targetDistanceAbs*targetDistanceAbs)-.0000711*(targetDistanceAbs*targetDistanceAbs)+.00992*targetDistanceAbs);
+      positionPower = .000000035*(currentAngle*currentAngle*currentAngle) + .00000651*(currentAngle*currentAngle) + .000622*currentAngle;
       SmartDashboard.putNumber("PositionPower", positionPower);
       SmartDashboard.putNumber("CurrentAngle", currentAngle);
       SmartDashboard.putNumber("TargetDistance", targetDistance);
@@ -68,17 +75,23 @@ public class AutoTurret extends CommandBase {
       SmartDashboard.putNumber("TargetSign", targetSign);
       SmartDashboard.putString("Limited?", "No");
       turretPower = distancePower + positionPower;
-    }
+      }
     //if the target is not visible and the turret has moved past the maximum angle, runs the turret all the way back to the other side
-    else if (currentAngle > TurretConstants.maxAngle || currentAngle < TurretConstants.minAngle){
-      
-      m_turret.setTurret(-currentAngle, TurretConstants.turret_kMaxOutput, 0);
-       turretPower = -turretPower;}
-    else
+    else{
       //turretPower = m_turret.turretEncoderV();
       turretPower = 0;
     m_turret.runTurret(turretPower);
   }
+  if(trueAngle > TurretConstants.maxAngle || trueAngle < TurretConstants.minAngle){
+    search = !search;
+    rotateComplete = !rotateComplete;
+      // targetAngle = currentAngle*-1 + ticDistance;
+    }
+}
+  
+
+
+  
 
 
   // Called once the command ends or is interrupted.
@@ -92,6 +105,7 @@ public class AutoTurret extends CommandBase {
   @Override
   public boolean isFinished() {
     //this code runs continuously until it is interrupted by other turret code
+
     return false;
   }
 }
