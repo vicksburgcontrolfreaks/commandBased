@@ -48,15 +48,15 @@ public final class Constants {
 
     public static final class TestConstants{
         //a collection of the various values that will be changed through testing
-        public final static double collectF = -.25;
+        public final static double collectF = -.5;
         public final static double collectB = .25;
         public final static double shootF = -1;
-        public final static double indexDist = 9;
-        public final static double collectDistLow = 9;
+        public final static double indexDist = 8;
+        public final static double collectDistLow = 8;
         public final static double collectDistHigh = 12;
         public final static double shooterMin = 5000;
-        public final static double indexF = .25;
-        public final static double loadF = .5;
+        public final static double indexF = .1;
+        public final static double loadF = 1;
         public final static double winchF = 1;
         public final static double winchB = -.25;
     }
