@@ -19,7 +19,7 @@ public class TestTurret extends CommandBase {
   double count;
   // Creates a new AutoTurret. This is the default code that causes the turret to point towards the hub
   public TestTurret(Turret subsystem, Limelight sLimelight) {
-    mode = 0;
+    mode = 1;
     m_turret = subsystem;
     m_limelight = sLimelight;
     addRequirements(m_turret);
@@ -66,7 +66,7 @@ public class TestTurret extends CommandBase {
     SmartDashboard.putBoolean("limeV", m_limelight.tv());
     //double trueAngle = -180;
 
-    if(currentAngle > TurretConstants.maxAngle)
+    if(currentAngle > TurretConstants.maxAngle )
       mode = -1;
     else if(currentAngle < TurretConstants.minAngle)
       mode = 1;
@@ -87,9 +87,9 @@ public class TestTurret extends CommandBase {
       }
     }
     else if (mode == 1)
-      turretPower = .25 + positionPower;
+      turretPower = .15 + positionPower;
     else
-      turretPower = -.25 + positionPower;
+      turretPower = -.15 + positionPower;
     m_turret.runTurret(turretPower);
     
 
