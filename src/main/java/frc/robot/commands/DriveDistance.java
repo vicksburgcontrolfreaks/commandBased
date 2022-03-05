@@ -14,6 +14,7 @@ public class DriveDistance extends CommandBase {
   private final MechTrain m_drive;
   private final Double m_dist;
   private final Double m_speed;
+  double count;
   double frontLeftF;
   double frontRightF;
   double backLeftF;
@@ -30,11 +31,22 @@ public class DriveDistance extends CommandBase {
   @Override
   public void initialize() {
     //calculates the distance each motor needs to travel in tics in order to drive the wanted distance
+    m_drive.resetEncoders();
     double ticDist = -m_dist*DriveConstants.ticksPerInch;
     frontLeftF = m_drive.frontLeftEncoderV() + ticDist;
     frontRightF = m_drive.frontRightEncoderV() - ticDist;
     backLeftF = m_drive.backLeftEncoderV() + ticDist;
     backRightF = m_drive.backRightEncoderV() - ticDist;
+    SmartDashboard.putNumber("initFLP", m_drive.frontLeftEncoderV());
+    SmartDashboard.putNumber("initBLP", m_drive.backLeftEncoderV());
+    SmartDashboard.putNumber("initFRP", m_drive.frontRightEncoderV());
+    SmartDashboard.putNumber("initBRP", m_drive.backRightEncoderV());
+
+    SmartDashboard.putNumber("initFL", frontLeftF);
+    SmartDashboard.putNumber("initFR", frontRightF);
+    SmartDashboard.putNumber("initBL", backLeftF);
+    SmartDashboard.putNumber("initBR", backRightF);
+    count = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -72,16 +84,26 @@ public class DriveDistance extends CommandBase {
     double frontRightEValue = m_drive.frontLeftEncoderV();
     double backLeftEValue = m_drive.frontLeftEncoderV();
     double backRightEValue = m_drive.frontLeftEncoderV();
+    SmartDashboard.putNumber("frontRightF", frontRightF);
+    SmartDashboard.putNumber("frontRightEValue", frontRightEValue);
+    SmartDashboard.putNumber("frontRightError", frontRightF+frontRightEValue);
     double drive_encoderError = DriveConstants.drive_encoderError;
     boolean drivePostionReached = true;
+    SmartDashboard.putBoolean("check0", drivePostionReached);
     if (Math.abs(frontLeftF - frontLeftEValue) > drive_encoderError)
     drivePostionReached = false;
-    if (Math.abs(frontRightF - frontRightEValue) > drive_encoderError)
+    SmartDashboard.putBoolean("check1", drivePostionReached);
+    if (Math.abs(frontRightF + frontRightEValue) > drive_encoderError)
     drivePostionReached = false;
+    SmartDashboard.putBoolean("check2", drivePostionReached);
     if (Math.abs(backLeftF - backLeftEValue) > drive_encoderError)
     drivePostionReached = false;
-    if (Math.abs(backRightF - backRightEValue) > drive_encoderError)
+    SmartDashboard.putBoolean("check3", drivePostionReached);
+    if (Math.abs(backRightF + backRightEValue) > drive_encoderError)
     drivePostionReached = false;
+    SmartDashboard.putBoolean("check4", drivePostionReached);
+    count++;
+    SmartDashboard.putNumber("count", count);
     // if(m_drive.avgV() > DriveConstants.finalMotorV)
     // drivePostionReached = false;
     return drivePostionReached;

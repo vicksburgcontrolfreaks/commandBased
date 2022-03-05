@@ -30,6 +30,7 @@ import frc.robot.commands.ReachUp;
 import frc.robot.commands.ShooterRun;
 import frc.robot.commands.SimpleAuton;
 import frc.robot.commands.Stop;
+import frc.robot.commands.TestTurret;
 import frc.robot.commands.TurretReset;
 //import frc.robot.commands.WinchRun;
 //import frc.robot.commands.WinchUp;
@@ -109,7 +110,8 @@ public class RobotContainer {
     new JoystickButton(shootStick, ShootButtons.prime).whenPressed(new ShooterRun(m_Shooter, TestConstants.shootF));
     new JoystickButton(shootStick, ShootButtons.shooterOff).whenPressed(new ShooterRun(m_Shooter, 0));
     new JoystickButton(shootStick, ShootButtons.manual).whenPressed(new ManualTurret(m_Turret, shootStick::getX));
-    new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new AutoTurret(m_Turret, m_Limelight));
+    //new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new AutoTurret(m_Turret, m_Limelight));
+    new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new TestTurret(m_Turret, m_Limelight));
     new JoystickButton(shootStick, 2).whileHeld(new IndexerRun(m_Indexer, -.15));
     new JoystickButton(shootStick, ShootButtons.index).whenPressed(new IndexCheck(m_Indexer, m_Collector, m_Mills));
     new JoystickButton(shootStick, 11).whenPressed(new TurretReset(m_Turret));

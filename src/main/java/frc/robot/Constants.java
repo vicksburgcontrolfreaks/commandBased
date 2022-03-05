@@ -27,7 +27,7 @@ public final class Constants {
         public final static double ticksPerDegree = .23;
         public final static double ticksPerInch = .57;
         public final static double ticksPerSide = .76;
-        public final static double drive_encoderError = 1;
+        public final static double drive_encoderError = 2;
         public final static double finalMotorV = .5;
     }
 
@@ -41,8 +41,8 @@ public final class Constants {
         public final static double turret_kMaxOutput = 1;
         public final static double ticksPerDegree = .0156;
         public final static double turret_encoderError = 10;
-        public final static double minAngle = -226; //-225
-        public final static double maxAngle = 134; //100
+        public final static double minAngle = -90; //-225
+        public final static double maxAngle = 90; //100
 
     }
 

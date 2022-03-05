@@ -147,6 +147,13 @@ public class MechTrain extends SubsystemBase {
     return backRightE.getPosition();
   }
 
+  public void resetEncoders(){
+    frontRightE.setPosition(0);
+    frontLeftE.setPosition(0);
+    backRightE.setPosition(0);
+    backLeftE.setPosition(0);
+  }
+
   public double avgV(){
     //returns the current average speed of all drive motors
     double avg = (Math.abs(frontLeftE.getVelocity()) + Math.abs(frontRightE.getVelocity()) + Math.abs(backLeftE.getVelocity()) + Math.abs(backRightE.getVelocity()))/4;
