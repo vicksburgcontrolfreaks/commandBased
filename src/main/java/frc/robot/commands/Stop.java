@@ -20,7 +20,7 @@ public class Stop extends ParallelCommandGroup {
   /** Creates a new Stop. This stops all of the subsystems from moving.*/
   public Stop(Shooter m_shooter, Collector m_collector, /*Winch m_winch,*/ Indexer m_indexer, Flopper m_flopper, Reacher m_reacher, Turret m_turret) {
     addCommands(
-      new ShooterRun(m_shooter, 0),
+      new ShooterRun(m_shooter, 0, false),
       new CollectorRun(m_collector, 0),
       //new WinchRun(m_winch, 0),
       new IndexerRun(m_indexer, 0),

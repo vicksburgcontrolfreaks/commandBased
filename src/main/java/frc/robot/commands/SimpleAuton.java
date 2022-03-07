@@ -20,8 +20,7 @@ public class SimpleAuton extends SequentialCommandGroup {
     addCommands(
       //drives the robot 24 inches forward while running the collector. Both shut off when the distance has been driven.
         //new DriveDistance(m_drive, 30, .25),
-        // new DriveDistance(m_drive, 0, 0),
-        new DriveDistance(m_drive, 0, .15)
+        new DriveSide(m_drive, -30, .25)
         //new DriveDistance(m_drive, 30, .15)
     );
   }

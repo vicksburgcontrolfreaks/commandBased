@@ -30,6 +30,7 @@ import frc.robot.commands.ReachUp;
 import frc.robot.commands.ShooterRun;
 import frc.robot.commands.SimpleAuton;
 import frc.robot.commands.Stop;
+import frc.robot.commands.Test;
 import frc.robot.commands.TestTurret;
 import frc.robot.commands.TurretReset;
 //import frc.robot.commands.WinchRun;
@@ -66,7 +67,7 @@ public class RobotContainer {
   //private final Joystick driveStick = new Joystick(0);
   private final Joystick shootStick = new Joystick(1);
   private final XboxController driveController = new XboxController(0);
-  private final Command Autonomous1 = new Autonomous1(m_Drive, m_Collector, m_Shooter/*, m_Indexer*/);
+  private final Command Autonomous1 = new Autonomous1(m_Drive, m_Collector, m_Shooter, m_Indexer, m_Mills);
   private final Command SimpleAuton = new SimpleAuton(m_Drive);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   public RobotContainer() {
@@ -80,8 +81,8 @@ public class RobotContainer {
     //m_Turret.setDefaultCommand(new AutoTurret(m_Turret, m_Limelight));
 
     // Add commands to the autonomous command chooser
-    // m_chooser.setDefaultOption("Auton1", Autonomous1);
-    m_chooser.setDefaultOption("SimpleAuton", SimpleAuton);
+    m_chooser.setDefaultOption("Auton1", Autonomous1);
+    //m_chooser.setDefaultOption("SimpleAuton", SimpleAuton);
 
     // Put the chooser on the dashboard
     Shuffleboard.getTab("Autonomous").add(m_chooser);
@@ -107,8 +108,8 @@ public class RobotContainer {
     //new JoystickButton(driveStick, DriveButtons.fire).whileHeld(new FireCheck());
     new JoystickButton(shootStick, ShootButtons.collect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectF));
     new JoystickButton(shootStick, ShootButtons.backCollect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectB));
-    new JoystickButton(shootStick, ShootButtons.prime).whenPressed(new ShooterRun(m_Shooter, TestConstants.shootF));
-    new JoystickButton(shootStick, ShootButtons.shooterOff).whenPressed(new ShooterRun(m_Shooter, 0));
+    new JoystickButton(shootStick, ShootButtons.prime).whenPressed(new ShooterRun(m_Shooter, TestConstants.shootF, false));
+    new JoystickButton(shootStick, ShootButtons.shooterOff).whenPressed(new ShooterRun(m_Shooter, 0, false));
     new JoystickButton(shootStick, ShootButtons.manual).whenPressed(new ManualTurret(m_Turret, shootStick::getX));
     //new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new AutoTurret(m_Turret, m_Limelight));
     new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new TestTurret(m_Turret, m_Limelight));
@@ -117,6 +118,7 @@ public class RobotContainer {
     new JoystickButton(shootStick, 11).whenPressed(new TurretReset(m_Turret));
     // new JoystickButton(shootStick, ShootButtons.winch).whileHeld(new WinchUp(m_Winch, m_Flopper, m_Reacher, TestConstants.winchF));
     new JoystickButton(driveController, ControllerButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Indexer, m_Flopper, m_Reacher, m_Turret));
+    new JoystickButton(shootStick, 6).whenPressed(new Test(m_Drive));
 
   }
 

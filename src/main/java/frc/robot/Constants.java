@@ -27,7 +27,7 @@ public final class Constants {
         public final static double ticksPerDegree = .23;
         public final static double ticksPerInch = .57;
         public final static double ticksPerSide = .76;
-        public final static double drive_encoderError = 2;
+        public final static double drive_encoderError = .5;
         public final static double finalMotorV = .5;
     }
 

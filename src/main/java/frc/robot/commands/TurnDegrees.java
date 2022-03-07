@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.MechTrain;
@@ -30,20 +31,32 @@ public class TurnDegrees extends CommandBase {
   public void initialize() {
     //calculates the distance each motor needs to travel in tics in order to rotate the wanted distance
     double ticDist = m_dist*DriveConstants.ticksPerDegree;
-    frontLeftF = m_drive.frontLeftEncoderV() + ticDist;
-    frontRightF = m_drive.frontLeftEncoderV() + ticDist;
-    backLeftF = m_drive.frontLeftEncoderV() + ticDist;
-    backRightF = m_drive.frontLeftEncoderV() + ticDist;
+    frontLeftF = m_drive.frontLeftEncoderV() - ticDist;
+    frontRightF = m_drive.frontRightEncoderV() + ticDist;
+    backLeftF = m_drive.backLeftEncoderV() - ticDist;
+    backRightF = m_drive.backRightEncoderV() + ticDist;
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     //sets the motors until the endpoint is reached
+
     m_drive.driveFrontLeft(frontLeftF, m_speed, 0);
     m_drive.driveFrontRight(frontRightF, m_speed, 0);
     m_drive.driveBackLeft(backLeftF, m_speed, 0);
     m_drive.driveBackRight(backRightF, m_speed, 0);
+
+    SmartDashboard.putNumber("frontLeftF", frontLeftF);
+    SmartDashboard.putNumber("frontRightF", frontRightF);
+    SmartDashboard.putNumber("backLeftF", backLeftF);
+    SmartDashboard.putNumber("backRightF", backRightF);
+    SmartDashboard.putNumber("frontRightEncoder", m_drive.frontRightEncoderV());
+    SmartDashboard.putNumber("frontLeftEncoder", m_drive.frontLeftEncoderV());
+    SmartDashboard.putNumber("backRightEncoder", m_drive.backRightEncoderV());
+    SmartDashboard.putNumber("backLeftEncoder", m_drive.backLeftEncoderV());
+
   }
 
   // Called once the command ends or is interrupted.
@@ -55,20 +68,30 @@ public class TurnDegrees extends CommandBase {
   public boolean isFinished() {
     //checks to see if the robot has driven to the endpoint
     double frontLeftEValue = m_drive.frontLeftEncoderV();
-    double frontRightEValue = m_drive.frontLeftEncoderV();
-    double backLeftEValue = m_drive.frontLeftEncoderV();
-    double backRightEValue = m_drive.frontLeftEncoderV();
+    double frontRightEValue = m_drive.frontRightEncoderV();
+    double backLeftEValue = m_drive.backLeftEncoderV();
+    double backRightEValue = m_drive.backRightEncoderV();
+
+    double absFL = Math.abs(Math.abs(frontLeftF) - Math.abs(frontLeftEValue));
+    double absFR = Math.abs(Math.abs(frontRightF) - Math.abs(frontRightEValue));
+    double absBL = Math.abs(Math.abs(backLeftF) - Math.abs(backLeftEValue));
+    double absBR = Math.abs(Math.abs(backRightF) - Math.abs(backRightEValue));
+
+    SmartDashboard.putNumber("FLAbsolute", absFL);
+    SmartDashboard.putNumber("BLAbsolute", absBL);
+    SmartDashboard.putNumber("FRAbsolute", absFR);
+    SmartDashboard.putNumber("BRAbsolute", absBR);
+
+
     double drive_encoderError = DriveConstants.drive_encoderError;
     boolean drivePostionReached = true;
-    if (Math.abs(frontLeftF - frontLeftEValue) > drive_encoderError)
+    if (absFL > drive_encoderError)
     drivePostionReached = false;
-    if (Math.abs(frontRightF - frontRightEValue) > drive_encoderError)
+    if (absFR > drive_encoderError)
     drivePostionReached = false;
-    if (Math.abs(backLeftF - backLeftEValue) > drive_encoderError)
+    if (absBL > drive_encoderError)
     drivePostionReached = false;
-    if (Math.abs(backRightF - backRightEValue) > drive_encoderError)
-    drivePostionReached = false;
-    if(m_drive.avgV() > DriveConstants.finalMotorV)
+    if (absBR > drive_encoderError)
     drivePostionReached = false;
     return drivePostionReached;
   }

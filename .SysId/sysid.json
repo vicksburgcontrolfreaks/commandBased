@@ -1,6 +1,7 @@
 {
   "SysId": {
-    "Analysis Type": "Drivetrain",
+    "Analysis Type": "General Mechanism",
+    "AnalyzerJSONLocation": "C:\\Users\\Public\\wpilib\\2022\\vscode\\vk_swiftshader_icd.json",
     "NetworkTables Settings": {
       "serverTeam": "8126"
     },
