@@ -14,12 +14,15 @@ import frc.robot.subsystems.Turret;
 public class TestTurret extends CommandBase {
   private final Turret m_turret;
   private final Limelight m_limelight;
+  private final boolean completes;
   double turretPower;
   double mode;
   double count;
   // Creates a new AutoTurret. This is the default code that causes the turret to point towards the hub
-  public TestTurret(Turret subsystem, Limelight sLimelight) {
+  public TestTurret(Turret subsystem, Limelight sLimelight, boolean sComp) {
+
     mode = 1;
+    completes = sComp;
     m_turret = subsystem;
     m_limelight = sLimelight;
     addRequirements(m_turret);
@@ -92,44 +95,6 @@ public class TestTurret extends CommandBase {
       turretPower = -.15 + positionPower;
     m_turret.runTurret(turretPower);
     
-
-    //if the limelight is visible, it rotates towards the target, taking the long way around if the angle is too great for the amount of slack in the wires
-  //   if (search == true){
-  //     //turretPower = m_turret.turretEncoderV();
-  //     turretPower = -positionPower / positionPower * .25 + distancePower;
-      
-  // }
-    
-  //   else if(m_limelight.tv() && rotateComplete == true){
-  //     targetAngle = trueAngle;
-  //     double targetDistance = targetAngle - currentAngle;
-  //     double targetDistanceAbs = Math.abs(targetAngle - currentAngle);
-  //     double targetSign = targetDistance/targetDistanceAbs;
-  //     //double distancePower = targetSign*(1250.7*Math.log(targetDistanceAbs+4.35*1) - 261000000);
-  //     distancePower = targetSign*(.000000175*(targetDistanceAbs*targetDistanceAbs*targetDistanceAbs)-.0000711*(targetDistanceAbs*targetDistanceAbs)+.00992*targetDistanceAbs);
-  //     positionPower = .000000035*(currentAngle*currentAngle*currentAngle) + .00000651*(currentAngle*currentAngle) + .000622*currentAngle;
-  //     SmartDashboard.putNumber("PositionPower", positionPower);
-  //     SmartDashboard.putNumber("CurrentAngle", currentAngle);
-  //     SmartDashboard.putNumber("TargetDistance", targetDistance);
-  //     SmartDashboard.putNumber("DistancePower", distancePower);
-  //     SmartDashboard.putNumber("TargetAngle", targetAngle);
-  //     SmartDashboard.putNumber("TargetAngle", targetDistanceAbs);
-  //     SmartDashboard.putNumber("TurretPower", turretPower);
-  //     SmartDashboard.putNumber("TargetSign", targetSign);
-  //     SmartDashboard.putString("Limited?", "No");
-  //     turretPower = distancePower + positionPower;
-  //     }
-  //   //if the target is not visible and the turret has moved past the maximum angle, runs the turret all the way back to the other side
-  //   else{
-  //     //turretPower = m_turret.turretEncoderV();
-  //     turretPower = 0;
-  //   m_turret.runTurret(turretPower);
-  // }
-  // if(trueAngle > TurretConstants.maxAngle || trueAngle < TurretConstants.minAngle){
-  //   search = !search;
-  //   rotateComplete = !rotateComplete;
-  //     // targetAngle = currentAngle*-1 + ticDistance;
-  //   }
 }
   
 
@@ -148,7 +113,9 @@ public class TestTurret extends CommandBase {
   @Override
   public boolean isFinished() {
     //this code runs continuously until it is interrupted by other turret code
-
-    return false;
+    if(completes && m_limelight.tv())
+      return true;
+    else
+      return false;
   }
 }

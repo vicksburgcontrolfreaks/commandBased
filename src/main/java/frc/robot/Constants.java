@@ -24,7 +24,7 @@ public final class Constants {
         public final static double drive_kFF = 0;
         public final static double drive_kMaxOutput = .15;
         public final static double drive_kMinOutput = -.15;
-        public final static double ticksPerDegree = .23;
+        public final static double ticksPerDegree = .22;
         public final static double ticksPerInch = .57;
         public final static double ticksPerSide = .76;
         public final static double drive_encoderError = .5;
@@ -59,6 +59,7 @@ public final class Constants {
         public final static double loadF = 1;
         public final static double winchF = 1;
         public final static double winchB = -.25;
+        public final static double collectorError = .1;
     }
 
     public static final class DriveButtons{
