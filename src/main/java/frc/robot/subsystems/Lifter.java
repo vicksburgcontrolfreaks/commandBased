@@ -6,22 +6,26 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
 
-public class Flopper extends SubsystemBase {
+public class Lifter extends SubsystemBase {
   /** Creates a new Lifter. Both cylinders are run from the same double solenoid*/
-  private final Solenoid flopper = new Solenoid(PneumaticsModuleType.REVPH, CANConstants.flopSolenoid1);
+  private final Solenoid lifter = new DoubleSolenoid(PneumaticsModuleType.REVPH, CANConstants.liftSolenoid1, CANConstants.liftSolenoid2);
 
-  public void flopOut(){
+  public void liftUp(){
     //moves both Lifters to the up position
-    flopper.set(true);
+    lifter.set(Value.kForward);
   }
 
-  public void flopIn(){
+  public void liftDown(){
     //moves both Lifters to the down position
-    flopper.set(false);
+    lifter.set(Value.kReverse);
+  }
+
+  public void liftOff(){
+    //turns both Lifters off. This code is unlikely to be used regularly but is necessary for our emergency stop.
+    lifter.set(Value.kOff);
   }
 }

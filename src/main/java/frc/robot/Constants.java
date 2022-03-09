@@ -67,7 +67,7 @@ public final class Constants {
         //all of the buttons assigned to the drive stick
         public final static int fire = 1;
         public final static int turn = 2;
-        public final static int flop = 3;
+        public final static int lift = 3;
         public final static int reach = 5;
         public final static int stop = 7;
         public final static int resetEncoders = 11;
@@ -88,7 +88,7 @@ public final class Constants {
 
     public static final class ControllerButtons{
         public final static int fire = 6; //RB
-        public final static int flop = 3; //x
+        public final static int lift = 3; //x
         public final static int reach = 1; //a
         public final static int stop = 8; //start
         public final static int resetEncoders = 5; //LB
@@ -108,9 +108,11 @@ public final class Constants {
         public final static int indexer = 13;
         public final static int winchL = 10;
         public final static int winchR = 11;
-        public final static int flopSolenoid1 = 0;
-        public final static int flopSolenoid2 = 1;
+        public final static int liftSolenoid1 = 0;
+        public final static int liftSolenoid2 = 1;
         public final static int reachSolenoid1 = 2;
         public final static int reachSolenoid2 = 3;
+        public final static int flopSolenoid1 = 4;
+        public final static int flopSolenoid2 = 5;
     }
 }
