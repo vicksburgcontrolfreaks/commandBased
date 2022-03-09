@@ -18,11 +18,11 @@ public class WinchUp extends ParallelCommandGroup {
   public final Lifter m_lifter;
   private final Double m_speed;
   // Creates a new WinchUp. This runs the winch to raise the robot and moves the pneumatics to the down position.
-  public WinchUp(Winch subsystem, Lifter sLifter, Reacher sReacher, double s) {
+  public WinchUp(Winch subsystem, Lifter l, Reacher sReacher, double s) {
     m_winch = subsystem;
     m_speed = s;
     m_reacher = sReacher;
-    m_lifter = sLifter;
+    m_lifter = l;
     addRequirements(m_winch);
     addRequirements(m_reacher);
     addRequirements(m_lifter);

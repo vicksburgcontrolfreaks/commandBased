@@ -27,7 +27,7 @@ public class Autonomous1 extends SequentialCommandGroup {
         new CollectorRun(m_collector, TestConstants.collectF)),
       //turns robot 90 degrees
       new TurnDegrees(m_drive, 180, DriveConstants.drive_kMaxOutput),
-      new TestTurret(m_turret, m_limelight, true),
+      new AutoTurret(m_turret, m_limelight, true),
       //drive the robot 24 inches to the side
       //new DriveSide(m_drive, 24, .25),
       //turns on the shooter and fires 2 cargo into the Upper Hub

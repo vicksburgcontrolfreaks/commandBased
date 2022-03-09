@@ -4,16 +4,14 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
 
 public class Flopper extends SubsystemBase {
   /** Creates a new Lifter. Both cylinders are run from the same double solenoid*/
-  private final Solenoid flopper = new Solenoid(PneumaticsModuleType.REVPH, CANConstants.flopSolenoid1);
+  private final Solenoid flopper = new Solenoid(PneumaticsModuleType.REVPH, CANConstants.flopSolenoid);
 
   public void flopOut(){
     //moves both Lifters to the up position
