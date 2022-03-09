@@ -5,7 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.subsystems.Flopper;
+import frc.robot.subsystems.Lifter;
 import frc.robot.subsystems.Reacher;
 import frc.robot.subsystems.Winch;
 
@@ -15,18 +15,18 @@ import frc.robot.subsystems.Winch;
 public class WinchUp extends ParallelCommandGroup {
   public final Winch m_winch;
   public final Reacher m_reacher;
-  public final Flopper m_flopper;
+  public final Lifter m_lifter;
   private final Double m_speed;
   // Creates a new WinchUp. This runs the winch to raise the robot and moves the pneumatics to the down position.
-  public WinchUp(Winch subsystem, Flopper sFlopper, Reacher sReacher, double s) {
+  public WinchUp(Winch subsystem, Lifter sLifter, Reacher sReacher, double s) {
     m_winch = subsystem;
     m_speed = s;
     m_reacher = sReacher;
-    m_flopper = sFlopper;
+    m_lifter = sLifter;
     addRequirements(m_winch);
     addRequirements(m_reacher);
-    addRequirements(m_flopper);
+    addRequirements(m_lifter);
     //runs the winch and the floppers at the same time
-    addCommands(new FlopDown(m_flopper), new ReachDown(m_reacher), new WinchRun(m_winch, m_speed));
+    addCommands(new LiftDown(m_lifter), new ReachDown(m_reacher), new WinchRun(m_winch, m_speed));
   }
 }

@@ -32,8 +32,8 @@ import frc.robot.commands.TurretReset;
 //import frc.robot.commands.WinchRun;
 //import frc.robot.commands.WinchUp;
 import frc.robot.subsystems.Collector;
-import frc.robot.subsystems.Flopper;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Lifter;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.MechTrain;
 import frc.robot.subsystems.MrMills;
@@ -50,7 +50,7 @@ import frc.robot.subsystems.Turret;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Flopper m_Flopper = new Flopper();
+  private final Lifter m_Lifter = new Lifter();
   private final Reacher m_Reacher = new Reacher();
   private final MechTrain m_Drive = new MechTrain();
   //private final Winch m_Winch = new Winch();
@@ -114,7 +114,7 @@ public class RobotContainer {
     new JoystickButton(shootStick, ShootButtons.index).whenPressed(new IndexCheck(m_Indexer, m_Collector, m_Mills));
     new JoystickButton(shootStick, 11).whenPressed(new TurretReset(m_Turret));
     // new JoystickButton(shootStick, ShootButtons.winch).whileHeld(new WinchUp(m_Winch, m_Flopper, m_Reacher, TestConstants.winchF));
-    new JoystickButton(driveController, ControllerButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Indexer, m_Flopper, m_Reacher, m_Turret));
+    new JoystickButton(driveController, ControllerButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Indexer, m_Lifter, m_Reacher, m_Turret));
     new JoystickButton(shootStick, 6).whenPressed(new Test(m_Drive));
 
   }
