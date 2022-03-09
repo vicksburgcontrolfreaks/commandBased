@@ -20,6 +20,11 @@ public class Turret extends SubsystemBase {
   private final SparkMaxPIDController turretP = turret.getPIDController();
   private final RelativeEncoder turretE = turret.getEncoder();
 
+  public Turret(){
+    turretE.setPosition(0);
+  }
+  
+
 
   public void setTurretPids(int slot, double kMaxOutput, double kMinOutput){
     //establishes the PID values for the turret motors
