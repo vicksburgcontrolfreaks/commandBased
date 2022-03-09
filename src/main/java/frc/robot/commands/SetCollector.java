@@ -29,8 +29,8 @@ public class SetCollector extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    double negDist = -totalDistance;
-    targetPosition = m_collector.collectorPosition() + negDist;
+    double negDist = -.6;
+    targetPosition = -m_collector.collectorPosition() + negDist;
     SmartDashboard.putNumber("intiPosit", m_collector.collectorPosition());
     SmartDashboard.putNumber("initTarget", targetPosition);
     SmartDashboard.putNumber("negDist", negDist);
@@ -41,13 +41,14 @@ public class SetCollector extends CommandBase {
   public void execute() {
     //SmartDashboard.putNumber("turretPower", turretPower);
     //calculates the distance that the turret needs to turn, in degrees, to be pointed towards the hub
-    currentPosition = m_collector.collectorPosition();
+    currentPosition = -m_collector.collectorPosition();
     double distance = targetPosition - currentPosition;
     double absDistance = Math.abs(distance);
     double distSign = distance/absDistance;
-    //double distancePower = distSign*(.15);
-    double distancePower = 0;
+    double distancePower = distSign*(-.15);
+    //double distancePower = 0;
     m_collector.collectorMove(distancePower);
+    //m_collector.collectorMove(0);
     SmartDashboard.putNumber("current", currentPosition);
     SmartDashboard.putNumber("targetPosition", targetPosition);
     SmartDashboard.putNumber("distance", distance);

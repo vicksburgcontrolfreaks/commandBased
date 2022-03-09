@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 
 
+
+
 import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
@@ -50,6 +52,14 @@ public class MrMills extends SubsystemBase {
   public boolean isIndexed(){
     //returns whether an objects are close enough to be firmly indexed
     if(dist() <= TestConstants.indexDist)
+      return true;
+    else 
+      return false;
+  }
+
+  public boolean isOverIndexed(){
+    //returns whether an objects are close enough to be firmly indexed
+    if(dist() <= TestConstants.overIndex)
       return true;
     else 
       return false;
