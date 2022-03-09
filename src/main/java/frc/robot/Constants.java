@@ -106,7 +106,8 @@ public final class Constants {
         public final static int shooterR = 7;
         public final static int turret = 8;
         public final static int indexer = 13;
-        public final static int winch = 10;
+        public final static int winchL = 10;
+        public final static int winchR = 11;
         public final static int flopSolenoid1 = 0;
         public final static int flopSolenoid2 = 1;
         public final static int reachSolenoid1 = 2;

@@ -7,10 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.TestConstants;
-import frc.robot.Constants.TurretConstants;
 import frc.robot.subsystems.Collector;
-import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.Turret;
 
 public class SetCollector extends CommandBase {
   private final Collector m_collector;

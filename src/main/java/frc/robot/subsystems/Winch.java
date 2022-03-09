@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-/*package frc.robot.subsystems;
+package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -12,10 +12,12 @@ import frc.robot.Constants.CANConstants;
 
 public class Winch extends SubsystemBase {
   //Creates a new Winch. This is the motor that drives the winch to raise the robot up to the hook on the end of the reacher.
-  private final CANSparkMax winch = new CANSparkMax(CANConstants.winch, MotorType.kBrushed);
+  private final CANSparkMax winchL = new CANSparkMax(CANConstants.winchL, MotorType.kBrushless);
+  private final CANSparkMax winchR = new CANSparkMax(CANConstants.winchR, MotorType.kBrushless);
   public void winchMove(double speed){
     //sets the speed of the winch to an input value
-    winch.set(speed);
+    winchL.set(speed);
+    winchR.set(-speed);
   }
 
-}*/
+}

@@ -4,14 +4,8 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Constants.DriveConstants;
-import frc.robot.Constants.TestConstants;
-import frc.robot.subsystems.Collector;
-//import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.MechTrain;
-import frc.robot.subsystems.Shooter;
 
 public class SimpleAuton extends SequentialCommandGroup {
   /** Creates a new Autonomous1. This is the autonomous made for a starting position nearest to the side wall. */
