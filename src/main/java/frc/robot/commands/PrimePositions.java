@@ -14,22 +14,13 @@ import frc.robot.subsystems.MechTrain;
 import frc.robot.subsystems.MrMills;
 import frc.robot.subsystems.Shooter;
 
-public class Autonomous1 extends SequentialCommandGroup {
+public class PrimePositions extends SequentialCommandGroup {
   /** Creates a new Autonomous1. This is the autonomous made for a starting position nearest to the side wall. */
-  public Autonomous1(MechTrain m_drive, Collector m_collector, Shooter m_shooter, Indexer m_indexer, MrMills m_mills) {
+  public PrimePositions(Collector m_collector, Indexer m_indexer, MrMills m_mills) {
     //adds each stage of our autonomous to a sequential group
     addCommands(
-      //drives the robot 24 inches forward while running the collector. Both shut off when the distance has been driven.
-      new ParallelDeadlineGroup(
-        new DriveDistance(m_drive, 24, .25), 
-        new CollectorRun(m_collector, TestConstants.collectF)),
-      //turns robot 90 degrees
-      new TurnDegrees(m_drive, 180, DriveConstants.drive_kMaxOutput),
-      //drive the robot 24 inches to the side
-      //new DriveSide(m_drive, 24, .25),
-      //turns on the shooter and fires 2 cargo into the Upper Hub
-      new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter),
-      new LoadCheck(m_indexer, m_shooter, m_mills)
+      new SetCollector(m_collector, .6),
+      new BackDexCheck(m_indexer, m_collector, m_mills)
     );
   }
 }
