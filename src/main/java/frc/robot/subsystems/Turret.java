@@ -10,7 +10,6 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
 import frc.robot.Constants.TurretConstants;
@@ -49,8 +48,8 @@ public class Turret extends SubsystemBase {
     //periodically checks the current position and speed of the encoder
     turretEncoderP();
     turretEncoderV();
-    SmartDashboard.putNumber("TurretPosition", turretEncoderP()/TurretConstants.ticksPerDegree);
-    SmartDashboard.putNumber("TurretSpeed", turretEncoderV());
+    // SmartDashboard.putNumber("TurretPosition", turretEncoderP()/TurretConstants.ticksPerDegree);
+    // SmartDashboard.putNumber("TurretSpeed", turretEncoderV());
   }
 
   public double turretEncoderP(){

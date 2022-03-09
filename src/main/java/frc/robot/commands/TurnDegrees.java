@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.MechTrain;
@@ -48,14 +47,14 @@ public class TurnDegrees extends CommandBase {
     m_drive.driveBackLeft(backLeftF, m_speed, 0);
     m_drive.driveBackRight(backRightF, m_speed, 0);
 
-    SmartDashboard.putNumber("frontLeftF", frontLeftF);
-    SmartDashboard.putNumber("frontRightF", frontRightF);
-    SmartDashboard.putNumber("backLeftF", backLeftF);
-    SmartDashboard.putNumber("backRightF", backRightF);
-    SmartDashboard.putNumber("frontRightEncoder", m_drive.frontRightEncoderV());
-    SmartDashboard.putNumber("frontLeftEncoder", m_drive.frontLeftEncoderV());
-    SmartDashboard.putNumber("backRightEncoder", m_drive.backRightEncoderV());
-    SmartDashboard.putNumber("backLeftEncoder", m_drive.backLeftEncoderV());
+    // SmartDashboard.putNumber("frontLeftF", frontLeftF);
+    // SmartDashboard.putNumber("frontRightF", frontRightF);
+    // SmartDashboard.putNumber("backLeftF", backLeftF);
+    // SmartDashboard.putNumber("backRightF", backRightF);
+    // SmartDashboard.putNumber("frontRightEncoder", m_drive.frontRightEncoderV());
+    // SmartDashboard.putNumber("frontLeftEncoder", m_drive.frontLeftEncoderV());
+    // SmartDashboard.putNumber("backRightEncoder", m_drive.backRightEncoderV());
+    // SmartDashboard.putNumber("backLeftEncoder", m_drive.backLeftEncoderV());
 
   }
 
@@ -77,10 +76,10 @@ public class TurnDegrees extends CommandBase {
     double absBL = Math.abs(Math.abs(backLeftF) - Math.abs(backLeftEValue));
     double absBR = Math.abs(Math.abs(backRightF) - Math.abs(backRightEValue));
 
-    SmartDashboard.putNumber("FLAbsolute", absFL);
-    SmartDashboard.putNumber("BLAbsolute", absBL);
-    SmartDashboard.putNumber("FRAbsolute", absFR);
-    SmartDashboard.putNumber("BRAbsolute", absBR);
+    // SmartDashboard.putNumber("FLAbsolute", absFL);
+    // SmartDashboard.putNumber("BLAbsolute", absBL);
+    // SmartDashboard.putNumber("FRAbsolute", absFR);
+    // SmartDashboard.putNumber("BRAbsolute", absBR);
 
 
     double drive_encoderError = DriveConstants.drive_encoderError;

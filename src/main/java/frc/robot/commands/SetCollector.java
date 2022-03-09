@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.TestConstants;
 import frc.robot.subsystems.Collector;
@@ -28,9 +27,9 @@ public class SetCollector extends CommandBase {
   public void initialize() {
     double negDist = -.6;
     targetPosition = -m_collector.collectorPosition() + negDist;
-    SmartDashboard.putNumber("intiPosit", m_collector.collectorPosition());
-    SmartDashboard.putNumber("initTarget", targetPosition);
-    SmartDashboard.putNumber("negDist", negDist);
+    // SmartDashboard.putNumber("intiPosit", m_collector.collectorPosition());
+    // SmartDashboard.putNumber("initTarget", targetPosition);
+    // SmartDashboard.putNumber("negDist", negDist);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -46,10 +45,10 @@ public class SetCollector extends CommandBase {
     //double distancePower = 0;
     m_collector.collectorMove(distancePower);
     //m_collector.collectorMove(0);
-    SmartDashboard.putNumber("current", currentPosition);
-    SmartDashboard.putNumber("targetPosition", targetPosition);
-    SmartDashboard.putNumber("distance", distance);
-    SmartDashboard.putNumber("distancePower", distancePower);
+    // SmartDashboard.putNumber("current", currentPosition);
+    // SmartDashboard.putNumber("targetPosition", targetPosition);
+    // SmartDashboard.putNumber("distance", distance);
+    // SmartDashboard.putNumber("distancePower", distancePower);
 }
   
 

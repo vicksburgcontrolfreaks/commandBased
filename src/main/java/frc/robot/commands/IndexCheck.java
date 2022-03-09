@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.TestConstants;
 import frc.robot.subsystems.Collector;
@@ -38,7 +37,7 @@ public class IndexCheck extends CommandBase {
       m_indexer.runIndexer(TestConstants.indexF);
       m_collector.collectorMove(TestConstants.collectF);
     }
-    SmartDashboard.putString("Stage", "Index");
+    // SmartDashboard.putString("Stage", "Index");
   }
 
   // Called once the command ends or is interrupted.
