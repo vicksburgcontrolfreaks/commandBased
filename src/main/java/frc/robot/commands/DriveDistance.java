@@ -4,7 +4,7 @@
 
 package frc.robot.commands;
 
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.MechTrain;
@@ -36,15 +36,15 @@ public class DriveDistance extends CommandBase {
     frontRightF = m_drive.frontRightEncoderV() - ticDist;
     backLeftF = m_drive.backLeftEncoderV() - ticDist;
     backRightF = m_drive.backRightEncoderV() - ticDist;
-    // SmartDashboard.putNumber("initFLP", m_drive.frontLeftEncoderV());
-    // SmartDashboard.putNumber("initBLP", m_drive.backLeftEncoderV());
-    // SmartDashboard.putNumber("initFRP", -m_drive.frontRightEncoderV());
-    // SmartDashboard.putNumber("initBRP", -m_drive.backRightEncoderV());
+    //SmartDashboard.putNumber("initFLP", m_drive.frontLeftEncoderV());
+    //SmartDashboard.putNumber("initBLP", m_drive.backLeftEncoderV());
+    //SmartDashboard.putNumber("initFRP", -m_drive.frontRightEncoderV());
+    //SmartDashboard.putNumber("initBRP", -m_drive.backRightEncoderV());
 
-    // SmartDashboard.putNumber("initFL", frontLeftF);
-    // SmartDashboard.putNumber("initFR", frontRightF);
-    // SmartDashboard.putNumber("initBL", backLeftF);
-    // SmartDashboard.putNumber("initBR", backRightF);
+    //SmartDashboard.putNumber("initFL", frontLeftF);
+    //SmartDashboard.putNumber("initFR", frontRightF);
+    //SmartDashboard.putNumber("initBL", backLeftF);
+    //SmartDashboard.putNumber("initBR", backRightF);
     count = 0;
   }
 
@@ -52,28 +52,28 @@ public class DriveDistance extends CommandBase {
   @Override
   public void execute() {
     //sets the motors until the endpoint is reached
-    // SmartDashboard.putNumber("test", test);
+    //SmartDashboard.putNumber("test", test);
     m_drive.driveFrontLeft(frontLeftF, m_speed, 0);
     m_drive.driveFrontRight(frontRightF, m_speed, 0); //problem
     m_drive.driveBackLeft(backLeftF, m_speed, 0); // problem
     m_drive.driveBackRight(backRightF, m_speed, 0);
-    // SmartDashboard.putBoolean("isFinished", isFinished());
-    // SmartDashboard.putNumber("frontLeftF", frontLeftF);
-    // SmartDashboard.putNumber("frontRightF", frontRightF);
-    // SmartDashboard.putNumber("backLeftF", backLeftF);
-    // SmartDashboard.putNumber("backRightF", backRightF);
-    // SmartDashboard.putNumber("frontRightEncoder", m_drive.frontRightEncoderV());
-    // SmartDashboard.putNumber("frontLeftEncoder", m_drive.frontLeftEncoderV());
-    // SmartDashboard.putNumber("backRightEncoder", m_drive.backRightEncoderV());
-    // SmartDashboard.putNumber("backLeftEncoder", m_drive.backLeftEncoderV());
+    //SmartDashboard.putBoolean("isFinished", isFinished());
+    //SmartDashboard.putNumber("frontLeftF", frontLeftF);
+    //SmartDashboard.putNumber("frontRightF", frontRightF);
+    //SmartDashboard.putNumber("backLeftF", backLeftF);
+    //SmartDashboard.putNumber("backRightF", backRightF);
+    //SmartDashboard.putNumber("frontRightEncoder", m_drive.frontRightEncoderV());
+    //SmartDashboard.putNumber("frontLeftEncoder", m_drive.frontLeftEncoderV());
+    //SmartDashboard.putNumber("backRightEncoder", m_drive.backRightEncoderV());
+    //SmartDashboard.putNumber("backLeftEncoder", m_drive.backLeftEncoderV());
 
 
     testFinish();
-    // SmartDashboard.putNumber("fLOff", frontLeftF - m_drive.frontLeftEncoderV());
-    // SmartDashboard.putNumber("fROff", frontRightF - m_drive.frontRightEncoderV());
-    // SmartDashboard.putNumber("bLOff", backLeftF - m_drive.backLeftEncoderV());
-    // SmartDashboard.putNumber("bROff", backRightF - m_drive.backRightEncoderV());
-    // SmartDashboard.putBoolean("testFinish", testFinish());
+    //SmartDashboard.putNumber("fLOff", frontLeftF - m_drive.frontLeftEncoderV());
+    //SmartDashboard.putNumber("fROff", frontRightF - m_drive.frontRightEncoderV());
+    //SmartDashboard.putNumber("bLOff", backLeftF - m_drive.backLeftEncoderV());
+    //SmartDashboard.putNumber("bROff", backRightF - m_drive.backRightEncoderV());
+    //SmartDashboard.putBoolean("testFinish", testFinish());
 
   }
 
@@ -94,30 +94,30 @@ public class DriveDistance extends CommandBase {
     double absFR = Math.abs(Math.abs(frontRightF) - Math.abs(frontRightEValue));
     double absBL = Math.abs(Math.abs(backLeftF) - Math.abs(backLeftEValue));
     double absBR = Math.abs(Math.abs(backRightF) - Math.abs(backRightEValue));
-    // SmartDashboard.putNumber("isFLF", frontLeftF);
-    // SmartDashboard.putNumber("isFRF", frontRightF);
-    // SmartDashboard.putNumber("isBLF", backLeftF);
-    // SmartDashboard.putNumber("isBRF", backRightF);
-    // SmartDashboard.putNumber("isFLE", frontLeftEValue);
-    // SmartDashboard.putNumber("isFRE", frontRightEValue);
-    // SmartDashboard.putNumber("isBLE", backLeftEValue);
-    // SmartDashboard.putNumber("isBRE", backRightEValue);
+    //SmartDashboard.putNumber("isFLF", frontLeftF);
+    //SmartDashboard.putNumber("isFRF", frontRightF);
+    //SmartDashboard.putNumber("isBLF", backLeftF);
+    //SmartDashboard.putNumber("isBRF", backRightF);
+    //SmartDashboard.putNumber("isFLE", frontLeftEValue);
+    //SmartDashboard.putNumber("isFRE", frontRightEValue);
+    //SmartDashboard.putNumber("isBLE", backLeftEValue);
+    //SmartDashboard.putNumber("isBRE", backRightEValue);
 
-    // SmartDashboard.putNumber("FLAbsolute", absFL);
-    // SmartDashboard.putNumber("BLAbsolute", absBL);
-    // SmartDashboard.putNumber("FRAbsolute", absFR);
-    // SmartDashboard.putNumber("BRAbsolute", absBR);
+    //SmartDashboard.putNumber("FLAbsolute", absFL);
+    //SmartDashboard.putNumber("BLAbsolute", absBL);
+    //SmartDashboard.putNumber("FRAbsolute", absFR);
+    //SmartDashboard.putNumber("BRAbsolute", absBR);
 
 
     double drive_encoderError = DriveConstants.drive_encoderError;
     boolean drivePostionReached = true;
-   // SmartDashboard.putBoolean("check0", drivePostionReached);
+    //SmartDashboard.putBoolean("check0", drivePostionReached);
     if ( absFL > drive_encoderError)
     drivePostionReached = false;
-   // SmartDashboard.putBoolean("check1", drivePostionReached);
+    //SmartDashboard.putBoolean("check1", drivePostionReached);
     if (absBL > drive_encoderError)
     drivePostionReached = false;
-   // SmartDashboard.putBoolean("check3", drivePostionReached);    
+    //SmartDashboard.putBoolean("check3", drivePostionReached);    
     if (absBR > drive_encoderError)
     drivePostionReached = false;
     //SmartDashboard.putBoolean("check4", drivePostionReached);

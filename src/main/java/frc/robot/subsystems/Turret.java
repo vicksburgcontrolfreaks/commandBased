@@ -20,7 +20,7 @@ public class Turret extends SubsystemBase {
   private final SparkMaxPIDController turretP = turret.getPIDController();
   private final RelativeEncoder turretE = turret.getEncoder();
 
-  public Turret(){
+  public Turret(){   
     turretE.setPosition(0);
   }
   

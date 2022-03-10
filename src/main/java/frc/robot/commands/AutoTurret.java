@@ -4,8 +4,7 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.//SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.TurretConstants;
 import frc.robot.subsystems.Limelight;
@@ -42,8 +41,8 @@ public class AutoTurret extends CommandBase {
   @Override
   public void execute() {
     count++;
-    SmartDashboard.putNumber("count", count);
-    //SmartDashboard.putNumber("turretPower", turretPower);
+    //SmartDashboard.putNumber("count", count);
+    ////SmartDashboard.putNumber("turretPower", turretPower);
     //calculates the distance that the turret needs to turn, in degrees, to be pointed towards the hub
     
     double targetDistance = -m_limelight.tx();
@@ -55,18 +54,18 @@ public class AutoTurret extends CommandBase {
     double distancePower = targetSign*(.000000175*(targetDistanceAbs*targetDistanceAbs*targetDistanceAbs)-.0000711*(targetDistanceAbs*targetDistanceAbs)+.00992*targetDistanceAbs);
     double positionPower = .000000035*(currentAngle*currentAngle*currentAngle) + .00000651*(currentAngle*currentAngle) + .000622*currentAngle;
     
-    SmartDashboard.putNumber("PositionPower", positionPower);
-    SmartDashboard.putNumber("CurrentAngle", currentAngle);
-    SmartDashboard.putNumber("TargetDistance", targetDistance);
-    SmartDashboard.putNumber("DistancePower", distancePower);
-    SmartDashboard.putNumber("TargetAngle", targetDistanceAbs);
-    SmartDashboard.putNumber("TurretPower", turretPower);
-    SmartDashboard.putNumber("TargetSign", targetSign);
-    SmartDashboard.putString("Limited?", "No");
-    SmartDashboard.putNumber("Mode", mode);
+    //SmartDashboard.putNumber("PositionPower", positionPower);
+    //SmartDashboard.putNumber("CurrentAngle", currentAngle);
+    //SmartDashboard.putNumber("TargetDistance", targetDistance);
+    //SmartDashboard.putNumber("DistancePower", distancePower);
+    //SmartDashboard.putNumber("TargetAngle", targetDistanceAbs);
+    //SmartDashboard.putNumber("TurretPower", turretPower);
+    //SmartDashboard.putNumber("TargetSign", targetSign);
+    //SmartDashboard.putString("Limited?", "No");
+    //SmartDashboard.putNumber("Mode", mode);
 
-    SmartDashboard.putNumber("limeX", m_limelight.tx());
-    SmartDashboard.putBoolean("limeV", m_limelight.tv());
+    //SmartDashboard.putNumber("limeX", m_limelight.tx());
+    //SmartDashboard.putBoolean("limeV", m_limelight.tv());
     //double trueAngle = -180;
 
     if(currentAngle > TurretConstants.maxAngle )
