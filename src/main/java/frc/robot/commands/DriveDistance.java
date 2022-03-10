@@ -14,7 +14,6 @@ public class DriveDistance extends CommandBase {
   private final MechTrain m_drive;
   private final Double m_dist;
   private final Double m_speed;
-  private double test ;
   double count;
   double frontLeftF;
   double frontRightF;
@@ -25,7 +24,6 @@ public class DriveDistance extends CommandBase {
     m_dist = x;
     m_speed = s;
     addRequirements(m_drive);
-    test = 1;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -33,7 +31,6 @@ public class DriveDistance extends CommandBase {
   @Override
   public void initialize() {
     //calculates the distance each motor needs to travel in tics in order to drive the wanted distance
-    test = 2;
     double ticDist = m_dist*DriveConstants.ticksPerInch;
     frontLeftF = m_drive.frontLeftEncoderV() - ticDist;
     frontRightF = m_drive.frontRightEncoderV() - ticDist;
@@ -54,7 +51,6 @@ public class DriveDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    test = 3;
     //sets the motors until the endpoint is reached
     // SmartDashboard.putNumber("test", test);
     m_drive.driveFrontLeft(frontLeftF, m_speed, 0);
