@@ -5,11 +5,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.Flopper;
+import frc.robot.subsystems.Lifter;
 
-public class FlopUp extends InstantCommand {
-  //Creates a new FlopOff. This moves the flopper to the up position. 
-  public FlopUp(Flopper subsystem) {
-    super(subsystem::flopUp, subsystem);
+public class LiftDown extends InstantCommand {
+  //Creates a new FlopDown. This moves the flopper to the down position.
+  public LiftDown(Lifter subsystem) {
+    super(subsystem::liftDown, subsystem);
   }
 }

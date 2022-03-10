@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.TestConstants;
 import frc.robot.subsystems.Indexer;
@@ -35,11 +34,11 @@ public class LoadCheck extends CommandBase {
   @Override
   public void execute() {
     //checks if any cargo is loaded and if the shooter is primed, loading the ball and firing if it is
-    SmartDashboard.putBoolean("indexed", m_mrMills.isIndexed());
+    // SmartDashboard.putBoolean("indexed", m_mrMills.isIndexed());
     if(m_mrMills.isIndexed() && m_shooter.shooterPrimed()){
       m_indexer.runIndexer(TestConstants.loadF);
     }
-    SmartDashboard.putString("Stage", "Load");
+    // SmartDashboard.putString("Stage", "Load");
   }
 
   // Called once the command ends or is interrupted.

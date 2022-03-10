@@ -7,6 +7,7 @@ package frc.robot.commands;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.MechTrain;
 
 public class DriveMech extends CommandBase {
@@ -14,11 +15,13 @@ public class DriveMech extends CommandBase {
   private final MechTrain m_drive;
   private final DoubleSupplier m_x;
   private final DoubleSupplier m_y;
+  private final DoubleSupplier m_turn;
 
-  public DriveMech(MechTrain subsystem, DoubleSupplier x, DoubleSupplier y) {
+  public DriveMech(MechTrain subsystem, DoubleSupplier x, DoubleSupplier y, DoubleSupplier turn) {
     m_drive = subsystem;
     m_x = x;
     m_y = y;
+    m_turn = turn;
     addRequirements(m_drive);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -26,6 +29,6 @@ public class DriveMech extends CommandBase {
   @Override
   public void execute() {
     //sets the forward and sideways speeds of the robot based on controller inputs
-    m_drive.mecanumDrive(m_x.getAsDouble(), m_y.getAsDouble());
+    m_drive.mecanumTurn(DriveConstants.driveSpeedMultiplier*m_x.getAsDouble(), DriveConstants.driveSpeedMultiplier*m_y.getAsDouble(), DriveConstants.turnSpeedMultiplier*m_turn.getAsDouble());
   }
 }

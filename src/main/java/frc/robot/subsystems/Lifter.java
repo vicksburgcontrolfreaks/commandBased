@@ -9,17 +9,17 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
 
-public class Flopper extends SubsystemBase {
+public class Lifter extends SubsystemBase {
   /** Creates a new Lifter. Both cylinders are run from the same double solenoid*/
-  private final Solenoid flopper = new Solenoid(PneumaticsModuleType.REVPH, CANConstants.flopSolenoid);
+  private final Solenoid lifter = new Solenoid(PneumaticsModuleType.REVPH, CANConstants.liftSolenoid);
 
-  public void flopOut(){
+  public void liftUp(){
     //moves both Lifters to the up position
-    flopper.set(true);
+    lifter.set(true);
   }
 
-  public void flopIn(){
+  public void liftDown(){
     //moves both Lifters to the down position
-    flopper.set(false);
+    lifter.set(false);
   }
 }

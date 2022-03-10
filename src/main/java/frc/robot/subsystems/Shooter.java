@@ -8,7 +8,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
 import frc.robot.Constants.TestConstants;
@@ -25,8 +24,8 @@ public class Shooter extends SubsystemBase {
     //periodically checks the current shooter speed and if it is at high enough speed to effectivley launch cargo
     shooterSpeed();
     shooterPrimed();
-    SmartDashboard.putNumber("shooterSpeed", shooterSpeed());
-    SmartDashboard.putBoolean("isPrimed?", shooterPrimed());
+    // SmartDashboard.putNumber("shooterSpeed", shooterSpeed());
+    // SmartDashboard.putBoolean("isPrimed?", shooterPrimed());
   }
 
 

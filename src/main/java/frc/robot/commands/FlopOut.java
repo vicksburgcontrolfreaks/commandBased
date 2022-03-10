@@ -7,9 +7,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Flopper;
 
-public class FlopDown extends InstantCommand {
+public class FlopOut extends InstantCommand {
   //Creates a new FlopDown. This moves the flopper to the down position.
-  public FlopDown(Flopper subsystem) {
-    super(subsystem::flopDown, subsystem);
+  public FlopOut(Flopper subsystem) {
+    super(subsystem::flopOut, subsystem);
   }
 }

@@ -4,28 +4,23 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
 
 public class Reacher extends SubsystemBase {
   /** Creates a new Reacher. Both cylinders are run from the same double solenoid*/
-  private final DoubleSolenoid reacher = new DoubleSolenoid(PneumaticsModuleType.REVPH, CANConstants.reachSolenoid1, CANConstants.reachSolenoid2);
+  private final Solenoid reacher = new Solenoid(PneumaticsModuleType.REVPH, CANConstants.reachSolenoid);
 
   public void reachUp(){
     //moves the reacher to the up position
-    reacher.set(Value.kReverse);
+    reacher.set(false);
   }
 
   public void reachDown(){
     //moves the reacher to the down position
-    reacher.set(Value.kForward);
+    reacher.set(true);
   }
 
-  public void reachOff(){
-    //turns reacher off. This code is unlikely to be used regularly but is necessary for our emergency stop.
-    reacher.set(Value.kOff);
-  }
 }

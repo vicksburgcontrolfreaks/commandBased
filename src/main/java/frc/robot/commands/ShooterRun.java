@@ -5,7 +5,6 @@
 package frc.robot.commands;
 
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
@@ -32,9 +31,9 @@ public class ShooterRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putBoolean("Pirated", m_shooter.shooterPrimed());
-    SmartDashboard.putBoolean("isFinished", isFinished());
-    SmartDashboard.putString("Running?", "yes");
+    // SmartDashboard.putBoolean("Pirated", m_shooter.shooterPrimed());
+    // SmartDashboard.putBoolean("isFinished", isFinished());
+    // SmartDashboard.putString("Running?", "yes");
 
     m_shooter.shooterMove(m_speed);
   }
@@ -42,7 +41,7 @@ public class ShooterRun extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SmartDashboard.putString("Running?", "no");
+    // SmartDashboard.putString("Running?", "no");
     //stops the shooter when this command is interrupted
     if(interrupted)
     m_shooter.shooterMove(0);

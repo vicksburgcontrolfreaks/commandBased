@@ -16,17 +16,21 @@ import frc.robot.subsystems.MrMills;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
 
-public class Autonomous1 extends SequentialCommandGroup {
+public class Autonomous2 extends SequentialCommandGroup {
   /** Creates a new Autonomous1. This is the autonomous made for a starting position nearest to the side wall. */
-  public Autonomous1(MechTrain m_drive, Collector m_collector, Shooter m_shooter, Indexer m_indexer, MrMills m_mills, Turret m_turret, Limelight m_limelight) {
+  public Autonomous2(MechTrain m_drive, Collector m_collector, Shooter m_shooter, Indexer m_indexer, MrMills m_mills, Turret m_turret, Limelight m_limelight) {
     //adds each stage of our autonomous to a sequential group
     addCommands(
       //drives the robot 24 inches forward while running the collector. Both shut off when the distance has been driven.
       new ParallelDeadlineGroup(
-        new DriveDistance(m_drive, 110, .5), 
+        new DriveDistance(m_drive, 42, .5), 
         new CollectorRun(m_collector, TestConstants.collectF)),
-      //turns robot 90 degrees
-      new TurnDegrees(m_drive, 180, DriveConstants.drive_kMaxOutput),
+      new DriveSide(m_drive, 90, .25),
+      new DriveDistance(m_drive, -6, .5),
+      //turns robot 90 degrees 3.25 32.25 27.5
+      new TurnDegrees(m_drive, 90, DriveConstants.drive_kMaxOutput),
+      new DriveDistance(m_drive, 169, .5),
+      new TurnDegrees(m_drive, 132, .25),
       new AutoTurret(m_turret, m_limelight, true),
       //drive the robot 24 inches to the side
       //new DriveSide(m_drive, 24, .25),
