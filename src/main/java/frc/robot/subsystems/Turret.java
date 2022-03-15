@@ -23,25 +23,6 @@ public class Turret extends SubsystemBase {
   public Turret(){   
     turretE.setPosition(0);
   }
-  
-
-
-  public void setTurretPids(int slot, double kMaxOutput, double kMinOutput){
-    //establishes the PID values for the turret motors
-    turretP.setP(TurretConstants.turret_kP, slot);
-    turretP.setI(TurretConstants.turret_kI, slot);
-    turretP.setD(TurretConstants.turret_kD, slot);
-    turretP.setIZone(TurretConstants.turret_kIz, slot);
-    turretP.setFF(TurretConstants.turret_kFF, slot);
-    turretP.setSmartMotionAllowedClosedLoopError(TurretConstants.turret_encoderError, slot);
-    turretP.setOutputRange(kMinOutput, kMaxOutput, slot);
-  }
-
-  public void setTurret(double distance, double speed, int slot){
-    //sets the turret to run to a specific distance based on an input value
-    setTurretPids(0, speed, -speed);
-    turretP.setReference(distance, ControlType.kPosition, 0);
-  }
 
   public void runTurret(double speed){
     //runs the turret at a set speed
