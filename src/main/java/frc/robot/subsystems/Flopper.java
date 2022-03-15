@@ -22,4 +22,8 @@ public class Flopper extends SubsystemBase {
     //moves both Lifters to the down position
     flopper.set(false);
   }
+
+  public boolean flopPrimed(){
+    return flopper.get();
+  }
 }

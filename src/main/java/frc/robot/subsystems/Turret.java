@@ -71,4 +71,11 @@ public class Turret extends SubsystemBase {
     turretE.setPosition(0);
   }
 
+  public boolean turretPrimed(){
+    if(Math.abs(turretEncoderP()) < 4)
+      return true;
+    else 
+      return false;
+  }
+
 }

@@ -15,7 +15,7 @@ public class PrimePositions extends SequentialCommandGroup {
   public PrimePositions(Collector m_collector, Indexer m_indexer, MrMills m_mills) {
     //adds each stage of our autonomous to a sequential group
     addCommands(
-      new SetCollector(m_collector, .6),
+      new SetCollector(m_collector, .8),
       new BackDexCheck(m_indexer, m_collector, m_mills)
     );
   }

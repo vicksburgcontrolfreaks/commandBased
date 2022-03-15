@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Limelight extends SubsystemBase {
@@ -35,8 +36,9 @@ public class Limelight extends SubsystemBase {
     ty();
     ta();
     tv();
-    // SmartDashboard.putBoolean("fromV", tv());
-    // SmartDashboard.putNumber("fromX", tx());
+    SmartDashboard.putNumber("Area", ta());
+    SmartDashboard.putBoolean("fromV", tv());
+    SmartDashboard.putNumber("fromX", tx());
   }
 
   public double tx(){
