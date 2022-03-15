@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.Constants.ShooterConstants;
 import frc.robot.Constants.TestConstants;
 import frc.robot.subsystems.Collector;
 import frc.robot.subsystems.Indexer;
@@ -20,7 +21,7 @@ public class PrimingSequence extends ParallelCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new ShooterRun(m_shooter, TestConstants.shootF, true),
+      new SetShooter(m_shooter, ShooterConstants.targetSpeed),
       new PrimePositions(m_collector, m_indexer, m_mills)
     );
   }

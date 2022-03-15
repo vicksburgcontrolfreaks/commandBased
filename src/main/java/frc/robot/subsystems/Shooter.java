@@ -6,10 +6,14 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
+import frc.robot.Constants.ShooterConstants;
 import frc.robot.Constants.TestConstants;
 
 public class Shooter extends SubsystemBase {
@@ -18,6 +22,12 @@ public class Shooter extends SubsystemBase {
   private final CANSparkMax shooterR = new CANSparkMax(CANConstants.shooterR, MotorType.kBrushless);
   private final RelativeEncoder shooterE = shooterR.getEncoder();
   private final MotorControllerGroup shooter = new MotorControllerGroup(shooterL, shooterR);
+  private final SparkMaxPIDController leftP = shooterL.getPIDController();
+  private final SparkMaxPIDController rightP = shooterR.getPIDController();
+
+  public Shooter(){
+    shooterR.setInverted(true);
+  }
 
   @Override
   public void periodic() {
@@ -25,13 +35,12 @@ public class Shooter extends SubsystemBase {
     shooterSpeed();
     shooterPrimed();
     // SmartDashboard.putNumber("shooterSpeed", shooterSpeed());
-    // SmartDashboard.putBoolean("isPrimed?", shooterPrimed());
+    SmartDashboard.putBoolean("isPrimed?", shooterPrimed());
   }
 
 
   public void shooterMove(double speed){
     //sets the speed of the shooter to an input value
-    shooterR.setInverted(true);
     shooter.set(speed);
   }
 
@@ -40,12 +49,35 @@ public class Shooter extends SubsystemBase {
     return -shooterE.getVelocity();
   }
 
-  public boolean shooterPrimed(){
-    //returns whether the shooter has reached the speed needed to launch cargo or not
-    if(shooterSpeed() >= TestConstants.shooterMin)
-      return true;
-    else
-      return false;
+  public void setShootPids(int slot, double kMaxOutput, double kMinOutput){
+    leftP.setP(ShooterConstants.shoot_kP, slot);
+    leftP.setI(ShooterConstants.shoot_kI, slot);
+    leftP.setD(ShooterConstants.shoot_kD, slot);
+    leftP.setIZone(ShooterConstants.shoot_kIz, slot);
+    leftP.setFF(ShooterConstants.shoot_kFF, slot);
+    leftP.setSmartMotionAllowedClosedLoopError(ShooterConstants.shoot_encoderError, slot);
+    leftP.setOutputRange(kMinOutput, kMaxOutput, slot);
+
+    rightP.setP(ShooterConstants.shoot_kP, slot);
+    rightP.setI(ShooterConstants.shoot_kI, slot);
+    rightP.setD(ShooterConstants.shoot_kD, slot);
+    rightP.setIZone(ShooterConstants.shoot_kIz, slot);
+    rightP.setFF(ShooterConstants.shoot_kFF, slot);
+    rightP.setSmartMotionAllowedClosedLoopError(ShooterConstants.shoot_encoderError, slot);
+    rightP.setOutputRange(kMinOutput, kMaxOutput, slot);
   }
 
+  public void setSpeed(double speed){
+    setShootPids(0, 1, -1);
+    rightP.setReference(speed, ControlType.kVelocity, 0);
+  }
+
+  public boolean shooterPrimed(){
+    //returns whether the shooter has reached the speed needed to launch cargo or not
+    // if(shooterSpeed() >= TestConstants.shooterMin)
+    //   return true;
+    // else
+    //   return false;
+    return true;
+  }
 }

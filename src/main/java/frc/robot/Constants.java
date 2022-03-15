@@ -15,8 +15,8 @@ package frc.robot;
 public final class Constants {
     public static final class DriveConstants{
         //establishes the constants used for driving precise distances
-        public final static double turnSpeedMultiplier = .5;
-        public final static double driveSpeedMultiplier = .75;
+        public final static double turnSpeedMultiplier = .8;
+        public final static double driveSpeedMultiplier = 1;
         public final static double drive_kP = 89.737;
         public final static double drive_kI = 0;
         public final static double drive_kD = 6.76;
@@ -33,31 +33,35 @@ public final class Constants {
 
     public static final class TurretConstants{
         //establishes the constants used for rotating the turret precise distances
-        public final static double turret_kP = 2.81;
-        public final static double turret_kI = 0;
-        public final static double turret_kD = 0;
-        public final static double turret_kIz = 0;
-        public final static double turret_kFF = 0;
-        public final static double turret_kMaxOutput = 1;
         public final static double ticksPerDegree = .0156;
-        public final static double turret_encoderError = 10;
         public final static double minAngle = -90; //-225
         public final static double maxAngle = 90; //100
 
+    }
+
+    public static final class ShooterConstants{
+        public final static double shoot_kP = 89.737;
+        public final static double shoot_kI = 0;
+        public final static double shoot_kD = 6.76;
+        public final static double shoot_kIz = 0;
+        public final static double shoot_kFF = 0;
+        public final static double shoot_kMaxOutput = 1;
+        public final static double shoot_kMinOutput = -1;
+        public final static double shoot_encoderError = .5;
+        public final static double shootF = -1;
+        public final static double targetSpeed = 5000;
     }
 
     public static final class TestConstants{
         //a collection of the various values that will be changed through testing
         public final static double collectF = -.5;
         public final static double collectB = .25;
-        public final static double shootF = -1;
-        public final static double overIndex = 3;
+        public final static double overIndex = 2;
         public final static double indexDist = 8;
         public final static double collectDistLow = 8;
         public final static double collectDistHigh = 12;
-        public final static double shooterMin = 5000;
-        public final static double indexF = .075;
-        public final static double loadF = 1;
+        public final static double indexF = .1;
+        public final static double loadF = .6;
         public final static double winchF = 1;
         public final static double winchB = -.25;
         public final static double collectorError = .1;
@@ -77,13 +81,17 @@ public final class Constants {
     public static final class ShootButtons{
         //all of the buttons assigned to the shoot stick
         public final static int index = 1;
-        public final static int collect = 3;
+        public final static int primeHang = 2;
+        public final static int collectOn = 3;
+        public final static int collectOff = 5;
         public final static int winch = 4;
-        public final static int backCollect = 5;
+        public final static int backCollect = 6;
         public final static int prime = 7;
         public final static int shooterOff = 8;
         public final static int manual = 9;
         public final static int auto = 10;
+        public final static int noFlop = 11;
+        public final static int flopMode = 12;
     }
 
     public static final class ControllerButtons{
