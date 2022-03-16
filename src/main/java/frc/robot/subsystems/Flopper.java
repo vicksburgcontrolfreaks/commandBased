@@ -23,7 +23,4 @@ public class Flopper extends SubsystemBase {
     flopper.set(false);
   }
 
-  public boolean flopPrimed(){
-    return flopper.get();
-  }
 }

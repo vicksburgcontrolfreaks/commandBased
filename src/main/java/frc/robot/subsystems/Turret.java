@@ -6,18 +6,14 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxPIDController;
-import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
-import frc.robot.Constants.TurretConstants;
 
 public class Turret extends SubsystemBase {
   //Creates a new Turret. This is the motor that runs the rotating turret that lets us maintain targeting towards the hub.
   private final CANSparkMax turret = new CANSparkMax(CANConstants.turret, MotorType.kBrushless);
-  private final SparkMaxPIDController turretP = turret.getPIDController();
   private final RelativeEncoder turretE = turret.getEncoder();
 
   public Turret(){   

@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.subsystems.Flopper;
 import frc.robot.subsystems.Lifter;
 import frc.robot.subsystems.Turret;
 
@@ -20,5 +21,8 @@ public class PrimeHanger extends ParallelCommandGroup {
     new PrimeTurret(m_turret),
     new LiftUp(m_lifter)
     );
+  }
+
+  public PrimeHanger(Turret m_Turret, Flopper m_Flopper) {
   }
 }

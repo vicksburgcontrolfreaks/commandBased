@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
 import frc.robot.Constants.ShooterConstants;
-import frc.robot.Constants.TestConstants;
 
 public class Shooter extends SubsystemBase {
   // Creates a new Shooter. This is the set of motors that are used to launch cargo into the hub.

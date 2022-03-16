@@ -23,15 +23,12 @@ public class Autonomous1 extends SequentialCommandGroup {
       //drives the robot 24 inches forward while running the collector. Both shut off when the distance has been driven.
       new ParallelDeadlineGroup(
         new DriveDistance(m_drive, 110, .5), 
-        new CollectorRun(m_collector, TestConstants.collectF))
-      //turns robot 90 degrees
-      // new TurnDegrees(m_drive, 180, .1),
-      // new AutoTurret(m_turret, m_limelight, true),
-      // // //drive the robot 24 inches to the side
-      // // //new DriveSide(m_drive, 24, .25),
-      // // //turns on the shooter and fires 2 cargo into the Upper Hub
-      // new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter),
-      // new LoadCheck(m_indexer, m_shooter, m_mills)
+        new CollectorRun(m_collector, TestConstants.collectF)),
+      new TurnDegrees(m_drive, 180, .1),
+      new AutoTurret(m_turret, m_limelight, true),
+      //turns on the shooter and fires 2 cargo into the Upper Hub
+      new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter),
+      new LoadCheck(m_indexer, m_shooter, m_mills)
     );
   }
 }

@@ -66,6 +66,8 @@ public final class Constants {
         public final static double winchF = 1;
         public final static double winchB = -.25;
         public final static double collectorError = .1;
+        public final static double winchDistance = 60;
+        public final static double winchError = .5;
     }
 
     public static final class DriveButtons{
@@ -82,26 +84,23 @@ public final class Constants {
     public static final class ShootButtons{
         //all of the buttons assigned to the shoot stick
         public final static int index = 1;
-        public final static int primeHang = 2;
+        public final static int backDex = 2;
         public final static int collectOn = 3;
+        public final static int simpleCollect = 4;
         public final static int collectOff = 5;
-        public final static int winch = 4;
         public final static int backCollect = 6;
         public final static int prime = 7;
         public final static int shooterOff = 8;
         public final static int manual = 9;
         public final static int auto = 10;
-        public final static int noFlop = 11;
-        public final static int flopMode = 12;
+        public final static int primeHang = 11;
     }
 
     public static final class ControllerButtons{
         public final static int fire = 6; //RB
-        public final static int lift = 3; //x
-        public final static int reach = 1; //a
-        public final static int stop = 8; //start
-        public final static int resetEncoders = 5; //LB
-        public final static int reverseWinch = 7; //back
+        public final static int stop = 8; //START
+        public final static int winchUp = 4; //Y
+        public final static int winchDown = 2; //B
     }
 
     public static final class CANConstants{

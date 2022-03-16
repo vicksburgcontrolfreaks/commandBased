@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -14,10 +15,35 @@ public class Winch extends SubsystemBase {
   //Creates a new Winch. This is the motor that drives the winch to raise the robot up to the hook on the end of the reacher.
   private final CANSparkMax winchL = new CANSparkMax(CANConstants.winchL, MotorType.kBrushless);
   private final CANSparkMax winchR = new CANSparkMax(CANConstants.winchR, MotorType.kBrushless);
+  private final RelativeEncoder winchLE = winchL.getEncoder();
+  private final RelativeEncoder winchRE = winchR.getEncoder();
+  public Winch(){
+    winchLE.setPosition(0);
+    winchRE.setPosition(0);
+  }
+
   public void winchMove(double speed){
     //sets the speed of the winch to an input value
     winchL.set(speed);
-    winchR.set(-speed);
+    winchR.set(speed);
+  }
+
+  public void lWinchMove(double speed){
+    //sets the speed of the winch to an input value
+    winchL.set(speed);
+  }
+
+  public void rWinchMove(double speed){
+    //sets the speed of the winch to an input value
+    winchR.set(speed);
+  }
+
+  public double leftWinchP(){
+    return winchLE.getPosition();
+  }
+
+  public double rightWinchP(){
+    return winchRE.getPosition();
   }
 
 }
