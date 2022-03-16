@@ -25,7 +25,7 @@ public class Autonomous2 extends SequentialCommandGroup {
       new ParallelDeadlineGroup(
         new DriveDistance(m_drive, 42, .5), 
         new CollectorRun(m_collector, TestConstants.collectF)),
-      new DriveSide(m_drive, 90, .25),
+      //new DriveSide(m_drive, 90, .25),
       new DriveDistance(m_drive, -6, .5),
       //turns robot 90 degrees 3.25 32.25 27.5
       new TurnDegrees(m_drive, 90, DriveConstants.drive_kMaxOutput),
