@@ -50,6 +50,7 @@ public final class Constants {
         public final static double shoot_encoderError = .5;
         public final static double shootF = -1;
         public final static double targetSpeed = 5000;
+        public final static double minSpeed = targetSpeed - 400;
     }
 
     public static final class TestConstants{

@@ -74,10 +74,9 @@ public class Shooter extends SubsystemBase {
 
   public boolean shooterPrimed(){
     //returns whether the shooter has reached the speed needed to launch cargo or not
-    // if(shooterSpeed() >= TestConstants.shooterMin)
-    //   return true;
-    // else
-    //   return false;
-    return true;
+    if(shooterSpeed() >= ShooterConstants.minSpeed)
+      return true;
+    else
+      return false;
   }
 }
