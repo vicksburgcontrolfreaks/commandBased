@@ -44,7 +44,7 @@ public class ShooterRun extends CommandBase {
     // SmartDashboard.putString("Running?", "no");
     //stops the shooter when this command is interrupted
     if(interrupted)
-    m_shooter.shooterMove(0);
+      m_shooter.shooterMove(0);
   }
 
   // Returns true when the command should end.

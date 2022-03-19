@@ -22,13 +22,12 @@ public final class Constants {
         public final static double drive_kD = 6.76;
         public final static double drive_kIz = 0;
         public final static double drive_kFF = 0;
-        public final static double drive_kMaxOutput = .15;
-        public final static double drive_kMinOutput = -.15;
+        public final static double drive_kMaxOutput = .25;
+        public final static double drive_kMinOutput = -.25;
         public final static double ticksPerDegree = .22;
         public final static double ticksPerInch = .57;
         public final static double ticksPerSide = .76;
         public final static double drive_encoderError = .5;
-        public final static double finalMotorV = .5;
     }
 
     public static final class TurretConstants{
@@ -51,6 +50,8 @@ public final class Constants {
         public final static double shootF = -1;
         public final static double targetSpeed = 5000;
         public final static double minSpeed = targetSpeed - 400;
+        public final static double lowRange = 180;
+        public final static double highRange = 276;
     }
 
     public static final class TestConstants{
@@ -59,7 +60,6 @@ public final class Constants {
         public final static double collectB = .25;
         public final static double overIndex = 2;
         public final static double indexDist = 8;
-        public final static double collectDistLow = 8;
         public final static double collectDistHigh = 12;
         public final static double indexF = .1;
         public final static double loadF = .6;
@@ -68,17 +68,6 @@ public final class Constants {
         public final static double collectorError = .1;
         public final static double winchDistance = 60;
         public final static double winchError = .5;
-    }
-
-    public static final class DriveButtons{
-        //all of the buttons assigned to the drive stick
-        public final static int fire = 1;
-        public final static int turn = 2;
-        public final static int lift = 3;
-        public final static int reach = 5;
-        public final static int stop = 7;
-        public final static int resetEncoders = 11;
-        public final static int reverseWinch = 12;
     }
 
     public static final class ShootButtons{
@@ -98,6 +87,7 @@ public final class Constants {
 
     public static final class ControllerButtons{
         public final static int fire = 6; //RB
+        public final static int pressFire = 5; //LB
         public final static int stop = 8; //START
         public final static int winchUp = 4; //Y
         public final static int winchDown = 2; //B
@@ -116,8 +106,7 @@ public final class Constants {
         public final static int indexer = 13;
         public final static int winchL = 10;
         public final static int winchR = 11;
-        public final static int liftSolenoid = 0;
-        public final static int reachSolenoid = 1;
+        public final static int liftSolenoid = 1;
         public final static int flopSolenoid = 2;
     }
 }

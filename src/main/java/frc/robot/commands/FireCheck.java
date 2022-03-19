@@ -29,8 +29,11 @@ public class FireCheck extends SequentialCommandGroup {
     addRequirements(m_collector);
     addRequirements(m_shooter);
     //adds each stage of the firing process, running sequentially. This loads a cargo if one is indexed, then indexes and fires a second cargo
-    addCommands(new LoadCheck(m_indexer, m_shooter, m_mrMills),
-    new IndexCheck(m_indexer, m_collector, m_mrMills), 
-    new LoadCheck(m_indexer, m_shooter, m_mrMills));
+    addCommands(
+      new LoadCheck(m_indexer, m_shooter, m_mrMills),
+      new IndexCheck(m_indexer, m_collector, m_mrMills), 
+      new LoadCheck(m_indexer, m_shooter, m_mrMills),
+      new ShooterRun(m_shooter, 0, true)
+    );
   }
 }

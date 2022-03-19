@@ -67,7 +67,7 @@ public class MrMills extends SubsystemBase {
 
   public boolean isCollected(){
     //returns whether an object is close enough to be collected but not so close that it is indexed
-    if(dist() <= TestConstants.collectDistHigh && dist() > TestConstants.collectDistLow)
+    if(dist() <= TestConstants.collectDistHigh && dist() > TestConstants.indexDist)
       return true;
     else 
       return false;
