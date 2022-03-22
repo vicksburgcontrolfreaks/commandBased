@@ -40,7 +40,7 @@ public class CollectorRun extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    //this code runs continuously until it is interrupted by other turret code
+    //this code runs continuously until it is interrupted by other collector code
     return false;
   }
 }

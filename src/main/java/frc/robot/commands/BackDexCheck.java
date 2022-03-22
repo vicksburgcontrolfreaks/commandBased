@@ -37,7 +37,6 @@ public class BackDexCheck extends CommandBase {
     if(m_mrMills.isOverIndexed()){
       m_indexer.runIndexer(-TestConstants.indexF);
         }
-    //SmartDashboard.putString("Stage", "Index");
   }
 
   // Called once the command ends or is interrupted.

@@ -4,8 +4,9 @@
 
 package frc.robot.commands;
 
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.LimelightConstants;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.MrMills;
 import frc.robot.subsystems.Shooter;
@@ -35,16 +36,16 @@ public class DriveBug extends CommandBase {
   @Override
   public void execute() {
     double absLime = Math.abs(m_limelight.tx());
-    if(m_mills.isIndexed() && !m_mills.isOverIndexed() && m_shooter.shooterPrimed() && absLime < 4)
+    if(m_mills.isIndexed() && !m_mills.isOverIndexed() && m_shooter.shooterPrimed() && absLime < LimelightConstants.error)
       bigRedButton = true;
     else 
       bigRedButton = false;
-    // SmartDashboard.putBoolean("Ready to Fire?", bigRedButton);
-    // SmartDashboard.putNumber("limeX", m_limelight.tx());
-    // SmartDashboard.putBoolean("limeV", m_limelight.tv());
-    // SmartDashboard.putBoolean("Indexed?", m_mills.isIndexed());
-    // SmartDashboard.putBoolean("Over Indexed?", !m_mills.isOverIndexed());
-    // SmartDashboard.putBoolean("shooter Primed?", m_shooter.shooterPrimed());
+    SmartDashboard.putBoolean("Ready to Fire?", bigRedButton);
+    SmartDashboard.putNumber("limeX", m_limelight.tx());
+    SmartDashboard.putBoolean("limeV", m_limelight.tv());
+    SmartDashboard.putBoolean("Indexed?", m_mills.isIndexed());
+    SmartDashboard.putBoolean("Over Indexed?", !m_mills.isOverIndexed());
+    SmartDashboard.putBoolean("shooter Primed?", m_shooter.shooterPrimed());
     
     
 

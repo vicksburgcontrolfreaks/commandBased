@@ -10,7 +10,6 @@ import frc.robot.subsystems.Collector;
 import frc.robot.subsystems.Flopper;
 
 public class FullCollect extends CommandBase {
-  /** Creates a new CollectorRun. This code runs the collector at a specific speed*/
   private final Collector m_collector;
   private final Double m_speed;
   private final Flopper m_flopper;
@@ -47,7 +46,7 @@ public class FullCollect extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    //this code runs continuously until it is interrupted by other turret code
+    //this code runs continuously until it is interrupted by other collector code
     return false;
   }
 }

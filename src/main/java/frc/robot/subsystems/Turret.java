@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
+import frc.robot.Constants.LimelightConstants;
 
 public class Turret extends SubsystemBase {
   //Creates a new Turret. This is the motor that runs the rotating turret that lets us maintain targeting towards the hub.
@@ -49,7 +50,7 @@ public class Turret extends SubsystemBase {
   }
 
   public boolean turretPrimed(){
-    if(Math.abs(turretEncoderP()) < 4)
+    if(Math.abs(turretEncoderP()) < LimelightConstants.error)
       return true;
     else 
       return false;

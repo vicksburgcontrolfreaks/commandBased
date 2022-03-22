@@ -23,6 +23,7 @@ import frc.robot.commands.FireCheck;
 import frc.robot.commands.FullCollect;
 import frc.robot.commands.FullFire;
 import frc.robot.commands.IndexerRun;
+import frc.robot.commands.LiftDown;
 import frc.robot.commands.IndexCheck;
 import frc.robot.commands.ManualTurret;
 import frc.robot.commands.OffCollect;
@@ -117,6 +118,7 @@ public class RobotContainer {
     new JoystickButton(shootStick, ShootButtons.backCollect).whileHeld(new IndexerRun(m_Indexer, -.15));
     new JoystickButton(shootStick, ShootButtons.index).whenPressed(new IndexCheck(m_Indexer, m_Collector, m_Mills));
     new JoystickButton(shootStick, ShootButtons.primeHang).whenPressed(new PrimeHanger(m_Turret, m_Lifter));
+    new JoystickButton(shootStick, ShootButtons.unprimeHang).whenPressed(new LiftDown(m_Lifter));
 
     new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter));
     new JoystickButton(driveController, ControllerButtons.pressFire).whenPressed(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter));

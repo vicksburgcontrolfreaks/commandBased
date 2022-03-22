@@ -13,7 +13,6 @@ public class DriveSide extends CommandBase {
   private final MechTrain m_drive;
   private final Double m_dist;
   private final Double m_speed;
-  double count;
   double frontLeftF;
   double frontRightF;
   double backLeftF;
@@ -35,16 +34,7 @@ public class DriveSide extends CommandBase {
     frontRightF = m_drive.frontRightEncoderV() + ticDist;
     backLeftF = m_drive.backLeftEncoderV() + ticDist;
     backRightF = m_drive.backRightEncoderV() - ticDist;
-    //SmartDashboard.putNumber("initFLP", m_drive.frontLeftEncoderV());
-    //SmartDashboard.putNumber("initBLP", m_drive.backLeftEncoderV());
-    //SmartDashboard.putNumber("initFRP", -m_drive.frontRightEncoderV());
-    //SmartDashboard.putNumber("initBRP", -m_drive.backRightEncoderV());
 
-    //SmartDashboard.putNumber("initFL", frontLeftF);
-    //SmartDashboard.putNumber("initFR", frontRightF);
-    //SmartDashboard.putNumber("initBL", backLeftF);
-    //SmartDashboard.putNumber("initBR", backRightF);
-    count = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -115,11 +105,6 @@ public class DriveSide extends CommandBase {
     drivePostionReached = false;
     //SmartDashboard.putBoolean("check2", drivePostionReached);
 
-
-    count++;
-    //SmartDashboard.putNumber("count", count);
-    // if(m_drive.avgV() > DriveConstants.finalMotorV)
-    // drivePostionReached = false;
     return drivePostionReached;
 
   }

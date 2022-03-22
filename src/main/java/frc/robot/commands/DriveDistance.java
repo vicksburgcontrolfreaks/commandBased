@@ -14,7 +14,6 @@ public class DriveDistance extends CommandBase {
   private final MechTrain m_drive;
   private final Double m_dist;
   private final Double m_speed;
-  double count;
   double frontLeftF;
   double frontRightF;
   double backLeftF;
@@ -36,44 +35,33 @@ public class DriveDistance extends CommandBase {
     frontRightF = m_drive.frontRightEncoderV() - ticDist;
     backLeftF = m_drive.backLeftEncoderV() + ticDist;
     backRightF = m_drive.backRightEncoderV() - ticDist;
-    ////SmartDashboard.putNumber("initFLP", m_drive.frontLeftEncoderV());
-    ////SmartDashboard.putNumber("initBLP", m_drive.backLeftEncoderV());
-    ////SmartDashboard.putNumber("initFRP", -m_drive.frontRightEncoderV());
-    ////SmartDashboard.putNumber("initBRP", -m_drive.backRightEncoderV());
-
-    ////SmartDashboard.putNumber("initFL", frontLeftF);
-    ////SmartDashboard.putNumber("initFR", frontRightF);
-    ////SmartDashboard.putNumber("initBL", backLeftF);
-    ////SmartDashboard.putNumber("initBR", backRightF);
-    count = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     //sets the motors until the endpoint is reached
-    ////SmartDashboard.putNumber("test", test);
     m_drive.driveFrontLeft(frontLeftF, m_speed, 0);
-    m_drive.driveFrontRight(frontRightF, m_speed, 0); //problem
-    m_drive.driveBackLeft(backLeftF, m_speed, 0); // problem
+    m_drive.driveFrontRight(frontRightF, m_speed, 0);
+    m_drive.driveBackLeft(backLeftF, m_speed, 0);
     m_drive.driveBackRight(backRightF, m_speed, 0);
+
     //SmartDashboard.putBoolean("isFinished", isFinished());
+
     //SmartDashboard.putNumber("frontLeftF", frontLeftF);
     //SmartDashboard.putNumber("frontRightF", frontRightF);
     //SmartDashboard.putNumber("backLeftF", backLeftF);
     //SmartDashboard.putNumber("backRightF", backRightF);
+
     //SmartDashboard.putNumber("frontRightEncoder", m_drive.frontRightEncoderV());
     //SmartDashboard.putNumber("frontLeftEncoder", m_drive.frontLeftEncoderV());
     //SmartDashboard.putNumber("backRightEncoder", m_drive.backRightEncoderV());
     //SmartDashboard.putNumber("backLeftEncoder", m_drive.backLeftEncoderV());
 
-
-    testFinish();
     //SmartDashboard.putNumber("fLOff", frontLeftF - m_drive.frontLeftEncoderV());
     //SmartDashboard.putNumber("fROff", frontRightF - m_drive.frontRightEncoderV());
     //SmartDashboard.putNumber("bLOff", backLeftF - m_drive.backLeftEncoderV());
     //SmartDashboard.putNumber("bROff", backRightF - m_drive.backRightEncoderV());
-    //SmartDashboard.putBoolean("testFinish", testFinish());
 
   }
 
@@ -94,14 +82,6 @@ public class DriveDistance extends CommandBase {
     double absFR = Math.abs(Math.abs(frontRightF) - Math.abs(frontRightEValue));
     double absBL = Math.abs(Math.abs(backLeftF) - Math.abs(backLeftEValue));
     double absBR = Math.abs(Math.abs(backRightF) - Math.abs(backRightEValue));
-    ////SmartDashboard.putNumber("isFLF", frontLeftF);
-    ////SmartDashboard.putNumber("isFRF", frontRightF);
-    ////SmartDashboard.putNumber("isBLF", backLeftF);
-    ////SmartDashboard.putNumber("isBRF", backRightF);
-    ////SmartDashboard.putNumber("isFLE", frontLeftEValue);
-    ////SmartDashboard.putNumber("isFRE", frontRightEValue);
-    ////SmartDashboard.putNumber("isBLE", backLeftEValue);
-    ////SmartDashboard.putNumber("isBRE", backRightEValue);
 
     //SmartDashboard.putNumber("FLAbsolute", absFL);
     //SmartDashboard.putNumber("BLAbsolute", absBL);
@@ -111,25 +91,19 @@ public class DriveDistance extends CommandBase {
 
     double drive_encoderError = DriveConstants.drive_encoderError;
     boolean drivePostionReached = true;
-    //////SmartDashboard.putBoolean("check0", drivePostionReached);
+    //SmartDashboard.putBoolean("check0", drivePostionReached);
     if ( absFL > drive_encoderError)
     drivePostionReached = false;
-    ////SmartDashboard.putBoolean("check1", drivePostionReached);
+    //SmartDashboard.putBoolean("check1", drivePostionReached);
     if (absBL > drive_encoderError)
     drivePostionReached = false;
-    ////SmartDashboard.putBoolean("check3", drivePostionReached);    
+    //SmartDashboard.putBoolean("check3", drivePostionReached);    
     if (absBR > drive_encoderError)
     drivePostionReached = false;
-    ////SmartDashboard.putBoolean("check4", drivePostionReached);
+    //SmartDashboard.putBoolean("check4", drivePostionReached);
     if (absFR > drive_encoderError)
     drivePostionReached = false;
-    ////SmartDashboard.putBoolean("check2", drivePostionReached);
-
-
-    count++;
-    ////SmartDashboard.putNumber("count", count);
-    // if(m_drive.avgV() > DriveConstants.finalMotorV)
-    // drivePostionReached = false;
+    //SmartDashboard.putBoolean("check2", drivePostionReached);
     return drivePostionReached;
 
   }
@@ -150,8 +124,6 @@ public class DriveDistance extends CommandBase {
         drivePostionReached = false;
         if (Math.abs(backRightF - backRightEValue) > drive_encoderError)
         drivePostionReached = false;
-        // if(m_drive.avgV() > DriveConstants.finalMotorV)
-        // drivePostionReached = false;
         return drivePostionReached;
   }
 }

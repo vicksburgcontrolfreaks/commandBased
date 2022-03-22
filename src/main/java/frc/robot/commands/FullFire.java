@@ -14,7 +14,6 @@ import frc.robot.subsystems.Indexer;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class FullFire extends ParallelCommandGroup {
-  /** Creates a new Stop. This stops all of the subsystems from moving.*/
   public FullFire(Collector m_collector, Indexer m_indexer) {
     addCommands(
       new CollectorRun(m_collector, TestConstants.collectF),

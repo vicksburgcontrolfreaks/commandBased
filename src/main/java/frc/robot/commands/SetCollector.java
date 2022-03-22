@@ -10,14 +10,12 @@ import frc.robot.subsystems.Collector;
 
 public class SetCollector extends CommandBase {
   private final Collector m_collector;
-  private double totalDistance; //.6
   
   double currentPosition;
   double targetPosition;
   // Creates a new AutoTurret. This is the default code that causes the turret to point towards the hub
-  public SetCollector(Collector subsystem, double dist) {
+  public SetCollector(Collector subsystem) {
     m_collector = subsystem;
-    dist = totalDistance;
     addRequirements(m_collector);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -25,7 +23,7 @@ public class SetCollector extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    double negDist = -.6;
+    double negDist = TestConstants.primeCollectorDist;
     targetPosition = -m_collector.collectorPosition() + negDist;
     // SmartDashboard.putNumber("intiPosit", m_collector.collectorPosition());
     // SmartDashboard.putNumber("initTarget", targetPosition);
@@ -41,7 +39,7 @@ public class SetCollector extends CommandBase {
     double distance = targetPosition - currentPosition;
     double absDistance = Math.abs(distance);
     double distSign = distance/absDistance;
-    double distancePower = distSign*(-.15);
+    double distancePower = distSign*(TestConstants.primeCollectorSpeed);
     //double distancePower = 0;
     m_collector.collectorMove(distancePower);
     //m_collector.collectorMove(0);

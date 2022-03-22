@@ -33,9 +33,9 @@ public final class Constants {
     public static final class TurretConstants{
         //establishes the constants used for rotating the turret precise distances
         public final static double ticksPerDegree = .0156;
-        public final static double minAngle = -90; //-225
-        public final static double maxAngle = 90; //100
-
+        public final static double minAngle = -90;
+        public final static double maxAngle = 90;
+        public final static double searchPower = .15;
     }
 
     public static final class ShooterConstants{
@@ -50,6 +50,13 @@ public final class Constants {
         public final static double shootF = -1;
         public final static double targetSpeed = 5000;
         public final static double minSpeed = targetSpeed - 400;
+    }
+
+    public static final class LimelightConstants{
+        public final static double error = 4;
+        public final static double mountAngleDegrees = 45.0;
+        public final static double heightInches = 21.75;
+        public final static double goalHeightInches = 102.625;
         public final static double lowRange = 180;
         public final static double highRange = 276;
     }
@@ -62,12 +69,14 @@ public final class Constants {
         public final static double indexDist = 8;
         public final static double collectDistHigh = 12;
         public final static double indexF = .1;
-        public final static double loadF = .6;
+        public final static double loadF = 1;
         public final static double winchF = 1;
         public final static double winchB = -.25;
         public final static double collectorError = .1;
         public final static double winchDistance = 60;
         public final static double winchError = .5;
+        public final static double primeCollectorSpeed = -.15;
+        public final static double primeCollectorDist = -.6;
     }
 
     public static final class ShootButtons{
@@ -83,6 +92,7 @@ public final class Constants {
         public final static int manual = 9;
         public final static int auto = 10;
         public final static int primeHang = 11;
+        public final static int unprimeHang = 12;
     }
 
     public static final class ControllerButtons{

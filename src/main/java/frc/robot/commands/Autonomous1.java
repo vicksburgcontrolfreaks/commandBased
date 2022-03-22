@@ -20,7 +20,7 @@ public class Autonomous1 extends SequentialCommandGroup {
   public Autonomous1(MechTrain m_drive, Collector m_collector, Shooter m_shooter, Indexer m_indexer, MrMills m_mills, Turret m_turret, Limelight m_limelight) {
     //adds each stage of our autonomous to a sequential group
     addCommands(
-      //drives the robot 24 inches forward while running the collector. Both shut off when the distance has been driven.
+      //drives the robot forward while running the collector. Both shut off when the distance has been driven.
       new ParallelDeadlineGroup(
         new DriveDistance(m_drive, 110, .5), 
         new CollectorRun(m_collector, TestConstants.collectF)),
