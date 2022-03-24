@@ -35,7 +35,7 @@ public class BackDexCheck extends CommandBase {
   public void execute() {
     //if a ball is collected, runs the indexer and collector until the ball is in the index position
     if(m_mrMills.isOverIndexed()){
-      m_indexer.runIndexer(-TestConstants.indexF);
+      m_indexer.runIndexer(TestConstants.indexB);
         }
   }
 

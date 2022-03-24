@@ -25,7 +25,7 @@ public class ManualTurret extends CommandBase {
   @Override
   public void execute() {
     double currentAngle = m_turret.turretEncoderP()/TurretConstants.ticksPerDegree;
-    double positionPower = .000000035*(currentAngle*currentAngle*currentAngle) + .00000651*(currentAngle*currentAngle) + .000622*currentAngle;
+    double positionPower = 0;
     //runs the turret at a speed based on the x value of the controller
     m_turret.runTurret(-m_speed.getAsDouble() + positionPower);
   }
