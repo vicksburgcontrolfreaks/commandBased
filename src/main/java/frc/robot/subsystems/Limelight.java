@@ -39,11 +39,11 @@ public class Limelight extends SubsystemBase {
     tv();
     fancyDistance();
     inRange();
-    SmartDashboard.putNumber("Fancy Distance", fancyDistance());
-    SmartDashboard.putNumber("Area", ta());
-    SmartDashboard.putBoolean("Visible?", tv());
-    SmartDashboard.putNumber("fromX", tx());
-    SmartDashboard.putBoolean("inRange?", inRange());
+    // SmartDashboard.putNumber("Fancy Distance", fancyDistance());
+    // SmartDashboard.putNumber("Area", ta());
+    // SmartDashboard.putBoolean("Visible?", tv());
+    // SmartDashboard.putNumber("fromX", tx());
+    // SmartDashboard.putBoolean("inRange?", inRange());
   }
 
   public double tx(){

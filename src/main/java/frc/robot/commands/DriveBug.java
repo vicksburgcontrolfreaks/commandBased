@@ -36,18 +36,19 @@ public class DriveBug extends CommandBase {
   @Override
   public void execute() {
     double absLime = Math.abs(m_limelight.tx());
-    if(m_mills.isIndexed() && !m_mills.isOverIndexed() && m_shooter.shooterPrimed() && absLime < LimelightConstants.error)
+    if(m_mills.isIndexed() && !m_mills.isOverIndexed() && m_shooter.shooterPrimed() && m_limelight.inRange() && absLime < LimelightConstants.error)
       bigRedButton = true;
     else 
       bigRedButton = false;
     SmartDashboard.putBoolean("Ready to Fire?", bigRedButton);
-    SmartDashboard.putNumber("limeX", m_limelight.tx());
-    SmartDashboard.putBoolean("limeV", m_limelight.tv());
+    SmartDashboard.putNumber("Shot Error", m_limelight.tx());
+    SmartDashboard.putBoolean("Visible?", m_limelight.tv());
     SmartDashboard.putBoolean("Indexed?", m_mills.isIndexed());
     SmartDashboard.putBoolean("Over Indexed?", !m_mills.isOverIndexed());
-    SmartDashboard.putBoolean("shooter Primed?", m_shooter.shooterPrimed());
-    
-    
+    SmartDashboard.putBoolean("Shooter Primed?", m_shooter.shooterPrimed());
+    SmartDashboard.putNumber("Distance", m_limelight.fancyDistance());
+    SmartDashboard.putBoolean("Collected?", m_mills.isCollected());
+    SmartDashboard.putBoolean("In Range?", m_limelight.inRange());    
 
 
 

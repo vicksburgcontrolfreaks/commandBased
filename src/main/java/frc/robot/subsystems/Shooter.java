@@ -34,7 +34,7 @@ public class Shooter extends SubsystemBase {
     shooterSpeed();
     shooterPrimed();
     SmartDashboard.putNumber("shooterSpeed", shooterSpeed());
-    SmartDashboard.putBoolean("isPrimed?", shooterPrimed());
+    // SmartDashboard.putBoolean("isPrimed?", shooterPrimed());
   }
 
 

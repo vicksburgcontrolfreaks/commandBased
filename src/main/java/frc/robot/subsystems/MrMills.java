@@ -36,9 +36,9 @@ public class MrMills extends SubsystemBase {
     dist();
     isCollected();
     isIndexed();
-    SmartDashboard.putBoolean("Indexed?", isIndexed());
-    SmartDashboard.putBoolean("Collected?", isCollected());
-    SmartDashboard.putBoolean("OverIndexed?", !isOverIndexed());
+    // SmartDashboard.putBoolean("Indexed?", isIndexed());
+    // SmartDashboard.putBoolean("Collected?", isCollected());
+    // SmartDashboard.putBoolean("OverIndexed?", !isOverIndexed());
     // SmartDashboard.putNumber("Dist", dist());
     // SmartDashboard.putNumber("test", testCounter);
 
