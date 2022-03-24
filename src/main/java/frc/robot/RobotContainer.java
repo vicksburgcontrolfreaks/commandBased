@@ -121,7 +121,8 @@ public class RobotContainer {
     new JoystickButton(shootStick, ShootButtons.primeHang).whenPressed(new PrimeHanger(m_Turret, m_Lifter));
     new JoystickButton(shootStick, ShootButtons.unprimeHang).whenPressed(new LiftDown(m_Lifter));
 
-    new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new LoadCheck(m_Indexer, m_Shooter, m_Mills));
+    // new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new LoadCheck(m_Indexer, m_Shooter, m_Mills));
+    new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter));
     new JoystickButton(driveController, ControllerButtons.pressFire).whenPressed(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter));
     new JoystickButton(driveController, ControllerButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Winch, m_Indexer, m_Turret, m_Flopper));
     new JoystickButton(driveController, ControllerButtons.winchUp).whileHeld(new SetWinch(m_Winch, TestConstants.winchDistance));

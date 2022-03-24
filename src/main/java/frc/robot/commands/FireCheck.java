@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.Collector;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.MrMills;
@@ -33,7 +34,8 @@ public class FireCheck extends SequentialCommandGroup {
       new LoadCheck(m_indexer, m_shooter, m_mrMills),
       new IndexCheck(m_indexer, m_collector, m_mrMills), 
       new LoadCheck(m_indexer, m_shooter, m_mrMills),
-      new ShooterRun(m_shooter, 0, true)
+      new WaitCommand(1),
+      new ShooterRun(m_shooter, 0, false)
     );
   }
 }
