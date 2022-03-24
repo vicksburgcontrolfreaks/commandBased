@@ -7,7 +7,6 @@ package frc.robot.commands;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.TurretConstants;
 import frc.robot.subsystems.Turret;
 
 public class ManualTurret extends CommandBase {
@@ -24,10 +23,8 @@ public class ManualTurret extends CommandBase {
 
   @Override
   public void execute() {
-    double currentAngle = m_turret.turretEncoderP()/TurretConstants.ticksPerDegree;
-    double positionPower = .000000035*(currentAngle*currentAngle*currentAngle) + .00000651*(currentAngle*currentAngle) + .000622*currentAngle;
     //runs the turret at a speed based on the x value of the controller
-    m_turret.runTurret(-m_speed.getAsDouble() + positionPower);
+    m_turret.runTurret(-m_speed.getAsDouble());
   }
 
   public boolean isFinished() {

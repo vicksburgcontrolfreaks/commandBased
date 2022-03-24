@@ -21,9 +21,9 @@ import frc.robot.commands.DriveBug;
 import frc.robot.commands.DriveMech;
 import frc.robot.commands.FireCheck;
 import frc.robot.commands.FullCollect;
-import frc.robot.commands.FullFire;
 import frc.robot.commands.IndexerRun;
 import frc.robot.commands.LiftDown;
+import frc.robot.commands.LoadCheck;
 import frc.robot.commands.IndexCheck;
 import frc.robot.commands.ManualTurret;
 import frc.robot.commands.OffCollect;
@@ -89,7 +89,8 @@ public class RobotContainer {
     //m_Turret.setDefaultCommand(new AutoTurret(m_Turret, m_Limelight));
 
     // Add commands to the autonomous command chooser
-    m_chooser.setDefaultOption("Auton1", Close1);
+    m_chooser.setDefaultOption("Close1", Close1);
+    m_chooser.addOption("Auton1", Autonomous1);
     m_chooser.addOption("SimpleAuton", SimpleAuton);
 
     debugChooser.setDefaultOption("Debug Chooser", DriveBug);
@@ -115,12 +116,12 @@ public class RobotContainer {
     new JoystickButton(shootStick, ShootButtons.shooterOff).whenPressed(new ShooterRun(m_Shooter, 0, false));
     new JoystickButton(shootStick, ShootButtons.manual).whenPressed(new ManualTurret(m_Turret, shootStick::getX));
     new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new AutoTurret(m_Turret, m_Limelight, false));
-    new JoystickButton(shootStick, ShootButtons.backCollect).whileHeld(new IndexerRun(m_Indexer, -.15));
+    new JoystickButton(shootStick, ShootButtons.backDex).whileHeld(new IndexerRun(m_Indexer, -.15));
     new JoystickButton(shootStick, ShootButtons.index).whenPressed(new IndexCheck(m_Indexer, m_Collector, m_Mills));
     new JoystickButton(shootStick, ShootButtons.primeHang).whenPressed(new PrimeHanger(m_Turret, m_Lifter));
     new JoystickButton(shootStick, ShootButtons.unprimeHang).whenPressed(new LiftDown(m_Lifter));
 
-    new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter));
+    new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new LoadCheck(m_Indexer, m_Shooter, m_Mills));
     new JoystickButton(driveController, ControllerButtons.pressFire).whenPressed(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter));
     new JoystickButton(driveController, ControllerButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Winch, m_Indexer, m_Turret, m_Flopper));
     new JoystickButton(driveController, ControllerButtons.winchUp).whileHeld(new SetWinch(m_Winch, TestConstants.winchDistance));

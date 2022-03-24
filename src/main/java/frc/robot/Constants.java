@@ -39,26 +39,26 @@ public final class Constants {
     }
 
     public static final class ShooterConstants{
-        public final static double shoot_kP = 89.737;
+        public final static double shoot_kP = .0000002893;
         public final static double shoot_kI = 0;
-        public final static double shoot_kD = 6.76;
+        public final static double shoot_kD = 0;
         public final static double shoot_kIz = 0;
         public final static double shoot_kFF = 0;
         public final static double shoot_kMaxOutput = 1;
         public final static double shoot_kMinOutput = -1;
         public final static double shoot_encoderError = .5;
-        public final static double shootF = -1;
+        public final static double shootF = -.527;
         public final static double targetSpeed = 5000;
-        public final static double minSpeed = targetSpeed - 400;
+        public final static double minSpeed = targetSpeed;
     }
 
     public static final class LimelightConstants{
         public final static double error = 4;
-        public final static double mountAngleDegrees = 45.0;
-        public final static double heightInches = 21.75;
+        public final static double mountAngleDegrees = 42.5;
+        public final static double heightInches = 24;
         public final static double goalHeightInches = 102.625;
-        public final static double lowRange = 180;
-        public final static double highRange = 276;
+        public final static double lowRange = 84;
+        public final static double highRange = 212;
     }
 
     public static final class TestConstants{
@@ -68,7 +68,8 @@ public final class Constants {
         public final static double overIndex = 2;
         public final static double indexDist = 8;
         public final static double collectDistHigh = 12;
-        public final static double indexF = .1;
+        public final static double indexF = .15;
+        public final static double indexB = -.1;
         public final static double loadF = 1;
         public final static double winchF = 1;
         public final static double winchB = -.25;

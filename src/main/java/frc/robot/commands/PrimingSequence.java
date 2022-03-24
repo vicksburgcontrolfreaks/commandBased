@@ -20,7 +20,8 @@ public class PrimingSequence extends ParallelCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new SetShooter(m_shooter, ShooterConstants.targetSpeed),
+      // new SetShooter(m_shooter, ShooterConstants.targetSpeed),
+      new ShooterRun(m_shooter, ShooterConstants.shootF, false),
       new PrimePositions(m_collector, m_indexer, m_mills)
     );
   }

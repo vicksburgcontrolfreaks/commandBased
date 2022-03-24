@@ -33,6 +33,7 @@ public class AutoTurret extends CommandBase {
   @Override
   public void initialize() {
     turretPower = 0;
+    mode = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.

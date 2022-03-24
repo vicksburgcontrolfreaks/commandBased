@@ -35,7 +35,7 @@ public class LoadCheck extends CommandBase {
   public void execute() {
     //checks if any cargo is loaded and if the shooter is primed, loading the ball and firing if it is
     // SmartDashboard.putBoolean("indexed", m_mrMills.isIndexed());
-    if(m_mrMills.isIndexed() && m_shooter.shooterPrimed()){
+    if(m_mrMills.isIndexed() && true /*m_shooter.shooterPrimed()*/){
       m_indexer.runIndexer(TestConstants.loadF);
     }
     // SmartDashboard.putString("Stage", "Load");

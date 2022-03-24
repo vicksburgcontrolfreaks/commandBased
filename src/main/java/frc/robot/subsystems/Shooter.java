@@ -33,7 +33,7 @@ public class Shooter extends SubsystemBase {
     //periodically checks the current shooter speed and if it is at high enough speed to effectivley launch cargo
     shooterSpeed();
     shooterPrimed();
-    // SmartDashboard.putNumber("shooterSpeed", shooterSpeed());
+    SmartDashboard.putNumber("shooterSpeed", shooterSpeed());
     SmartDashboard.putBoolean("isPrimed?", shooterPrimed());
   }
 
@@ -69,6 +69,15 @@ public class Shooter extends SubsystemBase {
   public void setSpeed(double speed){
     setShootPids(0, 1, -1);
     rightP.setReference(speed, ControlType.kVelocity, 0);
+    leftP.setReference(speed, ControlType.kVelocity, 0);
+  }
+
+  public double distanceSpeed(double distance){
+    double speed = -(.2715*Math.sin(.0313441*distance + 1.32005) + .7453);
+    if(speed <-1)
+      return -1;
+    else
+      return speed;
   }
 
   public boolean shooterPrimed(){
