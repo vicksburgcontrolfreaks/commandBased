@@ -15,11 +15,11 @@ public class Lifter extends SubsystemBase {
 
   public void liftUp(){
     //moves both Lifters to the up position
-    lifter.set(true);
+    lifter.set(false);
   }
 
   public void liftDown(){
     //moves both Lifters to the down position
-    lifter.set(false);
+    lifter.set(true);
   }
 }

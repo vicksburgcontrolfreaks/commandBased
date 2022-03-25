@@ -33,6 +33,7 @@ import frc.robot.commands.SetWinch;
 import frc.robot.commands.ShooterRun;
 import frc.robot.commands.SimpleAuton;
 import frc.robot.commands.Stop;
+import frc.robot.commands.ThreeBallAuton;
 import frc.robot.commands.AutoTurret;
 import frc.robot.commands.WinchRun;
 import frc.robot.subsystems.Collector;
@@ -73,6 +74,7 @@ public class RobotContainer {
   private final Command SimpleAuton = new SimpleAuton(m_Drive);
   private final Command DriveBug = new DriveBug(m_Limelight, m_Mills, m_Shooter);
   private final Command Close1 = new Close1(m_Drive, m_Collector, m_Shooter, m_Indexer, m_Mills, m_Turret, m_Limelight);
+  private final Command TBall = new ThreeBallAuton(m_Drive, m_Collector, m_Shooter, m_Indexer, m_Mills, m_Turret, m_Limelight);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   SendableChooser<Command> debugChooser = new SendableChooser<>();
   public RobotContainer() {
@@ -92,6 +94,7 @@ public class RobotContainer {
     m_chooser.setDefaultOption("Close1", Close1);
     m_chooser.addOption("Auton1", Autonomous1);
     m_chooser.addOption("SimpleAuton", SimpleAuton);
+    m_chooser.addOption("3 Ball", TBall);
 
     debugChooser.setDefaultOption("Debug Chooser", DriveBug);
 

@@ -66,7 +66,7 @@ public class PrimeTurret extends CommandBase {
   public boolean isFinished() {
     double currentAngle = m_turret.turretEncoderP()/TurretConstants.ticksPerDegree;
     //this code runs continuously until it is interrupted by other turret code
-    if(Math.abs(currentAngle) < 4)
+    if(Math.abs(currentAngle) < 4 && Math.abs(m_turret.turretEncoderV()) < 10)
       return true;
     else 
       return false;

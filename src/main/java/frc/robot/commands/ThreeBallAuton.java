@@ -23,18 +23,25 @@ public class ThreeBallAuton extends SequentialCommandGroup {
     addCommands(
       //drives the robot forward while running the collector. Both shut off when the distance has been driven.
       new ParallelDeadlineGroup(
-        new DriveDistance(m_drive, 42, .5), 
+        new DriveDistance(m_drive, 45, .5), 
         new CollectorRun(m_collector, TestConstants.collectF)),
-      new DriveDistance(m_drive, -6, .5),
-      new TurnDegrees(m_drive, 90, DriveConstants.drive_kMaxOutput),
-      new DriveDistance(m_drive, 169, .5),
-      new TurnDegrees(m_drive, 132, .25),
+      new TurnDegrees(m_drive, 172, DriveConstants.drive_kMaxOutput),
       new AutoTurret(m_turret, m_limelight, true),
       //turns on the shooter and fires 2 cargo into the Upper Hub
       new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter),
       new LoadCheck(m_indexer, m_shooter, m_mills),
-      new IndexCheck(m_indexer, m_collector, m_mills)
+      new IndexCheck(m_indexer, m_collector, m_mills),
+      new LoadCheck(m_indexer, m_shooter, m_mills),
+      new TurnDegrees(m_drive, 156, .25),
+      new DriveDistance(m_drive, 164, .5),
+      new TurnDegrees(m_drive, 32, .25),
 
+      new DriveDistance(m_drive, -110, .5),
+      new TurnDegrees(m_drive, 154, .25),
+      new AutoTurret(m_turret, m_limelight, true),
+      //turns on the shooter and fires 2 cargo into the Upper Hub
+      new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter),
+      new LoadCheck(m_indexer, m_shooter, m_mills)
       
     );
   }

@@ -101,7 +101,7 @@ public final class Constants {
         public final static int pressFire = 5; //LB
         public final static int stop = 8; //START
         public final static int winchUp = 4; //Y
-        public final static int winchDown = 2; //B
+        public final static int winchDown = 1; //A
     }
 
     public static final class CANConstants{

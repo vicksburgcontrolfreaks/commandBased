@@ -4,14 +4,14 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.Lifter;
 import frc.robot.subsystems.Turret;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class PrimeHanger extends ParallelCommandGroup {
+public class PrimeHanger extends SequentialCommandGroup {
   /** Creates a new PrimeHanger. */
   public PrimeHanger(Turret m_turret, Lifter m_lifter) {
     // Add your commands in the addCommands() call, e.g.
