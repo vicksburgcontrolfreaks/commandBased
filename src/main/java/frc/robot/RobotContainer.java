@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.ControllerButtons;
 import frc.robot.Constants.ShootButtons;
 import frc.robot.Constants.TestConstants;
@@ -115,7 +116,7 @@ public class RobotContainer {
     new JoystickButton(shootStick, ShootButtons.simpleCollect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectF));
     new JoystickButton(shootStick, ShootButtons.backCollect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectB));
     new JoystickButton(shootStick, ShootButtons.collectOff).whenPressed(new OffCollect(m_Collector, m_Flopper));
-    new JoystickButton(shootStick, ShootButtons.prime).whenPressed(new PrimingSequence(m_Collector, m_Indexer, m_Mills, m_Shooter));
+    new JoystickButton(shootStick, ShootButtons.prime).whenPressed(new PrimingSequence(m_Collector, m_Indexer, m_Mills, m_Shooter, m_Limelight));
     new JoystickButton(shootStick, ShootButtons.shooterOff).whenPressed(new ShooterRun(m_Shooter, 0, false));
     new JoystickButton(shootStick, ShootButtons.manual).whenPressed(new ManualTurret(m_Turret, shootStick::getX));
     new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new AutoTurret(m_Turret, m_Limelight, false));
@@ -124,12 +125,14 @@ public class RobotContainer {
     new JoystickButton(shootStick, ShootButtons.primeHang).whenPressed(new PrimeHanger(m_Turret, m_Lifter));
     new JoystickButton(shootStick, ShootButtons.unprimeHang).whenPressed(new LiftDown(m_Lifter));
 
-    // new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new LoadCheck(m_Indexer, m_Shooter, m_Mills));
-    new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter));
+    new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new LoadCheck(m_Indexer, m_Shooter, m_Mills));
+    // new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter));
     new JoystickButton(driveController, ControllerButtons.pressFire).whenPressed(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter));
     new JoystickButton(driveController, ControllerButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Winch, m_Indexer, m_Turret, m_Flopper));
-    new JoystickButton(driveController, ControllerButtons.winchUp).whileHeld(new SetWinch(m_Winch, TestConstants.winchDistance));
-    new JoystickButton(driveController, ControllerButtons.winchDown).whileHeld(new WinchRun(m_Winch, m_Turret, TestConstants.winchB));
+    new JoystickButton(driveController, ControllerButtons.winchAutoUp).whileHeld(new SetWinch(m_Winch, ClimberConstants.autoDistance));
+    new JoystickButton(driveController, ControllerButtons.winchDown).whileHeld(new WinchRun(m_Winch, m_Turret, ClimberConstants.manualDownSpeed));
+    new JoystickButton(driveController, ControllerButtons.winchUp).whileHeld(new WinchRun(m_Winch, m_Turret, ClimberConstants.manualUpSpeed));
+  
   }
 
   public Command getDebugMode(){

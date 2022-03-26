@@ -13,6 +13,36 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+    public static final class ClimberConstants{
+        /*  These are the instructions to how to tune these values. You can ignore all of the dark blue and teal information
+            Whenever you change a number, push code by pressing shift and F5
+            For the shooter, at some point please load 2 cargo, prime the shooter, press the left bumper, and tell me what happens
+            The buttons to move the climber up and down are Y and A, respectively. 
+            If these go the wrong direction, change the value "climberDirection" to -1
+            You can change the speed of these by adjusting manualUpSpeed and manualDownSpeed to values between 0 and 1.
+            Make sure to keep manualUpSpeed positive and manualDownSpeed negative
+            Once you have both of thes going the correct direction at a good speed, it gets a little trickier
+            Open the Shuffleboard and click the double arrow just below the x on the top left
+            Click the dropdown on NetworkTables and scroll down to the Smartdashboard, which might or might not be open
+            Look under the Smartdashboard section for "Winch Tics"
+            You should be able to press B and this number will become 0
+            Manually move the climber to the down position and press B
+            Now run the climber all the way up manually and set "autoDistance" below to the value of "Winch Tics".
+            After deploying the code, reset the climber to the down position and HOLD X
+            If the climber does anything other than slowly move to the exact up position, disable the robot and don't bother with trying to get this to work
+            If the climber slowly goes to the up position, adjust the value for "autoUpSpeed" until it moves at an OK speed but still stops at the right point
+        */
+        public final static int climberDirection = 1;
+        public final static double manualUpSpeed = .5*climberDirection;
+        public final static double manualDownSpeed = -1*climberDirection;
+        public final static double autoUpSpeed = .25*climberDirection;
+        public final static double autoDistance = 0;
+    }
+
+
+
+
     public static final class DriveConstants{
         //establishes the constants used for driving precise distances
         public final static double turnSpeedMultiplier = .8;
@@ -102,6 +132,8 @@ public final class Constants {
         public final static int stop = 8; //START
         public final static int winchUp = 4; //Y
         public final static int winchDown = 1; //A
+        public final static int winchAutoUp = 3; //X
+        public final static int winchReset = 2; //B
     }
 
     public static final class CANConstants{

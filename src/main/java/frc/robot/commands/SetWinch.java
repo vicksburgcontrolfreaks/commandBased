@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.TestConstants;
 import frc.robot.subsystems.Winch;
 
@@ -52,12 +53,12 @@ public class SetWinch extends CommandBase {
     double lDistSign = lDistance/absLDistance;
     double rDistSign = rDistance/absRDistance;
     if(lError < TestConstants.winchError)
-      lDistancePower = lDistSign*(TestConstants.winchF);
+      lDistancePower = lDistSign*(ClimberConstants.autoUpSpeed);
     else
       lDistancePower = 0;
 
     if(rError < TestConstants.winchError)
-      rDistancePower = rDistSign*(TestConstants.winchF);
+      rDistancePower = rDistSign*(ClimberConstants.autoUpSpeed);
     else
       rDistancePower = 0;
     m_winch.lWinchMove(lDistancePower);
