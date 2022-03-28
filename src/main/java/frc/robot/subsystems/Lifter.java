@@ -12,6 +12,9 @@ import frc.robot.Constants.CANConstants;
 public class Lifter extends SubsystemBase {
   /** Creates a new Lifter. Both cylinders are run from the same double solenoid*/
   private final Solenoid lifter = new Solenoid(PneumaticsModuleType.REVPH, CANConstants.liftSolenoid);
+  public Lifter(){
+    liftUp();
+  }
 
   public void liftUp(){
     //moves both Lifters to the up position

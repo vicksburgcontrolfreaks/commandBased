@@ -32,7 +32,6 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
     //periodically checks the current shooter speed and if it is at high enough speed to effectivley launch cargo
     shooterSpeed();
-    shooterPrimed();
     SmartDashboard.putNumber("shooterSpeed", shooterSpeed());
     // SmartDashboard.putBoolean("isPrimed?", shooterPrimed());
   }
@@ -80,9 +79,13 @@ public class Shooter extends SubsystemBase {
       return speed;
   }
 
-  public boolean shooterPrimed(){
+  public double distancePrimedValue(double distance){
+    return 5176*distanceSpeed(distance)-400;
+  }
+
+  public boolean shooterPrimed(double distance){
     //returns whether the shooter has reached the speed needed to launch cargo or not
-    if(shooterSpeed() >= ShooterConstants.minSpeed)
+    if(shooterSpeed() >= distancePrimedValue(distance))
       return true;
     else
       return false;

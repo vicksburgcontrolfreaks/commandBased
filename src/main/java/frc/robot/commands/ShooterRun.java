@@ -43,17 +43,14 @@ public class ShooterRun extends CommandBase {
   public void end(boolean interrupted) {
     // SmartDashboard.putString("Running?", "no");
     //stops the shooter when this command is interrupted
-    if(interrupted)
-      m_shooter.shooterMove(0);
+    // if(interrupted)
+    //   m_shooter.shooterMove(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(!m_comp)
-      return false;
-    else
-      return m_shooter.shooterPrimed();
+    return false;
     //this code runs continuously until it is interrupted by other shooter code
   }
 }

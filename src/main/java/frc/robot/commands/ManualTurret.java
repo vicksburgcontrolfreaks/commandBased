@@ -17,6 +17,7 @@ public class ManualTurret extends CommandBase {
     m_turret = subsystem;
     m_speed = speed;
     addRequirements(m_turret);
+    
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

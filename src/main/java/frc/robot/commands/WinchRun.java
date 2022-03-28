@@ -5,23 +5,26 @@
 package frc.robot.commands;
 
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.ClimberConstants;
 import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Winch;
 
 public class WinchRun extends CommandBase {
   private final Winch m_winch;
-  private final Double m_speed;
-  private final Turret m_turret;
+  private final DoubleSupplier m_x;
+  private final DoubleSupplier m_y;
 
   /** Creates a new WinchRun. */
- public WinchRun(Winch subsystem, Turret t, double s) {
+ public WinchRun(Winch subsystem, DoubleSupplier x, DoubleSupplier y) {
     /** Creates a new WinchRun. This code runs the Winch at a specific speed*/
     m_winch = subsystem;
-    m_speed = s;
-    m_turret = t;
+    m_x = x;
+    m_y = y;
     addRequirements(m_winch);
-    addRequirements(m_turret);
+
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -32,10 +35,35 @@ public class WinchRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(m_turret.turretPrimed())
-      m_winch.winchMove(m_speed);
-    else
-      m_winch.winchMove(0);
+      if(m_x.getAsDouble() > 0){
+        if(m_winch.rightWinchP() < ClimberConstants.autoDistance)
+          m_winch.rWinchMove(1);
+        else
+          m_winch.rWinchMove(0);
+        if(m_winch.leftWinchP() < ClimberConstants.autoDistance)
+          m_winch.lWinchMove(1);
+        else
+          m_winch.lWinchMove(0);
+      }
+
+      else if(m_y.getAsDouble() > 0){
+          if(m_winch.rightWinchP() > 6)
+            m_winch.rWinchMove(-1);
+          else
+            m_winch.rWinchMove(0);
+          if(m_winch.leftWinchP() > 6)
+            m_winch.lWinchMove(-1);
+          else
+            m_winch.lWinchMove(0);
+      }
+      else{ 
+        m_winch.lWinchMove(0);
+        m_winch.rWinchMove(0);}
+    
+    // if(m_turret.turretPrimed() && m_winch.rightWinchP() > -5 && m_winch.leftWinchP() > -5)
+    //   m_winch.winchMove(m_speed);
+    // else
+    //   m_winch.winchMove(0);
   }
 
   // Called once the command ends or is interrupted.

@@ -33,7 +33,8 @@ public class IndexCheck extends CommandBase {
   @Override
   public void execute() {
     //if a ball is collected, runs the indexer and collector until the ball is in the index position
-    if(m_mrMills.isCollected()){
+    // if(m_mrMills.isCollected()){
+    if(!m_mrMills.isIndexed()){
       m_indexer.runIndexer(TestConstants.indexF);
       m_collector.collectorMove(TestConstants.collectF);
     }

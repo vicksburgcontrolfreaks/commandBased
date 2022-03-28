@@ -30,6 +30,7 @@ import frc.robot.commands.ManualTurret;
 import frc.robot.commands.OffCollect;
 import frc.robot.commands.PrimeHanger;
 import frc.robot.commands.PrimingSequence;
+import frc.robot.commands.ResetWinch;
 import frc.robot.commands.SetWinch;
 import frc.robot.commands.ShooterRun;
 import frc.robot.commands.SimpleAuton;
@@ -85,6 +86,7 @@ public class RobotContainer {
     //sets the drive to the default of driving normally
     //m_Drive.setDefaultCommand(new DriveMech(m_Drive, driveStick::getX, driveStick::getY));
     m_Drive.setDefaultCommand(new DriveMech(m_Drive, driveController::getLeftX, driveController::getLeftY, driveController::getRightX));
+    m_Winch.setDefaultCommand(new WinchRun(m_Winch, driveController::getRightTriggerAxis, driveController::getLeftTriggerAxis));
     // m_Collector.setDefaultCommand(new CollectorFlop(m_Collector, shootStick.getRawButton(ShootButtons.collect), m_Flopper));
     // m_Reacher.setDefaultCommand(new ReachDown(m_Reacher));
     // m_Lifter.setDefaultCommand(new LiftDown(m_Lifter));
@@ -121,18 +123,16 @@ public class RobotContainer {
     new JoystickButton(shootStick, ShootButtons.manual).whenPressed(new ManualTurret(m_Turret, shootStick::getX));
     new JoystickButton(shootStick, ShootButtons.auto).whenPressed(new AutoTurret(m_Turret, m_Limelight, false));
     new JoystickButton(shootStick, ShootButtons.backDex).whileHeld(new IndexerRun(m_Indexer, -.15));
-    new JoystickButton(shootStick, ShootButtons.index).whenPressed(new IndexCheck(m_Indexer, m_Collector, m_Mills));
+    new JoystickButton(shootStick, ShootButtons.index).whileHeld(new IndexCheck(m_Indexer, m_Collector, m_Mills));
     new JoystickButton(shootStick, ShootButtons.primeHang).whenPressed(new PrimeHanger(m_Turret, m_Lifter));
     new JoystickButton(shootStick, ShootButtons.unprimeHang).whenPressed(new LiftDown(m_Lifter));
 
-    new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new LoadCheck(m_Indexer, m_Shooter, m_Mills));
+    new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new LoadCheck(m_Indexer, m_Mills, m_Shooter, m_Limelight));
     // new JoystickButton(driveController, ControllerButtons.fire).whileHeld(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter));
-    new JoystickButton(driveController, ControllerButtons.pressFire).whenPressed(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter));
+    new JoystickButton(driveController, ControllerButtons.pressFire).whenPressed(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter, m_Limelight));
     new JoystickButton(driveController, ControllerButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Winch, m_Indexer, m_Turret, m_Flopper));
-    new JoystickButton(driveController, ControllerButtons.winchAutoUp).whileHeld(new SetWinch(m_Winch, ClimberConstants.autoDistance));
-    new JoystickButton(driveController, ControllerButtons.winchDown).whileHeld(new WinchRun(m_Winch, m_Turret, ClimberConstants.manualDownSpeed));
-    new JoystickButton(driveController, ControllerButtons.winchUp).whileHeld(new WinchRun(m_Winch, m_Turret, ClimberConstants.manualUpSpeed));
-  
+    // new JoystickButton(driveController, ControllerButtons.winchAutoUp).whileHeld(new SetWinch(m_Winch, ClimberConstants.autoDistance));
+    new JoystickButton(driveController, ControllerButtons.winchReset).whenPressed(new ResetWinch(m_Winch));
   }
 
   public Command getDebugMode(){

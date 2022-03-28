@@ -34,10 +34,10 @@ public final class Constants {
             If the climber slowly goes to the up position, adjust the value for "autoUpSpeed" until it moves at an OK speed but still stops at the right point
         */
         public final static int climberDirection = 1;
-        public final static double manualUpSpeed = .5*climberDirection;
+        public final static double manualUpSpeed = 1*climberDirection;
         public final static double manualDownSpeed = -1*climberDirection;
         public final static double autoUpSpeed = .25*climberDirection;
-        public final static double autoDistance = 0;
+        public final static double autoDistance = 400;
     }
 
 
@@ -77,7 +77,7 @@ public final class Constants {
         public final static double shoot_kMaxOutput = 1;
         public final static double shoot_kMinOutput = -1;
         public final static double shoot_encoderError = .5;
-        public final static double shootF = -.527;
+        public final static double shootF = -.3;
         public final static double targetSpeed = 5000;
         public final static double minSpeed = targetSpeed;
     }
@@ -133,7 +133,7 @@ public final class Constants {
         public final static int winchUp = 4; //Y
         public final static int winchDown = 1; //A
         public final static int winchAutoUp = 3; //X
-        public final static int winchReset = 2; //B
+        public final static int winchReset = 7; //BACK
     }
 
     public static final class CANConstants{

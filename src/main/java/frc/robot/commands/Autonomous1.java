@@ -27,8 +27,8 @@ public class Autonomous1 extends SequentialCommandGroup {
       new TurnDegrees(m_drive, 180, .1),
       new AutoTurret(m_turret, m_limelight, true),
       //turns on the shooter and fires 2 cargo into the Upper Hub
-      new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter, m_limelight),
-      new LoadCheck(m_indexer, m_shooter, m_mills)
+      new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter, m_limelight)
+      // new LoadCheck(m_indexer, m_shooter, m_mills)
     );
   }
 }

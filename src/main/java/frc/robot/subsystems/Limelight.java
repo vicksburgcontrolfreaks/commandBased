@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.LimelightConstants;
 
@@ -38,6 +39,10 @@ public class Limelight extends SubsystemBase {
     tv();
     fancyDistance();
     inRange();
+    SmartDashboard.putBoolean("In Range?", inRange());
+    SmartDashboard.putNumber("Distance", fancyDistance());
+    SmartDashboard.putNumber("Shot Error", tx());
+    SmartDashboard.putBoolean("Visible?", tv());
     // SmartDashboard.putNumber("Fancy Distance", fancyDistance());
     // SmartDashboard.putNumber("Area", ta());
     // SmartDashboard.putBoolean("Visible?", tv());

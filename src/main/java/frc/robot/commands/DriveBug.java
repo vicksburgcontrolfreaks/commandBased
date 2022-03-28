@@ -35,20 +35,15 @@ public class DriveBug extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double absLime = Math.abs(m_limelight.tx());
-    if(m_mills.isIndexed() && !m_mills.isOverIndexed() && m_shooter.shooterPrimed() && m_limelight.inRange() && absLime < LimelightConstants.error)
-      bigRedButton = true;
-    else 
-      bigRedButton = false;
-    SmartDashboard.putBoolean("Ready to Fire?", bigRedButton);
-    SmartDashboard.putNumber("Shot Error", m_limelight.tx());
-    SmartDashboard.putBoolean("Visible?", m_limelight.tv());
-    SmartDashboard.putBoolean("Indexed?", m_mills.isIndexed());
-    SmartDashboard.putBoolean("Over Indexed?", !m_mills.isOverIndexed());
-    SmartDashboard.putBoolean("Shooter Primed?", m_shooter.shooterPrimed());
-    SmartDashboard.putNumber("Distance", m_limelight.fancyDistance());
-    SmartDashboard.putBoolean("Collected?", m_mills.isCollected());
-    SmartDashboard.putBoolean("In Range?", m_limelight.inRange());    
+    // double absLime = Math.abs(m_limelight.tx());
+    // if(m_mills.isIndexed() && !m_mills.isOverIndexed() && m_shooter.shooterPrimed() && m_limelight.inRange() && absLime < LimelightConstants.error)
+    //   bigRedButton = true;
+    // else 
+    //   bigRedButton = false;
+    // SmartDashboard.putBoolean("Ready to Fire?", bigRedButton);
+
+
+    
 
 
 

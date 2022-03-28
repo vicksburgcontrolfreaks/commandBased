@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
 
@@ -18,8 +19,15 @@ public class Winch extends SubsystemBase {
   private final RelativeEncoder winchLE = winchL.getEncoder();
   private final RelativeEncoder winchRE = winchR.getEncoder();
   public Winch(){
-    winchLE.setPosition(0);
-    winchRE.setPosition(0);
+    // winchLE.setPosition(0);
+    // winchRE.setPosition(0);
+    winchL.setInverted(true);
+  }
+
+  @Override
+  public void periodic() {
+    SmartDashboard.putNumber("Winch Position Left", leftWinchP());
+    SmartDashboard.putNumber("Winch Position Right", rightWinchP());
   }
 
   public void winchMove(double speed){
@@ -46,4 +54,8 @@ public class Winch extends SubsystemBase {
     return winchRE.getPosition();
   }
 
+  public void resetEncoders(){
+    winchLE.setPosition(0);
+    winchRE.setPosition(0);
+  }
 }

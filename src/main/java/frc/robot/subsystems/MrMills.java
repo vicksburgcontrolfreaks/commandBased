@@ -12,6 +12,8 @@ import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
 import com.revrobotics.Rev2mDistanceSensor.Unit;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.TestConstants;
 
@@ -34,10 +36,13 @@ public class MrMills extends SubsystemBase {
     dist();
     isCollected();
     isIndexed();
+    SmartDashboard.putBoolean("Indexed?", isIndexed());
+    SmartDashboard.putBoolean("Over Indexed?", !isOverIndexed());
+    SmartDashboard.putBoolean("Collected?", isCollected());
+    SmartDashboard.putNumber("Dist", dist());
     // SmartDashboard.putBoolean("Indexed?", isIndexed());
     // SmartDashboard.putBoolean("Collected?", isCollected());
     // SmartDashboard.putBoolean("OverIndexed?", !isOverIndexed());
-    // SmartDashboard.putNumber("Dist", dist());
     // SmartDashboard.putNumber("test", testCounter);
 
     }
