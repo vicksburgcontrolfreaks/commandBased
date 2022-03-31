@@ -6,9 +6,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.TestConstants;
 import frc.robot.subsystems.Collector;
+import frc.robot.subsystems.Flopper;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Lifter;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.MechTrain;
 import frc.robot.subsystems.MrMills;
@@ -17,18 +20,21 @@ import frc.robot.subsystems.Turret;
 
 public class Autonomous1 extends SequentialCommandGroup {
   /** Creates a new Autonomous1. This is the autonomous made for a starting position nearest to the side wall. */
-  public Autonomous1(MechTrain m_drive, Collector m_collector, Shooter m_shooter, Indexer m_indexer, MrMills m_mills, Turret m_turret, Limelight m_limelight) {
+  public Autonomous1(MechTrain m_drive, Collector m_collector, Shooter m_shooter, Indexer m_indexer, MrMills m_mills, Turret m_turret, Limelight m_limelight, Flopper m_flopper, Lifter m_lifter) {
     //adds each stage of our autonomous to a sequential group
     addCommands(
       //drives the robot forward while running the collector. Both shut off when the distance has been driven.
       new ParallelDeadlineGroup(
-        new DriveDistance(m_drive, 110, .5), 
-        new CollectorRun(m_collector, TestConstants.collectF)),
-      new TurnDegrees(m_drive, 180, .1),
-      new AutoTurret(m_turret, m_limelight, true),
+        new DriveDistance(m_drive, 100, .25), 
+        new FullCollect(m_collector, m_flopper, TestConstants.collectF)),
+      new TurnDegrees(m_drive, 180, .3),
+      new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter),
+      new ParallelDeadlineGroup(
+        new WaitCommand(1.5), 
+        new LiftDown(m_lifter),
+        new AutoTurret(m_turret, m_limelight, false)),
       //turns on the shooter and fires 2 cargo into the Upper Hub
-      new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter, m_limelight)
-      // new LoadCheck(m_indexer, m_shooter, m_mills)
+      new FireCheck(m_indexer, m_collector, m_mills, m_shooter)
     );
   }
 }

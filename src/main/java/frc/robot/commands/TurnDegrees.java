@@ -31,9 +31,9 @@ public class TurnDegrees extends CommandBase {
     //calculates the distance each motor needs to travel in tics in order to rotate the wanted distance
     double ticDist = m_dist*DriveConstants.ticksPerDegree;
     frontLeftF = m_drive.frontLeftEncoderV() + ticDist;
-    frontRightF = m_drive.frontRightEncoderV() + ticDist;
+    frontRightF = m_drive.frontRightEncoderV() - ticDist;
     backLeftF = m_drive.backLeftEncoderV() + ticDist;
-    backRightF = m_drive.backRightEncoderV() + ticDist;
+    backRightF = m_drive.backRightEncoderV() - ticDist;
 
   }
 

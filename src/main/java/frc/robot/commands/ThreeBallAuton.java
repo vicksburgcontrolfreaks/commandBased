@@ -28,7 +28,7 @@ public class ThreeBallAuton extends SequentialCommandGroup {
       new TurnDegrees(m_drive, 172, DriveConstants.drive_kMaxOutput),
       new AutoTurret(m_turret, m_limelight, true),
       //turns on the shooter and fires 2 cargo into the Upper Hub
-      new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter, m_limelight),
+      // new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter, m_limelight),
       // new LoadCheck(m_indexer, m_shooter, m_mills),
       new IndexCheck(m_indexer, m_collector, m_mills),
       // new LoadCheck(m_indexer, m_shooter, m_mills),
@@ -38,9 +38,9 @@ public class ThreeBallAuton extends SequentialCommandGroup {
 
       new DriveDistance(m_drive, -110, .5),
       new TurnDegrees(m_drive, 154, .25),
-      new AutoTurret(m_turret, m_limelight, true),
+      new AutoTurret(m_turret, m_limelight, true)
       //turns on the shooter and fires 2 cargo into the Upper Hub
-      new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter, m_limelight)
+      // new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter, m_limelight)
       // new LoadCheck(m_indexer, m_shooter, m_mills)
       
     );

@@ -9,7 +9,6 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.ClimberConstants;
-import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.Winch;
 
 public class WinchRun extends CommandBase {

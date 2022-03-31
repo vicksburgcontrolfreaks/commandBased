@@ -5,10 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.Collector;
 import frc.robot.subsystems.Indexer;
-import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.MrMills;
 import frc.robot.subsystems.Shooter;
 
@@ -17,13 +15,13 @@ import frc.robot.subsystems.Shooter;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class PrimingSequence extends ParallelCommandGroup {
   /** Creates a new PrimingSequence. */
-  public PrimingSequence(Collector m_collector, Indexer m_indexer, MrMills m_mills, Shooter m_shooter, Limelight m_limelight) {
+  public PrimingSequence(Collector m_collector, Indexer m_indexer, MrMills m_mills, Shooter m_shooter) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       //select lines 25 and press control and /. Then do the same thing for line 26.
-      // new ShootTarget(m_shooter, m_limelight),
-      new ShooterRun(m_shooter, ShooterConstants.shootF, false),
+      new ShootTarget(m_shooter),
+      //new ShooterRun(m_shooter, ShooterConstants.shootF, false),
       new PrimePositions(m_collector, m_indexer, m_mills)
     );
   }

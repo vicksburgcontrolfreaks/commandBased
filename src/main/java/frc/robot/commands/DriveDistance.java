@@ -31,9 +31,9 @@ public class DriveDistance extends CommandBase {
   public void initialize() {
     //calculates the distance each motor needs to travel in tics in order to drive the wanted distance
     double ticDist = m_dist*DriveConstants.ticksPerInch;
-    frontLeftF = m_drive.frontLeftEncoderV() + ticDist;
+    frontLeftF = m_drive.frontLeftEncoderV() - ticDist;
     frontRightF = m_drive.frontRightEncoderV() - ticDist;
-    backLeftF = m_drive.backLeftEncoderV() + ticDist;
+    backLeftF = m_drive.backLeftEncoderV() - ticDist;
     backRightF = m_drive.backRightEncoderV() - ticDist;
   }
 

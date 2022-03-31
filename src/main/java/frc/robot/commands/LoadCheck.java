@@ -5,10 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.ShooterConstants;
 import frc.robot.Constants.TestConstants;
 import frc.robot.subsystems.Indexer;
-import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.MrMills;
 import frc.robot.subsystems.Shooter;
 
@@ -17,14 +15,12 @@ public class LoadCheck extends CommandBase {
   private final Indexer m_indexer;
   private final MrMills m_mrMills;
   private final Shooter m_shooter;
-  private final Limelight m_limelight;
 
-  public LoadCheck(Indexer sIndexer, MrMills sMrMills, Shooter sShooter, Limelight sLimelight) {
+  public LoadCheck(Indexer sIndexer, MrMills sMrMills, Shooter sShooter) {
     m_mrMills = sMrMills;
     m_indexer = sIndexer;
     m_shooter = sShooter;
-    m_limelight = sLimelight;
-    addRequirements(m_indexer, m_mrMills, m_shooter, m_limelight);
+    addRequirements(m_indexer, m_mrMills, m_shooter);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -37,14 +33,9 @@ public class LoadCheck extends CommandBase {
   public void execute() {
     //checks if any cargo is loaded and if the shooter is primed, loading the ball and firing if it is
     // SmartDashboard.putBoolean("indexed", m_mrMills.isIndexed());
-    if(m_limelight.tv()){
-      if(m_mrMills.isIndexed() && m_shooter.shooterPrimed(m_limelight.fancyDistance())){
+      if(m_mrMills.isIndexed() && m_shooter.shooterPrimed()){
         m_indexer.runIndexer(TestConstants.loadF);
       }
-    }
-    else if(m_mrMills.isIndexed() && m_shooter.shooterSpeed() > ShooterConstants.shootF*5000){
-      m_indexer.runIndexer(TestConstants.loadF);
-    }
     // SmartDashboard.putString("Stage", "Load");
   }
 

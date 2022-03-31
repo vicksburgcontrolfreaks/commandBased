@@ -15,24 +15,6 @@ package frc.robot;
 public final class Constants {
 
     public static final class ClimberConstants{
-        /*  These are the instructions to how to tune these values. You can ignore all of the dark blue and teal information
-            Whenever you change a number, push code by pressing shift and F5
-            For the shooter, at some point please load 2 cargo, prime the shooter, press the left bumper, and tell me what happens
-            The buttons to move the climber up and down are Y and A, respectively. 
-            If these go the wrong direction, change the value "climberDirection" to -1
-            You can change the speed of these by adjusting manualUpSpeed and manualDownSpeed to values between 0 and 1.
-            Make sure to keep manualUpSpeed positive and manualDownSpeed negative
-            Once you have both of thes going the correct direction at a good speed, it gets a little trickier
-            Open the Shuffleboard and click the double arrow just below the x on the top left
-            Click the dropdown on NetworkTables and scroll down to the Smartdashboard, which might or might not be open
-            Look under the Smartdashboard section for "Winch Tics"
-            You should be able to press B and this number will become 0
-            Manually move the climber to the down position and press B
-            Now run the climber all the way up manually and set "autoDistance" below to the value of "Winch Tics".
-            After deploying the code, reset the climber to the down position and HOLD X
-            If the climber does anything other than slowly move to the exact up position, disable the robot and don't bother with trying to get this to work
-            If the climber slowly goes to the up position, adjust the value for "autoUpSpeed" until it moves at an OK speed but still stops at the right point
-        */
         public final static int climberDirection = 1;
         public final static double manualUpSpeed = 1*climberDirection;
         public final static double manualDownSpeed = -1*climberDirection;
@@ -47,9 +29,9 @@ public final class Constants {
         //establishes the constants used for driving precise distances
         public final static double turnSpeedMultiplier = .8;
         public final static double driveSpeedMultiplier = 1;
-        public final static double drive_kP = 89.737;
+        public final static double drive_kP = 602;
         public final static double drive_kI = 0;
-        public final static double drive_kD = 6.76;
+        public final static double drive_kD = 21.3;
         public final static double drive_kIz = 0;
         public final static double drive_kFF = 0;
         public final static double drive_kMaxOutput = .25;
@@ -77,9 +59,10 @@ public final class Constants {
         public final static double shoot_kMaxOutput = 1;
         public final static double shoot_kMinOutput = -1;
         public final static double shoot_encoderError = .5;
-        public final static double shootF = -.3;
-        public final static double targetSpeed = 5000;
-        public final static double minSpeed = targetSpeed;
+        public final static double shootF = -.9;
+        public final static double speedMultiplier = 5176;
+        public static double targetSpeed;
+        public static double minSpeed = targetSpeed-200;
     }
 
     public static final class LimelightConstants{
@@ -89,11 +72,13 @@ public final class Constants {
         public final static double goalHeightInches = 102.625;
         public final static double lowRange = 84;
         public final static double highRange = 212;
+        public static double currentDistance;
+        public static boolean visible;
     }
 
     public static final class TestConstants{
         //a collection of the various values that will be changed through testing
-        public final static double collectF = -.5;
+        public final static double collectF = -.49;
         public final static double collectB = .25;
         public final static double overIndex = 2;
         public final static double indexDist = 8;
@@ -117,7 +102,7 @@ public final class Constants {
         public final static int collectOn = 3;
         public final static int simpleCollect = 4;
         public final static int collectOff = 5;
-        public final static int backCollect = 6;
+        public final static int backCollect = 5;
         public final static int prime = 7;
         public final static int shooterOff = 8;
         public final static int manual = 9;

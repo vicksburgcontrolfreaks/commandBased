@@ -28,7 +28,7 @@ public class Close1 extends SequentialCommandGroup {
       new TurnDegrees(m_drive, 180, .35),
       new DriveDistance(m_drive, 130, .5),
       new DriveDistance(m_drive, 18, .5),
-      new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter, m_limelight),
+      new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter),
       new FullFire(m_collector, m_indexer)
 
     );

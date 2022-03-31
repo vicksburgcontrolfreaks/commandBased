@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
+import frc.robot.Constants.LimelightConstants;
 import frc.robot.Constants.ShooterConstants;
 
 public class Shooter extends SubsystemBase {
@@ -26,20 +27,25 @@ public class Shooter extends SubsystemBase {
 
   public Shooter(){
     shooterR.setInverted(true);
+    ShooterConstants.targetSpeed = 0;
   }
 
   @Override
   public void periodic() {
     //periodically checks the current shooter speed and if it is at high enough speed to effectivley launch cargo
     shooterSpeed();
+    shooterPrimed();
+    SmartDashboard.putBoolean("Shooter Primed?", shooterPrimed());
+    SmartDashboard.putNumber("desired Output", distanceSpeed());
     SmartDashboard.putNumber("shooterSpeed", shooterSpeed());
-    // SmartDashboard.putBoolean("isPrimed?", shooterPrimed());
   }
 
 
   public void shooterMove(double speed){
     //sets the speed of the shooter to an input value
+    // shooter.set(speed);
     shooter.set(speed);
+    ShooterConstants.targetSpeed = speed * ShooterConstants.speedMultiplier;
   }
 
   public double shooterSpeed(){
@@ -71,21 +77,17 @@ public class Shooter extends SubsystemBase {
     leftP.setReference(speed, ControlType.kVelocity, 0);
   }
 
-  public double distanceSpeed(double distance){
-    double speed = -(.2715*Math.sin(.0313441*distance + 1.32005) + .7453);
+  public double distanceSpeed(){
+    double speed = -(6000*Math.sin(.000097861*LimelightConstants.currentDistance - 1.57949) + 6000.5);
     if(speed <-1)
       return -1;
     else
       return speed;
   }
 
-  public double distancePrimedValue(double distance){
-    return 5176*distanceSpeed(distance)-400;
-  }
-
-  public boolean shooterPrimed(double distance){
+  public boolean shooterPrimed(){
     //returns whether the shooter has reached the speed needed to launch cargo or not
-    if(shooterSpeed() >= distancePrimedValue(distance))
+    if(shooterSpeed() >= ShooterConstants.minSpeed)
       return true;
     else
       return false;

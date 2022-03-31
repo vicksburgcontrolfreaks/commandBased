@@ -13,13 +13,10 @@ public class ShooterRun extends CommandBase {
   //Creates a new ShooterRun. This runs the shooter at a specific speed.
   public final Shooter m_shooter;
   private final Double m_speed;
-  private final boolean m_comp;
-
-
+  
   public ShooterRun(Shooter subsystem, double s, boolean completes) {
     m_shooter = subsystem;
     m_speed = s;
-    m_comp = completes;
     addRequirements(m_shooter);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -50,7 +47,7 @@ public class ShooterRun extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
     //this code runs continuously until it is interrupted by other shooter code
   }
 }
