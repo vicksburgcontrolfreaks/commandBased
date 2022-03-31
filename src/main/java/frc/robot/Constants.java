@@ -59,7 +59,7 @@ public final class Constants {
         public final static double shoot_kMaxOutput = 1;
         public final static double shoot_kMinOutput = -1;
         public final static double shoot_encoderError = .5;
-        public final static double shootF = -.9;
+        public final static double shootF = -.3;
         public final static double speedMultiplier = 5176;
         public static double targetSpeed;
         public static double minSpeed = targetSpeed-200;
