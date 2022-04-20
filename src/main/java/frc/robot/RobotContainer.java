@@ -92,11 +92,9 @@ public class RobotContainer {
     m_Turret.setDefaultCommand(new AutoTurret(m_Turret, m_Limelight, false));
 
     // Add commands to the autonomous command chooser
-    m_chooser.setDefaultOption("Close1", Close1);
-    m_chooser.addOption("Auton1", Autonomous1);
+    m_chooser.setDefaultOption("Auton1", Autonomous1);
     m_chooser.addOption("Auton2", Autonomous2);
     m_chooser.addOption("SimpleAuton", SimpleAuton);
-    m_chooser.addOption("3 Ball", TBall);
 
     //debugChooser.setDefaultOption("Debug Chooser", DriveBug);
 

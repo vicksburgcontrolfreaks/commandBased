@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.DriveConstants;
@@ -48,20 +49,20 @@ public class DriveDistance extends CommandBase {
 
     //SmartDashboard.putBoolean("isFinished", isFinished());
 
-    //SmartDashboard.putNumber("frontLeftF", frontLeftF);
-    //SmartDashboard.putNumber("frontRightF", frontRightF);
-    //SmartDashboard.putNumber("backLeftF", backLeftF);
-    //SmartDashboard.putNumber("backRightF", backRightF);
+    SmartDashboard.putNumber("frontLeftF", frontLeftF);
+    SmartDashboard.putNumber("frontRightF", frontRightF);
+    SmartDashboard.putNumber("backLeftF", backLeftF);
+    SmartDashboard.putNumber("backRightF", backRightF);
 
-    //SmartDashboard.putNumber("frontRightEncoder", m_drive.frontRightEncoderV());
-    //SmartDashboard.putNumber("frontLeftEncoder", m_drive.frontLeftEncoderV());
-    //SmartDashboard.putNumber("backRightEncoder", m_drive.backRightEncoderV());
-    //SmartDashboard.putNumber("backLeftEncoder", m_drive.backLeftEncoderV());
+    SmartDashboard.putNumber("frontRightEncoder", m_drive.frontRightEncoderV());
+    SmartDashboard.putNumber("frontLeftEncoder", m_drive.frontLeftEncoderV());
+    SmartDashboard.putNumber("backRightEncoder", m_drive.backRightEncoderV());
+    SmartDashboard.putNumber("backLeftEncoder", m_drive.backLeftEncoderV());
 
-    //SmartDashboard.putNumber("fLOff", frontLeftF - m_drive.frontLeftEncoderV());
-    //SmartDashboard.putNumber("fROff", frontRightF - m_drive.frontRightEncoderV());
-    //SmartDashboard.putNumber("bLOff", backLeftF - m_drive.backLeftEncoderV());
-    //SmartDashboard.putNumber("bROff", backRightF - m_drive.backRightEncoderV());
+    SmartDashboard.putNumber("fLOff", frontLeftF - m_drive.frontLeftEncoderV());
+    SmartDashboard.putNumber("fROff", frontRightF - m_drive.frontRightEncoderV());
+    SmartDashboard.putNumber("bLOff", backLeftF - m_drive.backLeftEncoderV());
+    SmartDashboard.putNumber("bROff", backRightF - m_drive.backRightEncoderV());
 
   }
 
@@ -83,10 +84,10 @@ public class DriveDistance extends CommandBase {
     double absBL = Math.abs(Math.abs(backLeftF) - Math.abs(backLeftEValue));
     double absBR = Math.abs(Math.abs(backRightF) - Math.abs(backRightEValue));
 
-    //SmartDashboard.putNumber("FLAbsolute", absFL);
-    //SmartDashboard.putNumber("BLAbsolute", absBL);
-    //SmartDashboard.putNumber("FRAbsolute", absFR);
-    //SmartDashboard.putNumber("BRAbsolute", absBR);
+    SmartDashboard.putNumber("FLAbsolute", absFL);
+    SmartDashboard.putNumber("BLAbsolute", absBL);
+    SmartDashboard.putNumber("FRAbsolute", absFR);
+    SmartDashboard.putNumber("BRAbsolute", absBR);
 
 
     double drive_encoderError = DriveConstants.drive_encoderError;

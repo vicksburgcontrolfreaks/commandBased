@@ -35,6 +35,7 @@ public class Shooter extends SubsystemBase {
     //periodically checks the current shooter speed and if it is at high enough speed to effectivley launch cargo
     shooterSpeed();
     shooterPrimed();
+    SmartDashboard.putNumber("MinSpeed", ShooterConstants.minSpeed);
     SmartDashboard.putBoolean("Shooter Primed?", shooterPrimed());
     SmartDashboard.putNumber("desired Output", distanceSpeed());
     SmartDashboard.putNumber("shooterSpeed", shooterSpeed());
@@ -78,7 +79,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public double distanceSpeed(){
-    double speed = -(6000*Math.sin(.000097861*LimelightConstants.currentDistance - 1.57949) + 6000.5);
+    double speed = -(6000*Math.sin(.000097861*LimelightConstants.currentDistance - 1.57949) + 6000.54);
     if(speed <-1)
       return -1;
     else

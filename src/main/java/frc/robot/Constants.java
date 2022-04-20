@@ -59,10 +59,10 @@ public final class Constants {
         public final static double shoot_kMaxOutput = 1;
         public final static double shoot_kMinOutput = -1;
         public final static double shoot_encoderError = .5;
-        public final static double shootF = -.3;
+        public final static double shootF = -.5;
         public final static double speedMultiplier = 5176;
         public static double targetSpeed;
-        public static double minSpeed = targetSpeed-200;
+        public static double minSpeed = targetSpeed;
     }
 
     public static final class LimelightConstants{
@@ -78,7 +78,7 @@ public final class Constants {
 
     public static final class TestConstants{
         //a collection of the various values that will be changed through testing
-        public final static double collectF = -.49;
+        public final static double collectF = -.5;
         public final static double collectB = .25;
         public final static double overIndex = 2;
         public final static double indexDist = 8;

@@ -4,8 +4,10 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.LimelightConstants;
+import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.Shooter;
 
 public class ShootTarget extends CommandBase {
@@ -30,8 +32,9 @@ public class ShootTarget extends CommandBase {
     if(LimelightConstants.visible)
       targetSpeed = m_shooter.distanceSpeed();
     else
-      targetSpeed = -1;
+      targetSpeed = ShooterConstants.shootF;
     m_shooter.shooterMove(targetSpeed);
+    SmartDashboard.putBoolean("Shooter Primed", m_shooter.shooterPrimed());
   }
 
   // Called once the command ends or is interrupted.
