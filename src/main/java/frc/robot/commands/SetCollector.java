@@ -13,8 +13,9 @@ public class SetCollector extends CommandBase {
   
   double currentPosition;
   double targetPosition;
-  // Creates a new AutoTurret. This is the default code that causes the turret to point towards the hub
+  // Creates a new SetCollector. This approximately moves the collector a set distance
   public SetCollector(Collector subsystem) {
+    //establishes all of the subsystems being called
     m_collector = subsystem;
     addRequirements(m_collector);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -23,47 +24,34 @@ public class SetCollector extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    //Sets the target position for the collector when the command is scheduled
     double negDist = TestConstants.primeCollectorDist;
     targetPosition = -m_collector.collectorPosition() + negDist;
-    // SmartDashboard.putNumber("intiPosit", m_collector.collectorPosition());
-    // SmartDashboard.putNumber("initTarget", targetPosition);
-    // SmartDashboard.putNumber("negDist", negDist);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //SmartDashboard.putNumber("turretPower", turretPower);
-    //calculates the distance that the turret needs to turn, in degrees, to be pointed towards the hub
+    //calculates the distance that the Collector needs to turn, in tics, to be move the disired amount
     currentPosition = -m_collector.collectorPosition();
     double distance = targetPosition - currentPosition;
     double absDistance = Math.abs(distance);
     double distSign = distance/absDistance;
     double distancePower = distSign*(TestConstants.primeCollectorSpeed);
-    //double distancePower = 0;
     m_collector.collectorMove(distancePower);
-    //m_collector.collectorMove(0);
-    // SmartDashboard.putNumber("current", currentPosition);
-    // SmartDashboard.putNumber("targetPosition", targetPosition);
-    // SmartDashboard.putNumber("distance", distance);
-    // SmartDashboard.putNumber("distancePower", distancePower);
 }
-  
-
-
-  
-
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //stops the collector when the command ends
     m_collector.collectorMove(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    //this code runs continuously until it is interrupted by other turret code
+    //Ends the command when the collector is within a certain amount of error of the target position
     if(Math.abs(Math.abs(targetPosition)-Math.abs(currentPosition)) < TestConstants.collectorError)
       return true;
     else 

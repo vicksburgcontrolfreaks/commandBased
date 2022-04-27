@@ -18,7 +18,8 @@ public class Collector extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // SmartDashboard.putNumber("collector Position", collectorPosition());
+    //periodically checks the collector's current position
+    collectorPosition();
   }
 
   public void collectorMove(double speed){
@@ -27,6 +28,7 @@ public class Collector extends SubsystemBase {
   }
 
   public double collectorPosition(){
+    //returns the collector's current position
     return encoder.getPosition();
   }
 

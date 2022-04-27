@@ -9,11 +9,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Indexer;
 
 public class IndexerRun extends CommandBase {
-  // Creates a new IndexerRun. This runs the indexer at a specific speed
+  // Creates a new IndexerRun. This runs the indexer at a specific speed.
   public final Indexer m_indexer;
   private final Double m_speed;
 
   public IndexerRun(Indexer subsystem, double s) {
+    //establishes all of the subsystems being called
     m_indexer = subsystem;
     m_speed = s;
     addRequirements(m_indexer);
@@ -27,12 +28,14 @@ public class IndexerRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //Sets the indexer to the desired speed
     m_indexer.runIndexer(m_speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //Stops the indexer when other Indexer code is run
     m_indexer.runIndexer(0);
   }
 

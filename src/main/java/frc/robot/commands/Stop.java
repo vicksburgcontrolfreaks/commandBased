@@ -17,6 +17,9 @@ import frc.robot.subsystems.Winch;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
+
+//This is supposed to stop all motors when a botton is pressed but it actually does very little
+
 public class Stop extends ParallelCommandGroup {
   /** Creates a new Stop. This stops all of the subsystems from moving.*/
   public Stop(Shooter m_shooter, Collector m_collector, Winch m_winch, Indexer m_indexer, Turret m_turret, Flopper m_flopper) {

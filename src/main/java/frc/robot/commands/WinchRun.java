@@ -16,14 +16,13 @@ public class WinchRun extends CommandBase {
   private final DoubleSupplier m_x;
   private final DoubleSupplier m_y;
 
-  /** Creates a new WinchRun. */
- public WinchRun(Winch subsystem, DoubleSupplier x, DoubleSupplier y) {
-    /** Creates a new WinchRun. This code runs the Winch at a specific speed*/
+  /** Creates a new WinchRun. This runs the winch at a set speed*/
+  public WinchRun(Winch subsystem, DoubleSupplier x, DoubleSupplier y) {
+    //establishes all of the subsystems being called
     m_winch = subsystem;
     m_x = x;
     m_y = y;
     addRequirements(m_winch);
-
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -58,11 +57,6 @@ public class WinchRun extends CommandBase {
       else{ 
         m_winch.lWinchMove(0);
         m_winch.rWinchMove(0);}
-    
-    // if(m_turret.turretPrimed() && m_winch.rightWinchP() > -5 && m_winch.leftWinchP() > -5)
-    //   m_winch.winchMove(m_speed);
-    // else
-    //   m_winch.winchMove(0);
   }
 
   // Called once the command ends or is interrupted.

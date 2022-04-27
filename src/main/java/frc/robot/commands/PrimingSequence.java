@@ -14,14 +14,10 @@ import frc.robot.subsystems.Shooter;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class PrimingSequence extends ParallelCommandGroup {
-  /** Creates a new PrimingSequence. */
+  /** Creates a new PrimingSequence. This starts running the shooter and moves the cargo into position.*/
   public PrimingSequence(Collector m_collector, Indexer m_indexer, MrMills m_mills, Shooter m_shooter) {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      //select lines 25 and press control and /. Then do the same thing for line 26.
-      new ShootTarget(m_shooter),
-      //new ShooterRun(m_shooter, ShooterConstants.shootF, false),
+      new ShooterRun(m_shooter, -1, false),
       new PrimePositions(m_collector, m_indexer, m_mills)
     );
   }

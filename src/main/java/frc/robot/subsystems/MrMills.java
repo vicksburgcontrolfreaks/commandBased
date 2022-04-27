@@ -22,29 +22,27 @@ import frc.robot.Constants.TestConstants;
 public class MrMills extends SubsystemBase {
   double testCounter;
   /** Creates a new MrMills. This is the distance sensor used to determine the status of collected cargo, named after a local engineering teacher*/
-
   Rev2mDistanceSensor mrMills;
+
   public MrMills() {
+    //establishes what port the sensor is on and tells it to start getting values when the robot is initialized.
+    //The second line of code here is extremely important and this will not work if it is not present
     mrMills = new Rev2mDistanceSensor(Port.kOnboard, Unit.kInches, RangeProfile.kHighSpeed);
     mrMills.setAutomaticMode(true);
   }
 
   @Override
   public void periodic() {
-    // Periodically checks the current distance between the sensor and an obsticle as well as using this information to determine where a ball is in the robot. Also sends these values to the smart Dashboard
-    
+    // Periodically checks the current distance between the sensor and an obsticle as well as using this information to determine where a ball is in the robot
     dist();
     isCollected();
     isIndexed();
+
+    //Sends afformentioned values to the Smart Dashboard
     SmartDashboard.putBoolean("Indexed?", isIndexed());
     SmartDashboard.putBoolean("Over Indexed?", !isOverIndexed());
     SmartDashboard.putBoolean("Collected?", isCollected());
     SmartDashboard.putNumber("Dist", dist());
-    // SmartDashboard.putBoolean("Indexed?", isIndexed());
-    // SmartDashboard.putBoolean("Collected?", isCollected());
-    // SmartDashboard.putBoolean("OverIndexed?", !isOverIndexed());
-    // SmartDashboard.putNumber("test", testCounter);
-
     }
 
   public double dist(){
@@ -53,7 +51,7 @@ public class MrMills extends SubsystemBase {
   }
 
   public boolean isIndexed(){
-    //returns whether an objects are close enough to be firmly indexed
+    //returns whether an object are close enough to be firmly indexed
     if(dist() <= TestConstants.indexDist)
       return true;
     else 
@@ -61,7 +59,7 @@ public class MrMills extends SubsystemBase {
   }
 
   public boolean isOverIndexed(){
-    //returns whether an objects are close enough to be firmly indexed
+    //returns whether an object is too far into the indexer and needs to be backed out before firing.
     if(dist() <= TestConstants.overIndex)
       return true;
     else 
@@ -70,6 +68,7 @@ public class MrMills extends SubsystemBase {
 
   public boolean isCollected(){
     //returns whether an object is close enough to be collected but not so close that it is indexed
+    //This value has some inconsistency as if there is no cargo at all, the sensor reads the wheel distance instead.
     if(dist() <= TestConstants.collectDistHigh && dist() > TestConstants.indexDist)
       return true;
     else 

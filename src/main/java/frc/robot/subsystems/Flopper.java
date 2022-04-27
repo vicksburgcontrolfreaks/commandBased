@@ -10,16 +10,18 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
 
 public class Flopper extends SubsystemBase {
-  /** Creates a new Lifter. Both cylinders are run from the same double solenoid*/
+  /** Creates a new Flopper. This is the mechanism that moves the Collector from the storage position to the collecting position. 
+      Consider putting mechanisms like this that only opperate alongside another mechanism in the same subsystem.
+  */
   private final Solenoid flopper = new Solenoid(PneumaticsModuleType.REVPH, CANConstants.flopSolenoid);
 
   public void flopOut(){
-    //moves both Lifters to the up position
+    //moves the Flopper to the out position
     flopper.set(true);
   }
 
   public void flopIn(){
-    //moves both Lifters to the down position
+    //moves the flopper to the in position
     flopper.set(false);
   }
 

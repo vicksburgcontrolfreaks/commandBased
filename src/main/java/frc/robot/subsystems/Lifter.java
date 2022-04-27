@@ -10,9 +10,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
 
 public class Lifter extends SubsystemBase {
-  /** Creates a new Lifter. Both cylinders are run from the same double solenoid*/
+  /** Creates a new Lifter. This mechanism moves the climbing mechanism from the down position to the climbing position*/
   private final Solenoid lifter = new Solenoid(PneumaticsModuleType.REVPH, CANConstants.liftSolenoid);
   public Lifter(){
+    //moves the lifter to the up position when the code is intialized
+    //THIS WAS A REMARKABLY TERRIBLE IDEA THAT REPEATEDLY ALMOST CAUSED INJURY (whoops)
     liftUp();
   }
 

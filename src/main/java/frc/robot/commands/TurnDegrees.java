@@ -9,6 +9,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.MechTrain;
 
 public class TurnDegrees extends CommandBase {
+  /** Creates a new TurnDegrees. This code turns the robot either directly left or right a set number of degrees*/
   private final MechTrain m_drive;
   private final Double m_dist;
   private final Double m_speed;
@@ -16,8 +17,9 @@ public class TurnDegrees extends CommandBase {
   double frontRightF;
   double backLeftF;
   double backRightF;
-  /** Creates a new TurnDegrees. This code turns the robot either directly left or right a set number of degrees*/
+
   public TurnDegrees(MechTrain subsystem, double x, double s) {
+    //establishes all of the subsystems being called
     m_drive = subsystem;
     m_dist = x;
     m_speed = s;
@@ -29,6 +31,7 @@ public class TurnDegrees extends CommandBase {
   @Override
   public void initialize() {
     //calculates the distance each motor needs to travel in tics in order to rotate the wanted distance
+    //see issue in DriveMech
     double ticDist = m_dist*DriveConstants.ticksPerDegree;
     frontLeftF = m_drive.frontLeftEncoderV() - ticDist;
     frontRightF = m_drive.frontRightEncoderV() - ticDist;
@@ -46,16 +49,6 @@ public class TurnDegrees extends CommandBase {
     m_drive.driveFrontRight(frontRightF, m_speed, 0);
     m_drive.driveBackLeft(backLeftF, m_speed, 0);
     m_drive.driveBackRight(backRightF, m_speed, 0);
-
-    // SmartDashboard.putNumber("frontLeftF", frontLeftF);
-    // SmartDashboard.putNumber("frontRightF", frontRightF);
-    // SmartDashboard.putNumber("backLeftF", backLeftF);
-    // SmartDashboard.putNumber("backRightF", backRightF);
-    // SmartDashboard.putNumber("frontRightEncoder", m_drive.frontRightEncoderV());
-    // SmartDashboard.putNumber("frontLeftEncoder", m_drive.frontLeftEncoderV());
-    // SmartDashboard.putNumber("backRightEncoder", m_drive.backRightEncoderV());
-    // SmartDashboard.putNumber("backLeftEncoder", m_drive.backLeftEncoderV());
-
   }
 
   // Called once the command ends or is interrupted.

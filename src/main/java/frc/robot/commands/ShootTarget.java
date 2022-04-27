@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.LimelightConstants;
 import frc.robot.Constants.ShooterConstants;
@@ -13,12 +12,12 @@ import frc.robot.subsystems.Shooter;
 public class ShootTarget extends CommandBase {
   public final Shooter m_shooter;
   double targetSpeed;
-  double count;
-  /** Creates a new SetShooter. */
+  /** Creates a new ShootTarget. This sets the shooter speed based on the distance from the hub*/
   public ShootTarget(Shooter s) {
-    // Use addRequirements() here to declare subsystem dependencies.
+    //establishes all of the subsystems being called
     m_shooter = s;
     addRequirements(m_shooter);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -28,24 +27,22 @@ public class ShootTarget extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    count++;
+    //If the target is visible, sets the shooter to an appropriate speed. Otherwise, sets the shooter to full power
     if(LimelightConstants.visible)
       targetSpeed = m_shooter.distanceSpeed();
     else
       targetSpeed = ShooterConstants.shootF;
     m_shooter.shooterMove(targetSpeed);
-    SmartDashboard.putBoolean("Shooter Primed", m_shooter.shooterPrimed());
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    // m_shooter.shooterMove(0);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //ends command once the shooter is primed
     return m_shooter.shooterPrimed();
   }
 }

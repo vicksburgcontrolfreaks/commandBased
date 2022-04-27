@@ -8,15 +8,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.MechTrain;
 
 public class SimpleAuton extends SequentialCommandGroup {
-  /** Creates a new Autonomous1. This is the autonomous made for a starting position nearest to the side wall. */
+  /** Creates a new SimpleAuton. This is the autonomous made for testing short pieces of auton code */
   public SimpleAuton(MechTrain m_drive) {
     //adds each stage of our autonomous to a sequential group
-    addCommands(
-
-      //drives the robot 24 inches forward while running the collector. Both shut off when the distance has been driven.
-        new DriveDistance(m_drive, 30, .25)
-        // new DriveDistance(m_drive, 36, .25)
-        //new DriveDistance(m_drive, 30, .15)
-    );
+    addCommands();
   }
 }

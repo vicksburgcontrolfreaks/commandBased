@@ -16,12 +16,11 @@ public class IndexCheck extends CommandBase {
   private final Collector m_collector;
   private final MrMills m_mrMills;
   public IndexCheck(Indexer sIndexer, Collector sCollector, MrMills sMrMills) {
+    //establishes all of the subsystems being called
     m_mrMills = sMrMills;
     m_indexer = sIndexer;
     m_collector = sCollector;
-    addRequirements(m_indexer);
-    addRequirements(m_mrMills);
-    addRequirements(m_collector);
+    addRequirements(m_indexer, m_mrMills, m_collector);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -32,13 +31,11 @@ public class IndexCheck extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //if a ball is collected, runs the indexer and collector until the ball is in the index position
-    // if(m_mrMills.isCollected()){
+    //if a ball is not indexed, runs the indexer and collector until the ball is in the index position
     if(!m_mrMills.isIndexed()){
       m_indexer.runIndexer(TestConstants.indexF);
       m_collector.collectorMove(TestConstants.collectF);
     }
-    // SmartDashboard.putString("Stage", "Index");
   }
 
   // Called once the command ends or is interrupted.
@@ -52,6 +49,7 @@ public class IndexCheck extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //stop the command once the cargo is no longer in the collected position
     if(m_mrMills.isCollected())
       return false;
     else

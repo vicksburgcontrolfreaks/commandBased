@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Lifter;
 
 public class LiftDown extends InstantCommand {
-  //Creates a new FlopDown. This moves the flopper to the down position.
+  //Creates a new LiftDown. This moves the lifter to the down position.
   public LiftDown(Lifter subsystem) {
     super(subsystem::liftDown, subsystem);
   }

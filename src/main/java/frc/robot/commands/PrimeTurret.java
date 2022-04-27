@@ -4,20 +4,19 @@
 
 package frc.robot.commands;
 
-//import edu.wpi.first.wpilibj.smartdashboard.//SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.TurretConstants;
 import frc.robot.subsystems.Turret;
 
 public class PrimeTurret extends CommandBase {
+  // Creates a new PrimeTurret. This centers the turret so that the lifter arms do not hit it
   private final Turret m_turret;
   double turretPower;
   double mode;
   double count;
-  // Creates a new AutoTurret. This is the default code that causes the turret to point towards the hub
-  public PrimeTurret(Turret subsystem) {
 
-    mode = 1;
+  public PrimeTurret(Turret subsystem) {
+    //establishes all of the subsystems being called
     m_turret = subsystem;
     addRequirements(m_turret);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -26,22 +25,14 @@ public class PrimeTurret extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    turretPower = 0;
-    count = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    count++;
-    //SmartDashboard.putNumber("count", count);
-    ////SmartDashboard.putNumber("turretPower", turretPower);
-    //calculates the distance that the turret needs to turn, in degrees, to be pointed towards the hub
-    
+    //calculates the distance that the turret needs to turn, in degrees, to be pointed straight forward
     double currentAngle = m_turret.turretEncoderP()/TurretConstants.ticksPerDegree;
     double targetDistance = -currentAngle;
-    // boolean rotateComplete = true;
-    // boolean search = false;
     double targetDistanceAbs = Math.abs(targetDistance);
     double targetSign = targetDistance/targetDistanceAbs;
     double distancePower = targetSign*(.000000175*(targetDistanceAbs*targetDistanceAbs*targetDistanceAbs)-.0000711*(targetDistanceAbs*targetDistanceAbs)+.00992*targetDistanceAbs);
@@ -50,22 +41,18 @@ public class PrimeTurret extends CommandBase {
     m_turret.runTurret(turretPower);
 }
   
-
-
-  
-
-
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //Turns the turret off once it is centered
     m_turret.runTurret(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //ends the command once the turret is centered
     double currentAngle = m_turret.turretEncoderP()/TurretConstants.ticksPerDegree;
-    //this code runs continuously until it is interrupted by other turret code
     if(Math.abs(currentAngle) < 4 && Math.abs(m_turret.turretEncoderV()) < 10)
       return true;
     else 

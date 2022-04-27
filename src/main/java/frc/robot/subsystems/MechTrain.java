@@ -16,6 +16,8 @@ import frc.robot.Constants.CANConstants;
 import frc.robot.Constants.DriveConstants;
 
 public class MechTrain extends SubsystemBase {
+  /** Creates a new MechTrain. This defines the mechanum based drive train of our robot*/
+  //defines all of the Motors, Encoders, and PID Controllers that the drivetrain will use.
   private final CANSparkMax frontLeft = new CANSparkMax(CANConstants.frontLeft, MotorType.kBrushless);
   private final CANSparkMax frontRight = new CANSparkMax(CANConstants.frontRight, MotorType.kBrushless);
   private final CANSparkMax backLeft = new CANSparkMax(CANConstants.backLeft, MotorType.kBrushless);
@@ -29,26 +31,39 @@ public class MechTrain extends SubsystemBase {
   private final RelativeEncoder backLeftE = backLeft.getEncoder();
   private final RelativeEncoder backRightE = backRight.getEncoder();
 
+  //Defines our drive train as containing the previously established motors
   private final MecanumDrive mechDrive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
 
-  /** Creates a new MechTrain. This defines the mechanum based drive train of our robot*/
-  public void mecanumDrive(double x, double y){
-    //drives the robot in mechanum style without rotation
-    mechDrive.driveCartesian(y, x, 0);
+  @Override
+  public void periodic() {
+    //repeatedly checks the position of each motor as well as the average speed of all drive motors
+    frontLeftEncoderV();
+    frontRightEncoderV();
+    backLeftEncoderV();
+    backRightEncoderV();
+    avgV();
   }
 
   public void mecanumTurn(double x, double y, double rot){
-    //drives the robot in mechanum style without rotation
+    //drives the robot in mechanum style with rotation. This works best for controllers where the input for turning and translational movement are seperated
     frontLeft.setInverted(true);
     backLeft.setInverted(true);
     mechDrive.driveCartesian(y, -x, -rot);
   }
 
+  //The standard mecanumDrive is best used in conjuntion with quickTurn on a controller with only 1 stick to avoid mixed inputs.
+  public void mecanumDrive(double x, double y){
+    //drives the robot in mechanum style without rotation
+    mechDrive.driveCartesian(y, x, 0);
+  }
+
   public void quickTurn(double rot){
-    //only rotates the robot, allowing for faster turning
+    //only rotates the robot, allowing for turning without any chance of moving the whole robot
     mechDrive.driveCartesian(0, 0, rot);
   }
 
+  //The values for all of the PID controllers should be identical to each other (probably) and can be determined using the characterization routine
+  //Instructions here https://docs.wpilib.org/en/stable/docs/software/pathplanning/system-identification/introduction.html
   public void setFrontLeftPids(int slot, double kMaxOutput, double kMinOutput){
     //establishes the PID values for the front left drive motor
     frontLeftP.setP(DriveConstants.drive_kP, slot);
@@ -117,16 +132,7 @@ public class MechTrain extends SubsystemBase {
     backRightP.setReference(distance, ControlType.kPosition, 0);
   }
 
-  @Override
-  public void periodic() {
-    //repeatedly checks the speed of each motor as well as the average speed of all drive motors
-    frontLeftEncoderV();
-    frontRightEncoderV();
-    backLeftEncoderV();
-    backRightEncoderV();
-    avgV();
-  }
-
+  //These all check motor positions. V stands for value, not velocity. That was a bad name.
   public double frontLeftEncoderV(){
     //returns the current speed of the front left motor
     return frontLeftE.getPosition();
@@ -148,6 +154,7 @@ public class MechTrain extends SubsystemBase {
   }
 
   public void resetEncoders(){
+    //resets the drive encoders
     frontRightE.setPosition(0);
     frontLeftE.setPosition(0);
     backRightE.setPosition(0);

@@ -19,7 +19,7 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Turret;
 
 public class Autonomous1 extends SequentialCommandGroup {
-  /** Creates a new Autonomous1. This is the autonomous made for a starting position nearest to the side wall. */
+  /** Creates a new Autonomous1. This is the autonomous made for a starting position other than nearest to the side wall. */
   public Autonomous1(MechTrain m_drive, Collector m_collector, Shooter m_shooter, Indexer m_indexer, MrMills m_mills, Turret m_turret, Limelight m_limelight, Flopper m_flopper, Lifter m_lifter) {
     //adds each stage of our autonomous to a sequential group
     addCommands(
@@ -27,13 +27,16 @@ public class Autonomous1 extends SequentialCommandGroup {
       new ParallelDeadlineGroup(
         new DriveDistance(m_drive, 100, .25), 
         new FullCollect(m_collector, m_flopper, TestConstants.collectF)),
+      //turns the robot around so that the shooter is roughly aligned
       new TurnDegrees(m_drive, 180, .3),
+      //prepares the shooter to shoot
       new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter),
+      //gives the turret 1.5 seconds to aim and moves the lifter out of the way.
       new ParallelDeadlineGroup(
         new WaitCommand(1.5), 
         new LiftDown(m_lifter),
         new AutoTurret(m_turret, m_limelight, false)),
-      //turns on the shooter and fires 2 cargo into the Upper Hub
+      //fires loaded cargo into the Upper Hub
       new FireCheck(m_indexer, m_collector, m_mills, m_shooter)
     );
   }

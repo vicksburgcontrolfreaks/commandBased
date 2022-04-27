@@ -12,10 +12,9 @@ import frc.robot.subsystems.Turret;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class PrimeHanger extends SequentialCommandGroup {
-  /** Creates a new PrimeHanger. */
+  /** Creates a new PrimeHanger. This centers the turret and then moves the lifter to the up position*/
   public PrimeHanger(Turret m_turret, Lifter m_lifter) {
     // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
     addCommands(
     new PrimeTurret(m_turret),
     new LiftUp(m_lifter)

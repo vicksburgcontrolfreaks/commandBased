@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Lifter;
 
 public class LiftUp extends InstantCommand {
-  //Creates a new LiftOff. This moves the liftper to the up position. 
+  //Creates a new LiftUp. This moves the lifter to the up position. 
   public LiftUp(Lifter subsystem) {
     super(subsystem::liftUp, subsystem);
   }

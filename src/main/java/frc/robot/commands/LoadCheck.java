@@ -17,6 +17,7 @@ public class LoadCheck extends CommandBase {
   private final Shooter m_shooter;
 
   public LoadCheck(Indexer sIndexer, MrMills sMrMills, Shooter sShooter) {
+    //establishes all of the subsystems being called
     m_mrMills = sMrMills;
     m_indexer = sIndexer;
     m_shooter = sShooter;
@@ -31,18 +32,16 @@ public class LoadCheck extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //checks if any cargo is loaded and if the shooter is primed, loading the ball and firing if it is
-    // SmartDashboard.putBoolean("indexed", m_mrMills.isIndexed());
+    //checks if any cargo is indexed and if the shooter is primed, loading the ball and firing if it is
       if(m_mrMills.isIndexed() && m_shooter.shooterPrimed()){
         m_indexer.runIndexer(TestConstants.loadF);
       }
-    // SmartDashboard.putString("Stage", "Load");
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //sets the indexer to 0 once it has been loaded
+    //sets the indexer to 0 once cargo has been loaded
     m_indexer.runIndexer(0);
   }
 

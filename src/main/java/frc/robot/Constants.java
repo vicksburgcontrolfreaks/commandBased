@@ -50,6 +50,13 @@ public final class Constants {
         public final static double searchPower = .15;
     }
 
+    public static final class AdjusterConstants{
+        //establishes the constants used for rotating the turret precise distances
+        public final static double ticksPerDegree = .0156;
+        public final static double minAngle = 0;
+        public final static double maxAngle = 90;
+    }
+
     public static final class ShooterConstants{
         public final static double shoot_kP = .0000002893;
         public final static double shoot_kI = 0;
@@ -115,7 +122,7 @@ public final class Constants {
         public final static int fire = 6; //RB
         public final static int pressFire = 5; //LB
         public final static int stop = 8; //START
-        public final static int winchUp = 4; //Y
+        public final static int adjust = 4; //Y
         public final static int winchDown = 1; //A
         public final static int winchAutoUp = 3; //X
         public final static int winchReset = 7; //BACK
@@ -134,6 +141,7 @@ public final class Constants {
         public final static int indexer = 13;
         public final static int winchL = 10;
         public final static int winchR = 11;
+        public final static int adjuster = 12;
         public final static int liftSolenoid = 1;
         public final static int flopSolenoid = 2;
     }

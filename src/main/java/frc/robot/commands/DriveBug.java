@@ -9,6 +9,12 @@ import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.MrMills;
 import frc.robot.subsystems.Shooter;
 public class DriveBug extends CommandBase {
+
+/*This code was an unsuccessful attempt at putting all of the smart dasboard values in one place
+  The issue is that it requires calling in a bunch of seperate subsystems, preventing these systems from being used elsewhere while sending values
+  What should have been done is that all desired values would be sent to constants periodically and then called by this code and put into the smart dashboard
+  Do that next time
+
   /** Creates a new Debug. */
  private final Limelight m_limelight;
  private final MrMills m_mills;
@@ -33,20 +39,6 @@ public class DriveBug extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // double absLime = Math.abs(m_limelight.tx());
-    // if(m_mills.isIndexed() && !m_mills.isOverIndexed() && m_shooter.shooterPrimed() && m_limelight.inRange() && absLime < LimelightConstants.error)
-    //   bigRedButton = true;
-    // else 
-    //   bigRedButton = false;
-    // SmartDashboard.putBoolean("Ready to Fire?", bigRedButton);
-
-
-    
-
-
-
-
-
   }
 
   // Called once the command ends or is interrupted.

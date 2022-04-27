@@ -10,16 +10,17 @@ import frc.robot.Constants.TestConstants;
 import frc.robot.subsystems.Winch;
 
 public class SetWinch extends CommandBase {
+  // Creates a new SetWinch. This runs both sides of the winch up or down independently.
   private final Winch m_winch;
-  private double totalDistance; //.6
-  
+  private double totalDistance;
   double lPosition;
   double rPosition;
   double targetPosition;
   double lError;
   double rError;
-  // Creates a new AutoTurret. This is the default code that causes the turret to point towards the hub
+
   public SetWinch(Winch subsystem, double dist) {
+    //establishes all of the subsystems being called
     m_winch = subsystem;
     dist = totalDistance;
     addRequirements(m_winch);
@@ -29,17 +30,14 @@ public class SetWinch extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    //sets the target position that the winch motors are aiming for.
     targetPosition = totalDistance;
-    // SmartDashboard.putNumber("intiPosit", m_collector.collectorPosition());
-    // SmartDashboard.putNumber("initTarget", targetPosition);
-    // SmartDashboard.putNumber("negDist", negDist);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //SmartDashboard.putNumber("turretPower", turretPower);
-    //calculates the distance that the turret needs to turn, in degrees, to be pointed towards the hub
+    //calculates the distance and direction that either side of the winch needs to move
     double lDistancePower;
     double rDistancePower;
     lError = Math.abs(Math.abs(targetPosition)-Math.abs(lPosition));
@@ -52,11 +50,12 @@ public class SetWinch extends CommandBase {
     double absRDistance = Math.abs(rDistance);
     double lDistSign = lDistance/absLDistance;
     double rDistSign = rDistance/absRDistance;
+    //sets the left side of the winch to a set speed based on how far from the target position it is
     if(lError < TestConstants.winchError)
       lDistancePower = lDistSign*(ClimberConstants.autoUpSpeed);
     else
       lDistancePower = 0;
-
+    //sets the right side of the winch to a set speed based on how far from the target position it is
     if(rError < TestConstants.winchError)
       rDistancePower = rDistSign*(ClimberConstants.autoUpSpeed);
     else
@@ -65,21 +64,17 @@ public class SetWinch extends CommandBase {
     m_winch.rWinchMove(rDistancePower);
 }
   
-
-
-  
-
-
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //stops the winch once the command ends
     m_winch.winchMove(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    //this code runs continuously until it is interrupted by other turret code
+    //Ends the code if both sides of the winch are sufficiently close to their end points.
     if(lError < TestConstants.winchError && rError < TestConstants.winchError)
       return true;
     else 

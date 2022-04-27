@@ -14,6 +14,7 @@ import frc.robot.subsystems.Indexer;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class FullFire extends ParallelCommandGroup {
+  //Creates a new FullFire. This runs the collector and the indexer in order to quickly run all cargo into the shooter
   public FullFire(Collector m_collector, Indexer m_indexer) {
     addCommands(
       new CollectorRun(m_collector, TestConstants.collectF),

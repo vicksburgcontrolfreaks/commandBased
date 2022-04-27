@@ -11,7 +11,11 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.MechTrain;
 
 public class DriveDistance extends CommandBase {
-  /** Creates a new DriveDistance. This code drives the robot either directly forward or backward a set distance*/
+  /** Creates a new DriveDistance. This code drives the robot either directly forward or backward a set distance
+   * 
+   * Something is wrong with this code that causes it to turn instead of driving whenever an auton is run after having run another auton without power cycling
+   * Good luck
+  */
   private final MechTrain m_drive;
   private final Double m_dist;
   private final Double m_speed;
@@ -20,6 +24,7 @@ public class DriveDistance extends CommandBase {
   double backLeftF;
   double backRightF;
   public DriveDistance(MechTrain subsystem, double x, double s) {
+    //establishes all of the subsystems being called
     m_drive = subsystem;
     m_dist = x;
     m_speed = s;
@@ -47,8 +52,9 @@ public class DriveDistance extends CommandBase {
     m_drive.driveBackLeft(backLeftF, m_speed, 0);
     m_drive.driveBackRight(backRightF, m_speed, 0);
 
-    //SmartDashboard.putBoolean("isFinished", isFinished());
-
+    //Sends a bunch of test values to the smart dashboard.
+    //This is fine for quick testing but values you want to use consistently should all be sent through 1 command.
+    //See notes in DriveBug for more information.
     SmartDashboard.putNumber("frontLeftF", frontLeftF);
     SmartDashboard.putNumber("frontRightF", frontRightF);
     SmartDashboard.putNumber("backLeftF", backLeftF);
@@ -73,7 +79,7 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    //checks to see if the robot has driven to the endpoint
+    //checks to see if the robot has driven to the endpoint. This could probably be seperated into a seperate function to make it read nicer.
     double frontLeftEValue = m_drive.frontLeftEncoderV();
     double frontRightEValue = m_drive.frontRightEncoderV();
     double backLeftEValue = m_drive.backLeftEncoderV();
@@ -107,24 +113,5 @@ public class DriveDistance extends CommandBase {
     //SmartDashboard.putBoolean("check2", drivePostionReached);
     return drivePostionReached;
 
-  }
-
-  public boolean testFinish(){
-        //checks to see if the robot has driven to the endpoint
-        double frontLeftEValue = m_drive.frontLeftEncoderV();
-        double frontRightEValue = m_drive.frontLeftEncoderV();
-        double backLeftEValue = m_drive.frontLeftEncoderV();
-        double backRightEValue = m_drive.frontLeftEncoderV();
-        double drive_encoderError = DriveConstants.drive_encoderError;
-        boolean drivePostionReached = true;
-        if (Math.abs(frontLeftF - frontLeftEValue) > drive_encoderError)
-        drivePostionReached = false;
-        if (Math.abs(frontRightF - frontRightEValue) > drive_encoderError)
-        drivePostionReached = false;
-        if (Math.abs(backLeftF - backLeftEValue) > drive_encoderError)
-        drivePostionReached = false;
-        if (Math.abs(backRightF - backRightEValue) > drive_encoderError)
-        drivePostionReached = false;
-        return drivePostionReached;
   }
 }

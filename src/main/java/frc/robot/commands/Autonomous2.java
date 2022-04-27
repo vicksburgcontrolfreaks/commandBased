@@ -27,17 +27,20 @@ public class Autonomous2 extends SequentialCommandGroup {
       new ParallelDeadlineGroup(
         new DriveDistance(m_drive, 44, .25), 
         new FullCollect(m_collector, m_flopper, TestConstants.collectF)),
+      //drives the robot backwards slightly to clear the  wall while still running the collector to ensure that the cargo is fully controlled
       new ParallelDeadlineGroup(
         new DriveDistance(m_drive, -9, .25),  
         new FullCollect(m_collector, m_flopper, TestConstants.collectF)),
-
+      //turns around to shoot
       new TurnDegrees(m_drive, 180, .3),
+      //primes the shooter
       new PrimingSequence(m_collector, m_indexer, m_mills, m_shooter),
+      //gives the turret 1.5 seconds to aim and moves the lifter out of the way.
       new ParallelDeadlineGroup(
         new WaitCommand(1.5), 
         new LiftDown(m_lifter),
         new AutoTurret(m_turret, m_limelight, false)),
-      //turns on the shooter and fires 2 cargo into the Upper Hub
+      //fires loaded cargo into the Upper Hub
       new FireCheck(m_indexer, m_collector, m_mills, m_shooter)
     );
   }

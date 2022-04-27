@@ -16,7 +16,6 @@ import frc.robot.Constants.ShootButtons;
 import frc.robot.Constants.TestConstants;
 import frc.robot.commands.Autonomous1;
 import frc.robot.commands.Autonomous2;
-import frc.robot.commands.Close1;
 import frc.robot.commands.CollectorRun;
 import frc.robot.commands.DriveMech;
 import frc.robot.commands.FireCheck;
@@ -25,16 +24,16 @@ import frc.robot.commands.IndexerRun;
 import frc.robot.commands.LiftDown;
 import frc.robot.commands.IndexCheck;
 import frc.robot.commands.ManualTurret;
-import frc.robot.commands.OffCollect;
 import frc.robot.commands.PrimeHanger;
 import frc.robot.commands.PrimingSequence;
 import frc.robot.commands.ResetWinch;
 import frc.robot.commands.ShooterRun;
 import frc.robot.commands.SimpleAuton;
 import frc.robot.commands.Stop;
-import frc.robot.commands.ThreeBallAuton;
+import frc.robot.commands.AutoAdjust;
 import frc.robot.commands.AutoTurret;
 import frc.robot.commands.WinchRun;
+import frc.robot.subsystems.Adjuster;
 import frc.robot.subsystems.Collector;
 import frc.robot.subsystems.Flopper;
 import frc.robot.subsystems.Indexer;
@@ -66,6 +65,7 @@ public class RobotContainer {
   private final MrMills m_Mills = new MrMills();
   private final Flopper m_Flopper = new Flopper();
   private final Lifter m_Lifter = new Lifter();
+  private final Adjuster m_Adjuster = new Adjuster();
   //private final Joystick driveStick = new Joystick(0);
   private final Joystick shootStick = new Joystick(1);
   private final XboxController driveController = new XboxController(0);
@@ -73,8 +73,6 @@ public class RobotContainer {
   private final Command SimpleAuton = new SimpleAuton(m_Drive);
   //private final Command DriveBug = new DriveBug(m_Limelight, m_Mills, m_Shooter);
   private final Command Autonomous2 = new Autonomous2(m_Drive, m_Collector, m_Shooter, m_Indexer, m_Mills, m_Turret, m_Limelight, m_Flopper, m_Lifter);
-  private final Command Close1 = new Close1(m_Drive, m_Collector, m_Shooter, m_Indexer, m_Mills, m_Turret, m_Limelight);
-  private final Command TBall = new ThreeBallAuton(m_Drive, m_Collector, m_Shooter, m_Indexer, m_Mills, m_Turret, m_Limelight);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   SendableChooser<Command> debugChooser = new SendableChooser<>();
   public RobotContainer() {
@@ -89,7 +87,7 @@ public class RobotContainer {
     // m_Reacher.setDefaultCommand(new ReachDown(m_Reacher));
     // m_Lifter.setDefaultCommand(new LiftDown(m_Lifter));
     //sets the turret to track the hub automatically
-    m_Turret.setDefaultCommand(new AutoTurret(m_Turret, m_Limelight, false));
+    // m_Turret.setDefaultCommand(new AutoTurret(m_Turret, m_Limelight, false));
 
     // Add commands to the autonomous command chooser
     m_chooser.setDefaultOption("Auton1", Autonomous1);
@@ -114,7 +112,6 @@ public class RobotContainer {
     new JoystickButton(shootStick, ShootButtons.collectOn).whileHeld(new FullCollect(m_Collector, m_Flopper, TestConstants.collectF));
     new JoystickButton(shootStick, ShootButtons.simpleCollect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectF));
     new JoystickButton(shootStick, ShootButtons.backCollect).whileHeld(new CollectorRun(m_Collector, TestConstants.collectB));
-    new JoystickButton(shootStick, ShootButtons.collectOff).whenPressed(new OffCollect(m_Collector, m_Flopper));
     new JoystickButton(shootStick, ShootButtons.prime).whenPressed(new PrimingSequence(m_Collector, m_Indexer, m_Mills, m_Shooter));
     new JoystickButton(shootStick, ShootButtons.shooterOff).whenPressed(new ShooterRun(m_Shooter, 0, false));
     new JoystickButton(shootStick, ShootButtons.manual).whenPressed(new ManualTurret(m_Turret, shootStick::getX));
@@ -128,6 +125,7 @@ public class RobotContainer {
     new JoystickButton(driveController, ControllerButtons.pressFire).whenPressed(new FireCheck(m_Indexer, m_Collector, m_Mills, m_Shooter));
     new JoystickButton(driveController, ControllerButtons.stop).whileHeld(new Stop(m_Shooter, m_Collector, m_Winch, m_Indexer, m_Turret, m_Flopper));
     // new JoystickButton(driveController, ControllerButtons.winchAutoUp).whileHeld(new SetWinch(m_Winch, ClimberConstants.autoDistance));
+    new JoystickButton(driveController, ControllerButtons.adjust).whileHeld(new AutoAdjust(m_Adjuster, m_Limelight));
     new JoystickButton(driveController, ControllerButtons.winchReset).whenPressed(new ResetWinch(m_Winch));
   }
 

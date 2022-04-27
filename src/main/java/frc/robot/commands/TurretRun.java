@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Turret;
 
 public class TurretRun extends CommandBase {
+  /** Creates a new TurretRun. This code runs the Turret at a specific speed*/
   public final Turret m_turret;
   private final Double m_speed;
 
   /** Creates a new CollectorRun. */
   public TurretRun(Turret subsystem, double s) {
-      /** Creates a new TurretRun. This code runs the Turret at a specific speed*/
-
+    //establishes all of the subsystems being called
     m_turret = subsystem;
     m_speed = s;
     addRequirements(m_turret);
@@ -29,6 +29,7 @@ public class TurretRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //sets the speed of the turret while this command is running
     m_turret.runTurret(m_speed);
   }
 

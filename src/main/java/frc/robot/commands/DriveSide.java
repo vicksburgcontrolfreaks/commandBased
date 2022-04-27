@@ -9,7 +9,10 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.MechTrain;
 
 public class DriveSide extends CommandBase {
-  /** Creates a new DriveDistance. This code drives the robot either directly forward or backward a set distance*/
+  /** Creates a new DriveSide. This code drives the robot either directly left or right a set distance
+   *  Do to "build issues" the robot will follow a curved path and be imprecise
+   * I have also not kept this code up to date very well so if any core methods of checking distances and such are different from DriveMech, do what is in DriveMech
+  */
   private final MechTrain m_drive;
   private final Double m_dist;
   private final Double m_speed;
@@ -18,6 +21,7 @@ public class DriveSide extends CommandBase {
   double backLeftF;
   double backRightF;
   public DriveSide(MechTrain subsystem, double x, double s) {
+    //establishes all of the subsystems being called
     m_drive = subsystem;
     m_dist = x;
     m_speed = s;
@@ -29,6 +33,7 @@ public class DriveSide extends CommandBase {
   @Override
   public void initialize() {
     //calculates the distance each motor needs to travel in tics in order to drive the wanted distance
+    //same issue as driveMech
     double ticDist = m_dist*DriveConstants.ticksPerSide;
     frontLeftF = m_drive.frontLeftEncoderV() - ticDist;
     frontRightF = m_drive.frontRightEncoderV() + ticDist;
@@ -41,20 +46,10 @@ public class DriveSide extends CommandBase {
   @Override
   public void execute() {
     //sets the motors until the endpoint is reached
-    //SmartDashboard.putNumber("test", test);
     m_drive.driveFrontLeft(frontLeftF, m_speed, 0);
-    m_drive.driveFrontRight(frontRightF, m_speed, 0); //problem
-    m_drive.driveBackLeft(backLeftF, m_speed, 0); // problem
+    m_drive.driveFrontRight(frontRightF, m_speed, 0);
+    m_drive.driveBackLeft(backLeftF, m_speed, 0);
     m_drive.driveBackRight(backRightF, m_speed, 0);
-    //SmartDashboard.putBoolean("isFinished", isFinished());
-    //SmartDashboard.putNumber("frontLeftF", frontLeftF);
-    //SmartDashboard.putNumber("frontRightF", frontRightF);
-    //SmartDashboard.putNumber("backLeftF", backLeftF);
-    //SmartDashboard.putNumber("backRightF", backRightF);
-    //SmartDashboard.putNumber("frontRightEncoder", m_drive.frontRightEncoderV());
-    //SmartDashboard.putNumber("frontLeftEncoder", m_drive.frontLeftEncoderV());
-    //SmartDashboard.putNumber("backRightEncoder", m_drive.backRightEncoderV());
-    //SmartDashboard.putNumber("backLeftEncoder", m_drive.backLeftEncoderV());
 
 
     testFinish();

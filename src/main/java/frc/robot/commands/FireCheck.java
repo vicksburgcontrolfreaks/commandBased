@@ -17,12 +17,13 @@ import frc.robot.subsystems.Shooter;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class FireCheck extends SequentialCommandGroup {
+  /** Creates a new FireCheck. This fires two cargo while the shooter is at full speed.*/
   private final Indexer m_indexer;
   private final Collector m_collector;
   private final MrMills m_mrMills;
   private final Shooter m_shooter;
-  /** Creates a new FireCheck. This fires two cargo while the shooter is at full speed.*/
   public FireCheck(Indexer sIndexer, Collector sCollector, MrMills sMrMills, Shooter sShooter) {
+    //establishes all of the subsystems being called
     m_indexer = sIndexer;
     m_mrMills = sMrMills;
     m_collector = sCollector;

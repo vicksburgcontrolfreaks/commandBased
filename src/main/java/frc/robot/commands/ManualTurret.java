@@ -14,10 +14,10 @@ public class ManualTurret extends CommandBase {
   private final DoubleSupplier m_speed;
 
   public ManualTurret(Turret subsystem, DoubleSupplier speed) {
+    //establishes all of the subsystems being called
     m_turret = subsystem;
     m_speed = speed;
     addRequirements(m_turret);
-    
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

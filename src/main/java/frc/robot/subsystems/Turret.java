@@ -17,7 +17,8 @@ public class Turret extends SubsystemBase {
   private final CANSparkMax turret = new CANSparkMax(CANConstants.turret, MotorType.kBrushless);
   private final RelativeEncoder turretE = turret.getEncoder();
 
-  public Turret(){   
+  public Turret(){  
+    //resets the turret encoder on initialization. If the turret is set wrong, certain functions will not work properly. 
     turretE.setPosition(0);
   }
 
@@ -31,8 +32,6 @@ public class Turret extends SubsystemBase {
     //periodically checks the current position and speed of the encoder
     turretEncoderP();
     turretEncoderV();
-    // SmartDashboard.putNumber("TurretPosition", turretEncoderP()/TurretConstants.ticksPerDegree);
-    // SmartDashboard.putNumber("TurretSpeed", turretEncoderV());
   }
 
   public double turretEncoderP(){
@@ -41,15 +40,17 @@ public class Turret extends SubsystemBase {
   }
 
   public double turretEncoderV(){
-    //returns the current speed of the turret
+    //returns the current speed of the turret. Here, V means velocity and not value. Again, I'm bad at names.
     return turretE.getVelocity();
   }
 
   public void turretReset(){
+    //sets the turret encoder to 0
     turretE.setPosition(0);
   }
 
   public boolean turretPrimed(){
+    //checks if the turret is centered so that the lifter can move to the up position
     if(Math.abs(turretEncoderP()) < LimelightConstants.error)
       return true;
     else 

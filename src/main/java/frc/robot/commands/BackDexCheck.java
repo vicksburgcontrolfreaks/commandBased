@@ -12,17 +12,16 @@ import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.MrMills;
 
 public class BackDexCheck extends CommandBase {
-    /// Creates a new IndexCheck. This checks to see if a ball is in the collector and moves it into the index position if it is.
+  // Creates a new BackDexCheck. This runs the indexer back slightly if a cargo is over indexed.
   private final Indexer m_indexer;
   private final Collector m_collector;
   private final MrMills m_mrMills;
   public BackDexCheck(Indexer sIndexer, Collector sCollector, MrMills sMrMills) {
+    //establishes all of the subsystems being called
     m_mrMills = sMrMills;
     m_indexer = sIndexer;
     m_collector = sCollector;
-    addRequirements(m_indexer);
-    addRequirements(m_mrMills);
-    addRequirements(m_collector);
+    addRequirements(m_indexer, m_mrMills, m_collector);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -33,10 +32,10 @@ public class BackDexCheck extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //if a ball is collected, runs the indexer and collector until the ball is in the index position
+    //if a ball is over indexed, runs the indexer back until the ball is in the index position
     if(m_mrMills.isOverIndexed()){
       m_indexer.runIndexer(TestConstants.indexB);
-        }
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -50,6 +49,7 @@ public class BackDexCheck extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //if the ball is no longer overindexed, ends this command
     if(m_mrMills.isOverIndexed())
       return false;
     else

@@ -15,6 +15,7 @@ public class ShooterRun extends CommandBase {
   private final Double m_speed;
   
   public ShooterRun(Shooter subsystem, double s, boolean completes) {
+    //establishes all of the subsystems being called
     m_shooter = subsystem;
     m_speed = s;
     addRequirements(m_shooter);
@@ -28,26 +29,19 @@ public class ShooterRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // SmartDashboard.putBoolean("Pirated", m_shooter.shooterPrimed());
-    // SmartDashboard.putBoolean("isFinished", isFinished());
-    // SmartDashboard.putString("Running?", "yes");
-
+    //runs the shooter at a set speed while the command is running
     m_shooter.shooterMove(m_speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // SmartDashboard.putString("Running?", "no");
-    //stops the shooter when this command is interrupted
-    // if(interrupted)
-    //   m_shooter.shooterMove(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //This code runs once and then stops
     return true;
-    //this code runs continuously until it is interrupted by other shooter code
   }
 }

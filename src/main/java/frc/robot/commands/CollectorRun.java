@@ -14,6 +14,7 @@ public class CollectorRun extends CommandBase {
   private final Double m_speed;
 
   public CollectorRun(Collector subsystem, double s) {
+    //establishes all of the subsystems being called
     m_collector = subsystem;
     m_speed = s;
     addRequirements(m_collector);
@@ -27,6 +28,7 @@ public class CollectorRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //sets the collector to the input speed
     m_collector.collectorMove(m_speed);
   }
 
