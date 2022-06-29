@@ -31,17 +31,18 @@ public class WinchRun extends CommandBase {
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
+  /*
   @Override
   public void execute() {
       if(m_x.getAsDouble() > 0){
-        if(m_winch.rightWinchP() < ClimberConstants.autoDistance)
-          m_winch.rWinchMove(1);
+        //if(m_winch.rightWinchP() < ClimberConstants.autoDistance)
+        //  m_winch.rWinchMove(1);
         else
           m_winch.rWinchMove(0);
-        if(m_winch.leftWinchP() < ClimberConstants.autoDistance)
-          m_winch.lWinchMove(1);
-        else
-          m_winch.lWinchMove(0);
+        //if(m_winch.leftWinchP() < ClimberConstants.autoDistance)
+        //  m_winch.lWinchMove(1);
+        //else
+        //  m_winch.lWinchMove(0);
       }
 
       else if(m_y.getAsDouble() > 0){
@@ -58,7 +59,7 @@ public class WinchRun extends CommandBase {
         m_winch.lWinchMove(0);
         m_winch.rWinchMove(0);}
   }
-
+*/
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {

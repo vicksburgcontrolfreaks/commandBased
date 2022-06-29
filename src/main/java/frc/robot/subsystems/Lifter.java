@@ -15,16 +15,16 @@ public class Lifter extends SubsystemBase {
   public Lifter(){
     //moves the lifter to the up position when the code is intialized
     //THIS WAS A REMARKABLY TERRIBLE IDEA THAT REPEATEDLY ALMOST CAUSED INJURY (whoops)
-    liftUp();
+    //liftUp();
   }
 
   public void liftUp(){
     //moves both Lifters to the up position
-    lifter.set(false);
+    //lifter.set(false);
   }
 
   public void liftDown(){
     //moves both Lifters to the down position
-    lifter.set(true);
+    //lifter.set(true);
   }
 }

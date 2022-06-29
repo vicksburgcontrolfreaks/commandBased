@@ -20,48 +20,48 @@ public class Winch extends SubsystemBase {
   private final RelativeEncoder winchRE = winchR.getEncoder();
   public Winch(){
     //Sets the left side to be inverted upon initializing
-    winchL.setInverted(true);
+    //winchL.setInverted(true);
   }
 
   @Override
   public void periodic() {
     //periodically checks the current position of both sides of the winch
-    leftWinchP();
-    rightWinchP();
+    //leftWinchP();
+    //rightWinchP();
     //periodically sends these values to the Smart Dashboard
-    SmartDashboard.putNumber("Winch Position Left", leftWinchP());
-    SmartDashboard.putNumber("Winch Position Right", rightWinchP());
+    //SmartDashboard.putNumber("Winch Position Left", leftWinchP());
+    //SmartDashboard.putNumber("Winch Position Right", rightWinchP());
   }
 
   public void winchMove(double speed){
     //sets the speed of the winch to an input value
-    winchL.set(speed);
-    winchR.set(speed);
+    //winchL.set(speed);
+    //winchR.set(speed);
   }
 
   public void lWinchMove(double speed){
     //sets the speed of the left side of the winch to an input value
-    winchL.set(speed);
+    //winchL.set(speed);
   }
 
   public void rWinchMove(double speed){
     //sets the speed of the right side of the winch to an input value
-    winchR.set(speed);
+    //winchR.set(speed);
   }
 
-  public double leftWinchP(){
+  //public double leftWinchP(){
     //returns the current position of the left side of the winch
-    return winchLE.getPosition();
-  }
+    //return winchLE.getPosition();
+  //}
 
-  public double rightWinchP(){
+  //public double rightWinchP(){
     //returns the current position of the right side of the winch
-    return winchRE.getPosition();
-  }
+    //return winchRE.getPosition();
+  //}
 
   public void resetEncoders(){
     //resets both encoders
-    winchLE.setPosition(0);
-    winchRE.setPosition(0);
+    //winchLE.setPosition(0);
+    //winchRE.setPosition(0);
   }
 }

@@ -63,8 +63,8 @@ public final class Constants {
         public final static double shoot_kD = 0;
         public final static double shoot_kIz = 0;
         public final static double shoot_kFF = 0;
-        public final static double shoot_kMaxOutput = 1;
-        public final static double shoot_kMinOutput = -1;
+        public final static double shoot_kMaxOutput = .1;
+        public final static double shoot_kMinOutput = -.1;
         public final static double shoot_encoderError = .5;
         public final static double shootF = -.5;
         public final static double speedMultiplier = 5176;
@@ -121,11 +121,15 @@ public final class Constants {
     public static final class ControllerButtons{
         public final static int fire = 6; //RB
         public final static int pressFire = 5; //LB
-        public final static int stop = 8; //START
+        //public final static int stop = 8; //START
         public final static int adjust = 4; //Y
         public final static int winchDown = 1; //A
         public final static int winchAutoUp = 3; //X
         public final static int winchReset = 7; //BACK
+    }
+
+    public static final class TestButtons{
+        public final static int fire = 1; //t r i g g e r
     }
 
     public static final class CANConstants{

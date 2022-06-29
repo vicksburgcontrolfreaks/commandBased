@@ -35,7 +35,7 @@ public class SetWinch extends CommandBase {
   }
 
   // Called every time the scheduler runs while the command is scheduled.
-  @Override
+  /*
   public void execute() {
     //calculates the distance and direction that either side of the winch needs to move
     double lDistancePower;
@@ -62,13 +62,13 @@ public class SetWinch extends CommandBase {
       rDistancePower = 0;
     m_winch.lWinchMove(lDistancePower);
     m_winch.rWinchMove(rDistancePower);
-}
+} */
   
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     //stops the winch once the command ends
-    m_winch.winchMove(0);
+    //m_winch.winchMove(0);
   }
 
   // Returns true when the command should end.

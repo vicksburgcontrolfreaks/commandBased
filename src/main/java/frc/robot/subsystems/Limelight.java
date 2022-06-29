@@ -13,6 +13,7 @@ import frc.robot.Constants.LimelightConstants;
 
 public class Limelight extends SubsystemBase {
     /** Creates a new Limelight and names all of the tables from which values will be pulled*/
+    //https://docs.limelightvision.io/en/latest/vision_pipeline_tuning.html
   NetworkTableInstance inst;
   NetworkTable table;
   NetworkTableEntry tx;
