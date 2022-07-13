@@ -8,9 +8,11 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANConstants;
 import frc.robot.Constants.LimelightConstants;
+import frc.robot.Constants.TurretConstants;
 
 public class Turret extends SubsystemBase {
   //Creates a new Turret. This is the motor that runs the rotating turret that lets us maintain targeting towards the hub.
@@ -32,11 +34,18 @@ public class Turret extends SubsystemBase {
     //periodically checks the current position and speed of the encoder
     turretEncoderP();
     turretEncoderV();
+    turretDegrees();
+    SmartDashboard.putNumber("TurretPosition", turretEncoderP());
+    SmartDashboard.putNumber("TurretDegrees", turretDegrees());
   }
 
   public double turretEncoderP(){
     //returns the current position of the turret
     return turretE.getPosition();
+  }
+
+  public double turretDegrees(){
+    return turretEncoderP()/TurretConstants.ticksPerDegree;
   }
 
   public double turretEncoderV(){
