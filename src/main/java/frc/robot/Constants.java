@@ -44,17 +44,21 @@ public final class Constants {
 
     public static final class TurretConstants{
         //establishes the constants used for rotating the turret precise distances
-        public final static double ticksPerDegree = .0156;
-        public final static double minAngle = -90;
-        public final static double maxAngle = 90;
+        public final static double ticksPerDegree = 1.438;
+        public final static double minAngle = -57;
+        public final static double maxAngle = 57;
+        public final static double farSpeed = .5;
+        public final static double closeSpeed = .15;
         public final static double searchPower = .15;
     }
 
     public static final class AdjusterConstants{
         //establishes the constants used for rotating the turret precise distances
-        public final static double ticksPerDegree = .0156;
-        public final static double minAngle = 0;
-        public final static double maxAngle = 90;
+        public final static double ticksPerDegree = 4.7;
+        public final static double startAngle = 9;
+        public final static double minAngle = 10;
+        public final static double maxAngle = 44;
+        public static double distAngle;
     }
 
     public static final class ShooterConstants{
@@ -100,6 +104,9 @@ public final class Constants {
         public final static double winchError = .5;
         public final static double primeCollectorSpeed = -.15;
         public final static double primeCollectorDist = -.6;
+        public final static double adjusterSpeedClose = .07;
+        public final static double adjusterSpeedFar = 1;
+        public final static double adjusterCloseDist = 1;
     }
 
     public static final class ShootButtons{
@@ -107,25 +114,25 @@ public final class Constants {
         public final static int index = 1;
         public final static int backDex = 2;
         public final static int collectOn = 3;
-        public final static int simpleCollect = 4;
-        public final static int collectOff = 5;
+        // public final static int simpleCollect = 4;
+        // public final static int collectOff = 5;
         public final static int backCollect = 5;
+        // public final static int adjustTest = 6;
         public final static int prime = 7;
         public final static int shooterOff = 8;
-        public final static int manual = 9;
-        public final static int auto = 10;
-        public final static int primeHang = 11;
-        public final static int unprimeHang = 12;
+        public final static int manualTurret = 9;
+        public final static int autoTurret = 10;
+        public final static int manualAdjust = 11;
+        public final static int autoAdjust = 12;
     }
 
     public static final class ControllerButtons{
         public final static int fire = 6; //RB
         public final static int pressFire = 5; //LB
         //public final static int stop = 8; //START
-        public final static int adjust = 4; //Y
-        public final static int winchDown = 1; //A
-        public final static int winchAutoUp = 3; //X
-        public final static int winchReset = 7; //BACK
+        // public final static int winchDown = 1; //A
+        // public final static int winchAutoUp = 3; //X
+        // public final static int winchReset = 7; //BACK
     }
 
     public static final class TestButtons{

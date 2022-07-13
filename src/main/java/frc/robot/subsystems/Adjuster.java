@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.AdjusterConstants;
 import frc.robot.Constants.CANConstants;
 import frc.robot.Constants.LimelightConstants;
 
@@ -25,7 +26,11 @@ public class Adjuster extends SubsystemBase {
 
   public void runAdjuster(double speed){
     //runs the adjuster at a set speed
-    adjuster.set(speed);
+    if(speed >= .05 || speed <= -.05)
+      adjuster.set(speed);
+    else
+      adjuster.set(0);
+    SmartDashboard.putNumber("AdjusterPower", speed);
   }
 
   @Override
@@ -34,12 +39,19 @@ public class Adjuster extends SubsystemBase {
     adjusterEncoderP();
     adjusterEncoderV();
     distanceAdjust();
-    SmartDashboard.putNumber("AdjusterPosition", adjusterEncoderP());
+    SmartDashboard.putNumber("AdjusterTics", adjusterEncoderP());
+    SmartDashboard.putNumber("AdjusterDegrees", adjusterDegrees());
+    AdjusterConstants.distAngle = distanceAdjust();
   }
 
   public double adjusterEncoderP(){
     //returns the current position of the adjuster
     return adjusterE.getPosition();
+  }
+
+    public double adjusterDegrees(){
+    //returns the current position of the adjuster
+    return AdjusterConstants.startAngle + adjusterEncoderP()/AdjusterConstants.ticksPerDegree;
   }
 
   public double adjusterEncoderV(){

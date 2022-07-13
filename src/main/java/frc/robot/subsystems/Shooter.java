@@ -91,6 +91,7 @@ public class Shooter extends SubsystemBase {
   public double distanceSpeed(){
     //returns the ideal power for the shooters to run at based on distance from the target. 
     //There is apparantely a way to greatly improve the efficiency of this through "Linear Interpolation"
+    //needs new math here based on shooter design.
     double speed = -(6000*Math.sin(.000097861*LimelightConstants.currentDistance - 1.57949) + 6000.54);
     if(speed <-1)
       return -1;
